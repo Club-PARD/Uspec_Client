@@ -13,6 +13,7 @@
 		21B21B6E2B722444008FFDCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B6C2B722444008FFDCB /* Main.storyboard */; };
 		21B21B702B722448008FFDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B6F2B722448008FFDCB /* Assets.xcassets */; };
 		21B21B732B722448008FFDCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B712B722448008FFDCB /* LaunchScreen.storyboard */; };
+		21B21B8D2B75F828008FFDCB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B8C2B75F828008FFDCB /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,8 @@
 		21B21B6F2B722448008FFDCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21B21B722B722448008FFDCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21B21B742B722448008FFDCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21B21B7C2B738A1A008FFDCB /* Uspec_Client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Uspec_Client.entitlements; sourceTree = "<group>"; };
+		21B21B8C2B75F828008FFDCB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +59,113 @@
 		21B21B652B722444008FFDCB /* Uspec_Client */ = {
 			isa = PBXGroup;
 			children = (
-				21B21B662B722444008FFDCB /* AppDelegate.swift */,
-				21B21B682B722444008FFDCB /* SceneDelegate.swift */,
+				21B21B7F2B738F9F008FFDCB /* Resources */,
+				21B21B7E2B738F93008FFDCB /* Sources */,
+				21B21B7C2B738A1A008FFDCB /* Uspec_Client.entitlements */,
 				21B21B6A2B722444008FFDCB /* ViewController.swift */,
 				21B21B6C2B722444008FFDCB /* Main.storyboard */,
+			);
+			path = Uspec_Client;
+			sourceTree = "<group>";
+		};
+		21B21B7E2B738F93008FFDCB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				21B21B852B75F7B8008FFDCB /* Scene */,
+				21B21B822B739027008FFDCB /* Common */,
+				21B21B812B73901B008FFDCB /* Model */,
+				21B21B802B738FC3008FFDCB /* App */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		21B21B7F2B738F9F008FFDCB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				21B21B6F2B722448008FFDCB /* Assets.xcassets */,
 				21B21B712B722448008FFDCB /* LaunchScreen.storyboard */,
 				21B21B742B722448008FFDCB /* Info.plist */,
 			);
-			path = Uspec_Client;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		21B21B802B738FC3008FFDCB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				21B21B662B722444008FFDCB /* AppDelegate.swift */,
+				21B21B682B722444008FFDCB /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		21B21B812B73901B008FFDCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		21B21B822B739027008FFDCB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		21B21B852B75F7B8008FFDCB /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				21B21B8B2B75F80D008FFDCB /* Career */,
+				21B21B8A2B75F7FF008FFDCB /* Profile */,
+				21B21B892B75F7FA008FFDCB /* Splash */,
+				21B21B882B75F7EF008FFDCB /* Dashboard */,
+				21B21B872B75F7E4008FFDCB /* MainHome */,
+				21B21B862B75F7D9008FFDCB /* Login */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		21B21B862B75F7D9008FFDCB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				21B21B8C2B75F828008FFDCB /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		21B21B872B75F7E4008FFDCB /* MainHome */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainHome;
+			sourceTree = "<group>";
+		};
+		21B21B882B75F7EF008FFDCB /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		21B21B892B75F7FA008FFDCB /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		21B21B8A2B75F7FF008FFDCB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		21B21B8B2B75F80D008FFDCB /* Career */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Career;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B21B8D2B75F828008FFDCB /* LoginViewController.swift in Sources */,
 				21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */,
 				21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */,
 				21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */,
@@ -290,6 +392,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Uspec_Client/Uspec_Client.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3XQ8HFGAQN;
@@ -318,6 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Uspec_Client/Uspec_Client.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3XQ8HFGAQN;
