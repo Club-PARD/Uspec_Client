@@ -14,7 +14,13 @@
 		21B21B702B722448008FFDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B6F2B722448008FFDCB /* Assets.xcassets */; };
 		21B21B732B722448008FFDCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B712B722448008FFDCB /* LaunchScreen.storyboard */; };
 		21B21B8D2B75F828008FFDCB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B8C2B75F828008FFDCB /* LoginViewController.swift */; };
-		21B21B8F2B75F94F008FFDCB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B8E2B75F94F008FFDCB /* SplashViewController.swift */; };
+		21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B912B75FA5B008FFDCB /* SplashViewController.swift */; };
+		21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B942B75FA6F008FFDCB /* CareerViewController.swift */; };
+		21B21B982B75FA80008FFDCB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B972B75FA80008FFDCB /* ProfileViewController.swift */; };
+		21B21B9B2B75FA90008FFDCB /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B9A2B75FA90008FFDCB /* DashboardViewController.swift */; };
+		21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */; };
+		21B21BA32B75FAE2008FFDCB /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */; };
+		21B21BA52B75FAF1008FFDCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA42B75FAF1008FFDCB /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +34,13 @@
 		21B21B742B722448008FFDCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21B21B7C2B738A1A008FFDCB /* Uspec_Client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Uspec_Client.entitlements; sourceTree = "<group>"; };
 		21B21B8C2B75F828008FFDCB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		21B21B8E2B75F94F008FFDCB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = Uspec_Client/Sources/Scene/Login/SplashViewController.swift; sourceTree = SOURCE_ROOT; };
+		21B21B912B75FA5B008FFDCB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		21B21B942B75FA6F008FFDCB /* CareerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerViewController.swift; sourceTree = "<group>"; };
+		21B21B972B75FA80008FFDCB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		21B21B9A2B75FA90008FFDCB /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
+		21B21BA42B75FAF1008FFDCB /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockData.swift; path = Uspec_Client/Sources/Common/MockData.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +85,9 @@
 		21B21B7E2B738F93008FFDCB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21B21BA12B75FAD6008FFDCB /* Common */,
+				21B21BA02B75FABC008FFDCB /* Model */,
 				21B21B852B75F7B8008FFDCB /* Scene */,
-				21B21B822B739027008FFDCB /* Common */,
-				21B21B812B73901B008FFDCB /* Model */,
 				21B21B802B738FC3008FFDCB /* App */,
 			);
 			path = Sources;
@@ -100,28 +112,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		21B21B812B73901B008FFDCB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		21B21B822B739027008FFDCB /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		21B21B852B75F7B8008FFDCB /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				21B21B8B2B75F80D008FFDCB /* Career */,
-				21B21B8A2B75F7FF008FFDCB /* Profile */,
-				21B21B892B75F7FA008FFDCB /* Splash */,
-				21B21B882B75F7EF008FFDCB /* Dashboard */,
-				21B21B872B75F7E4008FFDCB /* MainHome */,
+				21B21B9D2B75FA9E008FFDCB /* MainHome */,
+				21B21B992B75FA85008FFDCB /* Dashboard */,
+				21B21B962B75FA74008FFDCB /* Profile */,
+				21B21B932B75FA63008FFDCB /* Career */,
+				21B21B902B75FA4E008FFDCB /* Splash */,
 				21B21B862B75F7D9008FFDCB /* Login */,
 			);
 			path = Scene;
@@ -135,40 +133,60 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		21B21B872B75F7E4008FFDCB /* MainHome */ = {
+		21B21B902B75FA4E008FFDCB /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = MainHome;
-			sourceTree = "<group>";
-		};
-		21B21B882B75F7EF008FFDCB /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dashboard;
-			sourceTree = "<group>";
-		};
-		21B21B892B75F7FA008FFDCB /* Splash */ = {
-			isa = PBXGroup;
-			children = (
-				21B21B8E2B75F94F008FFDCB /* SplashViewController.swift */,
+				21B21B912B75FA5B008FFDCB /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
 		};
-		21B21B8A2B75F7FF008FFDCB /* Profile */ = {
+		21B21B932B75FA63008FFDCB /* Career */ = {
 			isa = PBXGroup;
 			children = (
+				21B21B942B75FA6F008FFDCB /* CareerViewController.swift */,
+			);
+			path = Career;
+			sourceTree = "<group>";
+		};
+		21B21B962B75FA74008FFDCB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				21B21B972B75FA80008FFDCB /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		21B21B8B2B75F80D008FFDCB /* Career */ = {
+		21B21B992B75FA85008FFDCB /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				21B21B9A2B75FA90008FFDCB /* DashboardViewController.swift */,
 			);
-			path = Career;
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		21B21B9D2B75FA9E008FFDCB /* MainHome */ = {
+			isa = PBXGroup;
+			children = (
+				21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */,
+			);
+			path = MainHome;
+			sourceTree = "<group>";
+		};
+		21B21BA02B75FABC008FFDCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				21B21BA42B75FAF1008FFDCB /* MockData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		21B21BA12B75FAD6008FFDCB /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,7 +264,13 @@
 				21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */,
 				21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */,
 				21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */,
-				21B21B8F2B75F94F008FFDCB /* SplashViewController.swift in Sources */,
+				21B21B982B75FA80008FFDCB /* ProfileViewController.swift in Sources */,
+				21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */,
+				21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */,
+				21B21BA32B75FAE2008FFDCB /* CommonViewController.swift in Sources */,
+				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
+				21B21BA52B75FAF1008FFDCB /* MockData.swift in Sources */,
+				21B21B9B2B75FA90008FFDCB /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
