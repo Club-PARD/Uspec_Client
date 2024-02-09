@@ -14,6 +14,7 @@
 		21B21B702B722448008FFDCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B6F2B722448008FFDCB /* Assets.xcassets */; };
 		21B21B732B722448008FFDCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B712B722448008FFDCB /* LaunchScreen.storyboard */; };
 		21B21B8D2B75F828008FFDCB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B8C2B75F828008FFDCB /* LoginViewController.swift */; };
+		21B21B8F2B75F94F008FFDCB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B8E2B75F94F008FFDCB /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		21B21B742B722448008FFDCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21B21B7C2B738A1A008FFDCB /* Uspec_Client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Uspec_Client.entitlements; sourceTree = "<group>"; };
 		21B21B8C2B75F828008FFDCB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		21B21B8E2B75F94F008FFDCB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplashViewController.swift; path = Uspec_Client/Sources/Scene/Login/SplashViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		21B21B892B75F7FA008FFDCB /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				21B21B8E2B75F94F008FFDCB /* SplashViewController.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */,
 				21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */,
 				21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */,
+				21B21B8F2B75F94F008FFDCB /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
