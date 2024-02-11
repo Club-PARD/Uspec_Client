@@ -61,15 +61,28 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             appleIDProvider.getCredentialState(forUserID: userIdentifier) { (credentialState, error) in
                 switch credentialState {
                 case .authorized:
+                    print("authorized")
+                    print(userIdentifier)
+                    print(credentialState)
                     break
                 case .revoked:
+                    print("revoked")
+                    print(userIdentifier)
+                    print(credentialState)
                     break
                 case .notFound:
+                    print("notFound")
+                    print(userIdentifier)
+                    print(credentialState)
                     break
                 default:
+                    print("default")
+                    print(userIdentifier)
+                    print(credentialState)
                     break
                 }
             }
+            
             
         }
     }
