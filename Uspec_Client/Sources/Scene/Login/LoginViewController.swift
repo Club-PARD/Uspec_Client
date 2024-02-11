@@ -7,6 +7,8 @@
 
 import UIKit
 import AuthenticationServices
+import SnapKit
+import Then
 
 class LoginViewController: UIViewController {
     override func viewDidLoad() {
@@ -15,17 +17,18 @@ class LoginViewController: UIViewController {
     }
     
     private func setUi() {
-        let loginButton = UIButton()
-        loginButton.setTitle("login with apple", for: .normal)
-        loginButton.backgroundColor = .systemBlue
-        loginButton.setTitleColor(.white, for: .normal)
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        let loginButton = UIButton().then {
+            $0.setTitle("Login with Apple", for: .normal)
+            $0.backgroundColor = .systemBlue
+            $0.setTitleColor(.white, for: .normal)
+        }
+        
         self.view.addSubview(loginButton)
-        NSLayoutConstraint.activate([
-            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loginButton.widthAnchor.constraint(equalToConstant: 200),
-            loginButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        
+        loginButton.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+        }
     }
 }
