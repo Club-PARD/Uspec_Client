@@ -20,7 +20,7 @@
 		21B21B9B2B75FA90008FFDCB /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B9A2B75FA90008FFDCB /* DashboardViewController.swift */; };
 		21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */; };
 		21B21BA32B75FAE2008FFDCB /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */; };
-		21B21BA52B75FAF1008FFDCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA42B75FAF1008FFDCB /* MockData.swift */; };
+		21B21BA82B779FC4008FFDCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA72B779FC4008FFDCB /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 		21B21B9A2B75FA90008FFDCB /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
-		21B21BA42B75FAF1008FFDCB /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockData.swift; path = Uspec_Client/Sources/Common/MockData.swift; sourceTree = SOURCE_ROOT; };
+		21B21BA72B779FC4008FFDCB /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +85,8 @@
 		21B21B7E2B738F93008FFDCB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21B21BA62B779FB6008FFDCB /* Model */,
 				21B21BA12B75FAD6008FFDCB /* Common */,
-				21B21BA02B75FABC008FFDCB /* Model */,
 				21B21B852B75F7B8008FFDCB /* Scene */,
 				21B21B802B738FC3008FFDCB /* App */,
 			);
@@ -173,20 +173,20 @@
 			path = MainHome;
 			sourceTree = "<group>";
 		};
-		21B21BA02B75FABC008FFDCB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				21B21BA42B75FAF1008FFDCB /* MockData.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		21B21BA12B75FAD6008FFDCB /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		21B21BA62B779FB6008FFDCB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				21B21BA72B779FC4008FFDCB /* MockData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,7 +269,7 @@
 				21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* CommonViewController.swift in Sources */,
 				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
-				21B21BA52B75FAF1008FFDCB /* MockData.swift in Sources */,
+				21B21BA82B779FC4008FFDCB /* MockData.swift in Sources */,
 				21B21B9B2B75FA90008FFDCB /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

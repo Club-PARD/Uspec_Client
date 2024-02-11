@@ -8,3 +8,8 @@
 import UIKit
 import AuthenticationServices
 
+class LoginViewController: UIViewController {
+    override func viewDidLoad() {
+        viewDidLoad()
+    }
+}
