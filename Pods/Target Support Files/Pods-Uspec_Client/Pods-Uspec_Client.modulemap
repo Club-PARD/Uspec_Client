@@ -1,0 +1,6 @@
+framework module Pods_Uspec_Client {
+  umbrella header "Pods-Uspec_Client-umbrella.h"
+
+  export *
+  module * { export * }
+}

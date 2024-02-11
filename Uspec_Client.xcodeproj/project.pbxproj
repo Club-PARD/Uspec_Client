@@ -21,6 +21,7 @@
 		21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */; };
 		21B21BA32B75FAE2008FFDCB /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */; };
 		21B21BA82B779FC4008FFDCB /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA72B779FC4008FFDCB /* MockData.swift */; };
+		21B21BAA2B792F69008FFDCB /* AppleLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BA92B792F69008FFDCB /* AppleLoginManager.swift */; };
 		5919BE55D4E4EFD2B827C1F6 /* Pods_Uspec_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		21B21BA22B75FAE2008FFDCB /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
 		21B21BA72B779FC4008FFDCB /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		21B21BA92B792F69008FFDCB /* AppleLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginManager.swift; sourceTree = "<group>"; };
 		59256D33766EEB3A06ED83CB /* Pods-Uspec_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.debug.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.debug.xcconfig"; sourceTree = "<group>"; };
 		5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uspec_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		860805B32C94A2E517AC2C3D /* Pods-Uspec_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.release.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				21B21B8C2B75F828008FFDCB /* LoginViewController.swift */,
+				21B21BA92B792F69008FFDCB /* AppleLoginManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */,
 				21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* CommonViewController.swift in Sources */,
+				21B21BAA2B792F69008FFDCB /* AppleLoginManager.swift in Sources */,
 				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
 				21B21BA82B779FC4008FFDCB /* MockData.swift in Sources */,
 				21B21B9B2B75FA90008FFDCB /* DashboardViewController.swift in Sources */,

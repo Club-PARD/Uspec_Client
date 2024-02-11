@@ -11,24 +11,76 @@ import SnapKit
 import Then
 
 class LoginViewController: UIViewController {
+    let authorizationAppleIDButton = ASAuthorizationAppleIDButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUi()
+        configureUI()
     }
     
-    private func setUi() {
-        let loginButton = UIButton().then {
-            $0.setTitle("Login with Apple", for: .normal)
-            $0.backgroundColor = .systemBlue
-            $0.setTitleColor(.white, for: .normal)
-        }
-        
-        self.view.addSubview(loginButton)
-        
-        loginButton.snp.makeConstraints { make in
+    private func configureUI() {
+        setAdditionalPropertyAttributes()
+        setConstraints()
+    }
+    
+    private func setAdditionalPropertyAttributes() {
+        authorizationAppleIDButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButton(_:)), for: .touchUpInside)
+    }
+    
+    private func setConstraints() {
+        view.addSubview(authorizationAppleIDButton)
+        authorizationAppleIDButton.translatesAutoresizingMaskIntoConstraints = false
+        authorizationAppleIDButton.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
+    }
+    
+    @objc private func handleAuthorizationAppleIDButton(_ sender: ASAuthorizationAppleIDButton) {
+        let provider = ASAuthorizationAppleIDProvider()
+        let request = provider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.performRequests()
+        controller.delegate = self
+        controller.presentationContextProvider = self
+    }
+}
+
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let userIdentifier = appleIDCredential.user
+            let userFirstName = appleIDCredential.fullName?.givenName
+            let userLastName = appleIDCredential.fullName?.familyName
+            let userEmail = appleIDCredential.email
+            
+            let appleIDProvider = ASAuthorizationAppleIDProvider()
+            appleIDProvider.getCredentialState(forUserID: userIdentifier) { (credentialState, error) in
+                switch credentialState {
+                case .authorized:
+                    break
+                case .revoked:
+                    break
+                case .notFound:
+                    break
+                default:
+                    break
+                }
+            }
+            
+        }
+    }
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error)
+    }
+}
+
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return view.window!
     }
 }
