@@ -15,10 +15,58 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setComponents()
         configureUI()
     }
     
+    private func setComponents() {
+        let logoImage = UIImageView()
+        view.addSubview(logoImage)
+        logoImage.image = UIImage(named: "splash_logo")
+        logoImage.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        let splashImage = UIImageView()
+        view.addSubview(splashImage)
+        splashImage.image = UIImage(named: "splash")
+        splashImage.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalToSuperview()
+        }
+        
+        let joinLabel = UILabel()
+        joinLabel.text = "어스펙이 처음이신가요?"
+        joinLabel.textColor = UIColor(resource: .textBlack)
+        
+        let joinButton = UIButton()
+        joinButton.setTitle("|  회원가입", for: .normal)
+        joinButton.setTitleColor(UIColor(resource: .textBlack), for: .normal)
+        joinButton.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
+        
+        let stackView = UIStackView(arrangedSubviews: [joinLabel, joinButton])
+        view.addSubview(stackView)
+        stackView.spacing = 10
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(-30)
+        }
+    }
+    
+    @objc private func joinButtonTapped() {
+       
+        let profileVC = ProfileViewController()
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        print(self.navigationController)
+        print("회원가입 tapped")
+    }
+    
     private func configureUI() {
+        view.backgroundColor = UIColor(resource: .backgroundWhite)
         setAdditionalPropertyAttributes()
         setConstraints()
     }
@@ -31,9 +79,10 @@ class LoginViewController: UIViewController {
         view.addSubview(authorizationAppleIDButton)
         authorizationAppleIDButton.translatesAutoresizingMaskIntoConstraints = false
         authorizationAppleIDButton.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(200)
-            make.height.equalTo(50)
+            make.bottom.equalTo(-75)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(268)
+            make.height.equalTo(55)
         }
     }
     
@@ -48,51 +97,3 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension LoginViewController: ASAuthorizationControllerDelegate {
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            let userIdentifier = appleIDCredential.user
-            let userFirstName = appleIDCredential.fullName?.givenName
-            let userLastName = appleIDCredential.fullName?.familyName
-            let userEmail = appleIDCredential.email
-            
-            let appleIDProvider = ASAuthorizationAppleIDProvider()
-            appleIDProvider.getCredentialState(forUserID: userIdentifier) { (credentialState, error) in
-                switch credentialState {
-                case .authorized:
-                    print("authorized")
-                    print(userIdentifier)
-                    print(credentialState)
-                    break
-                case .revoked:
-                    print("revoked")
-                    print(userIdentifier)
-                    print(credentialState)
-                    break
-                case .notFound:
-                    print("notFound")
-                    print(userIdentifier)
-                    print(credentialState)
-                    break
-                default:
-                    print("default")
-                    print(userIdentifier)
-                    print(credentialState)
-                    break
-                }
-            }
-            
-            
-        }
-    }
-    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print(error)
-    }
-}
-
-
-extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
-    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return view.window!
-    }
-}
