@@ -87,7 +87,19 @@ class ProfileViewController: UIViewController {
             make.width.equalToSuperview()
         }
         
-        let nextButton = NextButton(backgroundColor: .gray7, titleText: "정보 입력하기", left: 16, right: 16, bottom: 14)
+        let nextButton = NextButton(backgroundColor: .gray7, titleText: "정보 입력하기")
         view.addSubview(nextButton)
+        nextButton.snp.makeConstraints { make in
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
+            make.bottom.equalTo(-48)
+            make.height.equalTo(45)
+        }
+        nextButton.layer.cornerRadius = 4
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func nextButtonTapped() {
+        print("tapped")
     }
 }
