@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setComponents()
         configureUI()
     }
@@ -58,10 +57,9 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func joinButtonTapped() {
-       
         let profileVC = ProfileViewController()
         self.navigationController?.pushViewController(profileVC, animated: true)
-        print(self.navigationController)
+        print(self.navigationController as Any)
         print("회원가입 tapped")
     }
     
