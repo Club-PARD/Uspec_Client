@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func joinButtonTapped() {
-        let profileVC = ProfileViewController()
+        let profileVC = CareerViewController()
         self.navigationController?.pushViewController(profileVC, animated: true)
         print(self.navigationController as Any)
         print("회원가입 tapped")

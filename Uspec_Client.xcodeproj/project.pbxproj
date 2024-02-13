@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0D4105F42B7B84F40039CDB6 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4105F32B7B84F40039CDB6 /* UIFont+.swift */; };
+		0D4105FB2B7BB6CB0039CDB6 /* InputCareerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4105FA2B7BB6CB0039CDB6 /* InputCareerCollectionViewCell.swift */; };
+		0D4105FD2B7BC7F40039CDB6 /* AddActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4105FC2B7BC7F40039CDB6 /* AddActivityCollectionViewCell.swift */; };
+		0D4106012B7BCEF50039CDB6 /* Dropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106002B7BCEF50039CDB6 /* Dropdown.swift */; };
 		21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B662B722444008FFDCB /* AppDelegate.swift */; };
 		21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B682B722444008FFDCB /* SceneDelegate.swift */; };
 		21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B6A2B722444008FFDCB /* ViewController.swift */; };
@@ -35,6 +38,9 @@
 
 /* Begin PBXFileReference section */
 		0D4105F32B7B84F40039CDB6 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		0D4105FA2B7BB6CB0039CDB6 /* InputCareerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCareerCollectionViewCell.swift; sourceTree = "<group>"; };
+		0D4105FC2B7BC7F40039CDB6 /* AddActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityCollectionViewCell.swift; sourceTree = "<group>"; };
+		0D4106002B7BCEF50039CDB6 /* Dropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dropdown.swift; sourceTree = "<group>"; };
 		21B21B632B722444008FFDCB /* Uspec_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uspec_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B21B662B722444008FFDCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21B21B682B722444008FFDCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +89,23 @@
 				0D4105F32B7B84F40039CDB6 /* UIFont+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0D4105F92B7BB68B0039CDB6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0D4105FA2B7BB6CB0039CDB6 /* InputCareerCollectionViewCell.swift */,
+				0D4105FC2B7BC7F40039CDB6 /* AddActivityCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0D4105FE2B7BC98D0039CDB6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				21B21B942B75FA6F008FFDCB /* CareerViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		21B21B5A2B722444008FFDCB = {
@@ -182,7 +205,9 @@
 		21B21B932B75FA63008FFDCB /* Career */ = {
 			isa = PBXGroup;
 			children = (
-				21B21B942B75FA6F008FFDCB /* CareerViewController.swift */,
+				0D4105F92B7BB68B0039CDB6 /* Views */,
+				0D4105FE2B7BC98D0039CDB6 /* Controllers */,
+				0D4106002B7BCEF50039CDB6 /* Dropdown.swift */,
 			);
 			path = Career;
 			sourceTree = "<group>";
@@ -383,7 +408,10 @@
 				21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */,
 				21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */,
 				21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */,
+				0D4105FD2B7BC7F40039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
+				0D4106012B7BCEF50039CDB6 /* Dropdown.swift in Sources */,
 				21B21B982B75FA80008FFDCB /* ProfileViewController.swift in Sources */,
+				0D4105FB2B7BB6CB0039CDB6 /* InputCareerCollectionViewCell.swift in Sources */,
 				21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */,
 				21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* CommonViewController.swift in Sources */,
