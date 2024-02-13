@@ -8,9 +8,18 @@
 import UIKit
 
 class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
-    let nickNameField = UITextField()
+    //    let nickNameField = UITextField()
     let buttonBackgroundColor = UIColor()
     let nextButton = NextButton(titleText: "다음")
+    let nickNameField = profileTextField(
+        placeholder: "닉네임 (8자 이내)",
+        fontSize: 15,
+        textColor: .textBlack,
+        borderColor: UIColor.gray3,
+        cornerRadius: 20,
+        borderWidth: 1,
+        leftPadding: 16
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +28,12 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
         nextButton.isEnabled = false
         nickNameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
-
+    
     private func setUi() {
         mainLabel.setTextWithLineHeight(text: "USPEC에서 사용할\n당신의 이름을 알려주세요.", lineHeight: 24)
         
-        let fieldLabel = UILabel()
+        let fieldLabel = profileFieldLabel(text: "닉네임을 입력해주세요.", fontSize: 15, textColor: .textBlack)
         view.addSubview(fieldLabel)
-        fieldLabel.text = "닉네임을 입력해주세요."
-        fieldLabel.font = .body1(size: 15)
-        fieldLabel.textColor = .textBlack
         fieldLabel.snp.makeConstraints{ make in
             make.top.equalTo(mainLabel.snp.bottom).offset(32)
             make.left.equalTo(26)
@@ -35,14 +41,6 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
         
         view.addSubview(nickNameField)
         nickNameField.delegate = self
-        nickNameField.font = .body1(size: 15)
-        nickNameField.placeholder = "닉네임 (8자 이내)"
-        nickNameField.textColor = .textBlack
-        nickNameField.layer.cornerRadius = 20
-        nickNameField.layer.borderWidth = 1
-        nickNameField.setPlaceholder(color: .gray4)
-        nickNameField.addLeftPadding(width: 16)
-        nickNameField.layer.borderColor = UIColor.gray3.cgColor
         nickNameField.snp.makeConstraints{ make in
             make.top.equalTo(fieldLabel.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
@@ -88,9 +86,8 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
     }
     
     @objc func nextButtonTapped() {
-        print("tapped")
-        let nickNameVC = NickNameViewController(currentStep: .step1)
-        self.navigationController?.pushViewController(nickNameVC, animated: true)
+        let univVC = UniversityViewController(currentStep: .step2)
+        self.navigationController?.pushViewController(univVC, animated: true)
         print(self.navigationController as Any)
     }
 }

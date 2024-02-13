@@ -61,8 +61,6 @@ class LoginViewController: UIViewController {
     @objc private func joinButtonTapped() {
         let profileVC = ProfileIntroViewController(currentStep: .step0)
         self.navigationController?.pushViewController(profileVC, animated: true)
-        print(self.navigationController as Any)
-        print("회원가입 tapped")
     }
     
     private func configureUI() {

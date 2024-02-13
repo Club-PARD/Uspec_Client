@@ -66,9 +66,7 @@ class ProfileIntroViewController: ProfileViewController {
     }
     
     @objc func nextButtonTapped() {
-        print("tapped")
         let nickNameVC = NickNameViewController(currentStep: .step1)
         self.navigationController?.pushViewController(nickNameVC, animated: true)
-        print(self.navigationController as Any)
     }
 }
