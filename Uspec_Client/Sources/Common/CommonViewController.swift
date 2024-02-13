@@ -14,6 +14,7 @@ class NextButton: UIButton {
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(titleText, for: .normal)
+        self.titleLabel?.font = UIFont.body1(size: 15)
     }
     
     required init?(coder: NSCoder) {

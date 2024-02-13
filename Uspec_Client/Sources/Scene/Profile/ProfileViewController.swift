@@ -34,7 +34,9 @@ class ProfileViewController: UIViewController {
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
         backButton.tintColor = UIColor(resource: .textBlack)
         let textButton = UIBarButtonItem(title: "회원가입", style: .plain, target: self, action: #selector(backButtonTapped))
+        let attributes = [NSAttributedString.Key.font: UIFont.header2(size: 20)]
         textButton.tintColor = UIColor(resource: .textBlack)
+        textButton.setTitleTextAttributes(attributes, for: .normal)
         
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .backgroundWhite
@@ -48,6 +50,7 @@ class ProfileViewController: UIViewController {
     private func setupUI() {
         let welcomeLabel = UILabel()
         welcomeLabel.text = "USPEC에 오신 것을 환영합니다."
+        welcomeLabel.font = UIFont.header3(size: 18)
         welcomeLabel.textColor = .primaryYellow
         welcomeLabel.textAlignment = .left
         scrollView.addSubview(welcomeLabel)
@@ -60,6 +63,7 @@ class ProfileViewController: UIViewController {
         content1Label.text = "전국의 대학생들의 데이터를 비교하고\n나만의 스펙을 쌓아갈 수 있는 이 곳, USPEC에서\n여러분의 미래를 그려나가길 응원합니다."
         content1Label.numberOfLines = 3
         content1Label.textColor = .textBlack
+        content1Label.font = UIFont.body1(size: 15)
         content1Label.textAlignment = .left
         scrollView.addSubview(content1Label)
         content1Label.snp.makeConstraints { make in
@@ -70,6 +74,7 @@ class ProfileViewController: UIViewController {
         let content2Label = UILabel()
         content2Label.text = "시작하기 전, 여러분의 정보를 알려주세요."
         content2Label.textColor = .textBlack
+        content2Label.font = UIFont.body1(size: 15)
         content2Label.textAlignment = .left
         scrollView.addSubview(content2Label)
         content2Label.snp.makeConstraints { make in

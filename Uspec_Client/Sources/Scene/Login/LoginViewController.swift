@@ -38,10 +38,12 @@ class LoginViewController: UIViewController {
         
         let joinLabel = UILabel()
         joinLabel.text = "어스펙이 처음이신가요?"
+        joinLabel.font = UIFont.body1(size: 15)
         joinLabel.textColor = UIColor(resource: .textBlack)
         
         let joinButton = UIButton()
         joinButton.setTitle("|  회원가입", for: .normal)
+        joinButton.titleLabel?.font = UIFont.body1(size: 15)
         joinButton.setTitleColor(UIColor(resource: .textBlack), for: .normal)
         joinButton.addTarget(self, action: #selector(joinButtonTapped), for: .touchUpInside)
         
