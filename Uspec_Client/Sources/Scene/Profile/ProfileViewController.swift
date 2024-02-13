@@ -1,20 +1,37 @@
 //
-//  ProfileViewController.swift
+//  ProfileNavigationViewController.swift
 //  Uspec_Client
 //
-//  Created by 김하람 on 2/9/24.
+//  Created by 김하람 on 2/13/24.
 //
 
 import UIKit
 
+enum ProfileStep: Int {
+    case step0, step1, step2, step3, step4 // 필요한 만큼 단계 추가
+}
+
+// MARK: - 이미지, main title, button title
 class ProfileViewController: UIViewController {
-    private var scrollView: UIScrollView!
+    var scrollView: UIScrollView!
+    let mainLabel = UILabel()
+    var currentStep: ProfileStep
+    
+    init(currentStep: ProfileStep) {
+        self.currentStep = currentStep
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundWhite
         navigationUI()
         setupScrollView()
-        setupUI()
+        setLabel()
     }
     
     @objc func backButtonTapped() {
@@ -40,71 +57,34 @@ class ProfileViewController: UIViewController {
         
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .backgroundWhite
-        appearance.shadowImage = UIImage(named: "line0")
+        
+        switch currentStep {
+        case .step0:
+            appearance.shadowImage = UIImage(named: "line0")
+        case .step1:
+            appearance.shadowImage = UIImage(named: "line1")
+        case .step2:
+            appearance.shadowImage = UIImage(named: "line2")
+        case .step3:
+            appearance.shadowImage = UIImage(named: "line3")
+        case .step4:
+            appearance.shadowImage = UIImage(named: "line4")
+        }
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         self.navigationItem.leftBarButtonItems = [backButton, textButton]
     }
     
-    private func setupUI() {
-        let welcomeLabel = UILabel()
-        welcomeLabel.text = "USPEC에 오신 것을 환영합니다."
-        welcomeLabel.font = UIFont.header3(size: 18)
-        welcomeLabel.textColor = .primaryYellow
-        welcomeLabel.textAlignment = .left
-        scrollView.addSubview(welcomeLabel)
-        welcomeLabel.snp.makeConstraints { make in
+    private func setLabel() {
+        mainLabel.font = UIFont.header3(size: 18)
+        mainLabel.textColor = .primaryYellow
+        mainLabel.numberOfLines = 0
+        mainLabel.textAlignment = .left
+        scrollView.addSubview(mainLabel)
+        mainLabel.snp.makeConstraints { make in
             make.top.equalTo(32)
             make.left.equalTo(26)
         }
-        
-        let content1Label = UILabel()
-        content1Label.text = "전국의 대학생들의 데이터를 비교하고\n나만의 스펙을 쌓아갈 수 있는 이 곳, USPEC에서\n여러분의 미래를 그려나가길 응원합니다."
-        content1Label.numberOfLines = 3
-        content1Label.textColor = .textBlack
-        content1Label.font = UIFont.body1(size: 15)
-        content1Label.textAlignment = .left
-        scrollView.addSubview(content1Label)
-        content1Label.snp.makeConstraints { make in
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(8)
-            make.left.equalTo(26)
-        }
-        
-        let content2Label = UILabel()
-        content2Label.text = "시작하기 전, 여러분의 정보를 알려주세요."
-        content2Label.textColor = .textBlack
-        content2Label.font = UIFont.body1(size: 15)
-        content2Label.textAlignment = .left
-        scrollView.addSubview(content2Label)
-        content2Label.snp.makeConstraints { make in
-            make.top.equalTo(content1Label.snp.bottom).offset(8)
-            make.left.equalTo(26)
-        }
-        
-        let imageView = UIImageView()
-        view.addSubview(imageView)
-        imageView.image = UIImage(named: "splash")
-        imageView.contentMode = .scaleAspectFill
-        imageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.width.equalToSuperview()
-        }
-        
-        let nextButton = NextButton(backgroundColor: .gray7, titleText: "정보 입력하기")
-        view.addSubview(nextButton)
-        nextButton.snp.makeConstraints { make in
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-            make.bottom.equalTo(-48)
-            make.height.equalTo(45)
-        }
-        nextButton.layer.cornerRadius = 4
-        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc func nextButtonTapped() {
-        print("tapped")
     }
 }

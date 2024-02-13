@@ -10,9 +10,8 @@ import SnapKit
 
 class NextButton: UIButton {
     
-    init(backgroundColor: UIColor, titleText: String) {
+    init(titleText: String) {
         super.init(frame: .zero)
-        self.backgroundColor = backgroundColor
         self.setTitle(titleText, for: .normal)
         self.titleLabel?.font = UIFont.body1(size: 15)
     }
