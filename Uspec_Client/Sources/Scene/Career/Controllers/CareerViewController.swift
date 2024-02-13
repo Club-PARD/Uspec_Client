@@ -88,7 +88,7 @@ class CareerViewController: UIViewController {
         
         semiTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
-            make.leading.equalTo(view.snp.leading)
+            make.leading.equalTo(view.snp.leading).offset(12)
             make.trailing.equalTo(view.snp.trailing)
         }
         
@@ -131,7 +131,9 @@ extension CareerViewController: UICollectionViewDataSource, UICollectionViewDele
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InputCareerCollectionViewCell", for: indexPath) as? InputCareerCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
+            cell.layer.borderColor = UIColor.secondaryYellow.cgColor
+            cell.layer.borderWidth = 1.0
+            cell.layer.cornerRadius = 20.0
             return cell
         }
     }
