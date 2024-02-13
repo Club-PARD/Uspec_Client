@@ -28,7 +28,7 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.body1()
     }
     
-    private let InterestsText = UILabel().then { label in
+    private let interestsText = UILabel().then { label in
         label.text = "대외활동의 관심분야를 모두 정해주세요."
         label.font = UIFont.body1()
     }
@@ -52,7 +52,7 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
         let dropdownMenu = DropdownMenu(frame: .zero, collectionViewLayout: collectionViewLayout)
-        dropdownMenu.backgroundColor = .clear
+        dropdownMenu.backgroundColor = .secondaryYellow
         dropdownMenu.options = categories1
         dropdownMenu.didSelectOption = { [weak self] selectedoption in
             let selectedTitles = selectedoption.joined(separator : ",")
@@ -65,7 +65,7 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
         let dropdownMenu = DropdownMenu(frame: .zero, collectionViewLayout: collectionViewLayout)
-        dropdownMenu.backgroundColor = .clear
+        dropdownMenu.backgroundColor = .secondaryYellow
         dropdownMenu.options = categories2
         dropdownMenu.didSelectOption = { [weak self] selectedOptions in
             let selectedTitles = selectedOptions.joined(separator: ", ")
@@ -78,7 +78,7 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
         let dropdownMenu = DropdownMenu(frame: .zero, collectionViewLayout: collectionViewLayout)
-        dropdownMenu.backgroundColor = .clear
+        dropdownMenu.backgroundColor = .secondaryYellow
         dropdownMenu.options = categories3
         dropdownMenu.didSelectOption = { [weak self] selectedoption in
             let selectedTitles = selectedoption.joined(separator : ",")
@@ -120,6 +120,9 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
     func setupLayout() {
         addSubview(nameText)
         addSubview(activeNametextField)
+        addSubview(activityDateText)
+        addSubview(activityPartText)
+        addSubview(interestsText)
         addSubview(selectButton1)
         addSubview(selectButton2)
         addSubview(selectButton3)
@@ -138,19 +141,37 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(40)
         }
         
+        activityPartText.snp.makeConstraints { make in
+            make.top.equalTo(activeNametextField.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(40)
+        }
+        
         selectButton1.snp.makeConstraints { make in
-            make.top.equalTo(activeNametextField.snp.bottom).offset(20)
-            make.leading.equalTo(nameText)
+            make.top.equalTo(activityPartText.snp.bottom).offset(15)
+            make.centerX.equalToSuperview()
+        }
+        
+        interestsText.snp.makeConstraints { make in
+            make.top.equalTo(selectButton1.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(40)
         }
         
         selectButton2.snp.makeConstraints { make in
-            make.top.equalTo(selectButton1.snp.bottom).offset(20)
-            make.leading.equalTo(nameText)
+            make.top.equalTo(interestsText.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
+        
+        activityDateText.snp.makeConstraints { make in
+            make.top.equalTo(selectButton2.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(40) // height 제약 추가
         }
         
         selectButton3.snp.makeConstraints { make in
-            make.top.equalTo(selectButton2.snp.bottom).offset(20)
-            make.leading.equalTo(nameText)
+            make.top.equalTo(activityDateText.snp.bottom).offset(20) // activityDateText와 연결
+            make.centerX.equalToSuperview()
         }
         
         dropdownMenu1.snp.makeConstraints { make in

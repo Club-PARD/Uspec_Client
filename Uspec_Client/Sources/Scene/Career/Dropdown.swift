@@ -14,16 +14,16 @@ class DropdownMenu: UICollectionView {
             reloadData()
         }
     }
-    //여러개 선택을 위한 것
+    
     var selectedOptions: [String] = []
     
     var didSelectOption: (([String]) -> Void)?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal 
+        flowLayout.collectionView?.backgroundColor = .secondaryYellow
+        flowLayout.scrollDirection = .vertical
         super.init(frame: frame, collectionViewLayout: flowLayout)
-        
         setupCollectionView()
     }
     
@@ -50,10 +50,10 @@ extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlow
         
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
         
-        let label = UILabel(frame: cell.contentView.bounds)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: cell.contentView.bounds.width, height: 50)) // 아이템의 높이를 50으로 지정
         label.text = options[indexPath.item]
         label.textAlignment = .center
-        label.textColor = selectedOptions.contains(options[indexPath.item]) ? .blue : .black // 선택된 항목은 파란색으로 표시
+        label.textColor = selectedOptions.contains(options[indexPath.item]) ? .blue : .black
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         cell.contentView.addSubview(label)
         
@@ -61,28 +61,26 @@ extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlow
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // 아이템의 크기를 조정
-        return CGSize(width: collectionView.bounds.width, height: 40)
+        let itemWidth = (collectionView.bounds.width - 30) / 3
+        return CGSize(width: itemWidth, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        // 아이템 사이의 간격 설정
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        // 콜렉션 뷰의 여백 설정
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedOption = options[indexPath.item]
-        if let index = selectedOptions.firstIndex(of: selectedOption) { // 이미 선택된 옵션인 경우 제거
+        if let index = selectedOptions.firstIndex(of: selectedOption) {
             selectedOptions.remove(at: index)
-        } else { // 선택되지 않은 옵션인 경우 추가
+        } else {
             selectedOptions.append(selectedOption)
         }
         didSelectOption?(selectedOptions)
-        collectionView.reloadData() // 선택 상태가 변경될 때마다 셀을 다시 로드하여 선택된 항목을 갱신
+        collectionView.reloadData()
     }
 }
