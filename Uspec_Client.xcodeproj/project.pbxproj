@@ -36,6 +36,7 @@
 		21B21BCF2B7BC2AA008FFDCB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BCE2B7BC2AA008FFDCB /* Extensions.swift */; };
 		21B21BD12B7BCDF4008FFDCB /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BD02B7BCDF4008FFDCB /* UniversityViewController.swift */; };
 		21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */; };
+		21C100312B7BE71B00BED0A8 /* StatusInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */; };
 		5919BE55D4E4EFD2B827C1F6 /* Pods_Uspec_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		21B21BCE2B7BC2AA008FFDCB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		21B21BD02B7BCDF4008FFDCB /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldComp.swift; sourceTree = "<group>"; };
+		21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusInfoViewController.swift; sourceTree = "<group>"; };
 		59256D33766EEB3A06ED83CB /* Pods-Uspec_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.debug.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.debug.xcconfig"; sourceTree = "<group>"; };
 		5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uspec_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		860805B32C94A2E517AC2C3D /* Pods-Uspec_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.release.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				21B21B972B75FA80008FFDCB /* ProfileIntroViewController.swift */,
 				21B21BC82B7BA8C7008FFDCB /* NickNameViewController.swift */,
 				21B21BD02B7BCDF4008FFDCB /* UniversityViewController.swift */,
+				21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				21B21BC92B7BA8C7008FFDCB /* NickNameViewController.swift in Sources */,
 				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
 				21B21BA82B779FC4008FFDCB /* MockData.swift in Sources */,
+				21C100312B7BE71B00BED0A8 /* StatusInfoViewController.swift in Sources */,
 				21B21BD12B7BCDF4008FFDCB /* UniversityViewController.swift in Sources */,
 				21B21B9B2B75FA90008FFDCB /* DashboardViewController.swift in Sources */,
 			);

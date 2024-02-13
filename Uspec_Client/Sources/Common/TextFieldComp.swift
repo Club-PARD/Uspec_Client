@@ -21,8 +21,8 @@ class profileFieldLabel: UILabel {
     }
 }
 
-class profileTextField: UITextField {
-    init(placeholder: String, fontSize: CGFloat, textColor: UIColor, borderColor: UIColor, cornerRadius: CGFloat, borderWidth: CGFloat, leftPadding: CGFloat) {
+class profileTextField: UITextField, UITextFieldDelegate {
+    init(placeholder: String, fontSize: CGFloat, textColor: UIColor, borderColor: UIColor, cornerRadius: CGFloat, borderWidth: CGFloat, leftPadding: CGFloat, rightPadding: CGFloat) {
         super.init(frame: .zero)
         self.font = .body1(size: fontSize)
         self.textColor = textColor
@@ -32,7 +32,10 @@ class profileTextField: UITextField {
         self.layer.borderColor = borderColor.cgColor
         self.setPlaceholder(color: .gray4)
         self.addLeftPadding(width: leftPadding)
+        self.addRightPadding(width: rightPadding)
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.autocorrectionType = .no
+        self.spellCheckingType = .no
     }
     
     required init?(coder: NSCoder) {

@@ -8,8 +8,6 @@
 import UIKit
 
 class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
-    //    let nickNameField = UITextField()
-    let buttonBackgroundColor = UIColor()
     let nextButton = NextButton(titleText: "다음")
     let nickNameField = profileTextField(
         placeholder: "닉네임 (8자 이내)",
@@ -18,7 +16,8 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
         borderColor: UIColor.gray3,
         cornerRadius: 20,
         borderWidth: 1,
-        leftPadding: 16
+        leftPadding: 16,
+        rightPadding: -16
     )
     
     override func viewDidLoad() {
@@ -36,7 +35,7 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
         view.addSubview(fieldLabel)
         fieldLabel.snp.makeConstraints{ make in
             make.top.equalTo(mainLabel.snp.bottom).offset(32)
-            make.left.equalTo(26)
+            make.left.equalTo(16)
         }
         
         view.addSubview(nickNameField)
@@ -45,8 +44,8 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
             make.top.equalTo(fieldLabel.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
             make.height.equalTo(48)
-            make.left.equalTo(26)
-            make.right.equalTo(-26)
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
         }
     }
     

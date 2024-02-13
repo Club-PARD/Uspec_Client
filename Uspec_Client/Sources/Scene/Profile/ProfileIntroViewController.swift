@@ -28,7 +28,7 @@ class ProfileIntroViewController: ProfileViewController {
         scrollView.addSubview(content1Label)
         content1Label.snp.makeConstraints { make in
             make.top.equalTo(67)
-            make.left.equalTo(26)
+            make.left.equalTo(16)
         }
         
         let content2Label = UILabel()
@@ -39,7 +39,7 @@ class ProfileIntroViewController: ProfileViewController {
         scrollView.addSubview(content2Label)
         content2Label.snp.makeConstraints { make in
             make.top.equalTo(content1Label.snp.bottom).offset(8)
-            make.left.equalTo(26)
+            make.left.equalTo(16)
         }
         
         let imageView = UIImageView()

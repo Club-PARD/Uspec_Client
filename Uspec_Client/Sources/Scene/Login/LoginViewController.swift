@@ -75,7 +75,6 @@ class LoginViewController: UIViewController {
     
     private func setConstraints() {
         view.addSubview(authorizationAppleIDButton)
-        authorizationAppleIDButton.translatesAutoresizingMaskIntoConstraints = false
         authorizationAppleIDButton.snp.makeConstraints { make in
             make.bottom.equalTo(-75)
             make.centerX.equalToSuperview()

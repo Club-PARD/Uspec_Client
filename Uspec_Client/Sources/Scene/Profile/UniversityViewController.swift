@@ -16,7 +16,8 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         borderColor: UIColor.gray3,
         cornerRadius: 20,
         borderWidth: 1,
-        leftPadding: 16
+        leftPadding: 16,
+        rightPadding: 16
     )
     let majorField = profileTextField(
         placeholder: "학부 또는 학과",
@@ -25,12 +26,30 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         borderColor: UIColor.gray3,
         cornerRadius: 20,
         borderWidth: 1,
-        leftPadding: 16
+        leftPadding: 16,
+        rightPadding: -16
     )
     override func viewDidLoad() {
         super.viewDidLoad()
         setUi()
         setButton()
+        searchUnivButton()
+    }
+    
+    private func searchUnivButton() {
+        let searchButton = UIButton(type: .system)
+        searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        univField.addSubview(searchButton)
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchButton.isEnabled = false
+        
+        univField.rightView = searchButton
+        univField.rightViewMode = .always
+        univField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc func searchButtonTapped() {
+        print("Search button tapped")
     }
     
     private func setUi(){
@@ -41,7 +60,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         view.addSubview(univFieldLabel)
         univFieldLabel.snp.makeConstraints{ make in
             make.top.equalTo(mainLabel.snp.bottom).offset(32)
-            make.left.equalTo(26)
+            make.left.equalTo(16)
         }
         
         view.addSubview(univField)
@@ -50,8 +69,8 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
             make.top.equalTo(univFieldLabel.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
             make.height.equalTo(48)
-            make.left.equalTo(26)
-            make.right.equalTo(-26)
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
         }
         
         // MARK: - 학부, 학과 텍스트 필드
@@ -59,7 +78,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         view.addSubview(majorFieldLabel)
         majorFieldLabel.snp.makeConstraints{ make in
             make.top.equalTo(univField.snp.bottom).offset(32)
-            make.left.equalTo(26)
+            make.left.equalTo(16)
         }
         
         view.addSubview(majorField)
@@ -68,11 +87,33 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
             make.top.equalTo(majorFieldLabel.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
             make.height.equalTo(48)
-            make.left.equalTo(26)
-            make.right.equalTo(-26)
+            make.left.equalTo(16)
+            make.right.equalTo(-16)
         }
     }
     
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let searchButton = univField.rightView as? UIButton {
+            searchButton.isEnabled = !(univField.text?.isEmpty ?? true) // univField에 대한 검사만 여기서 수행
+        }
+        updateButtonStatus()
+    }
+    
+    private func updateButtonStatus() {
+        let isBothFieldsFilled = !(univField.text?.isEmpty ?? true) && !(majorField.text?.isEmpty ?? true)
+        nextButton.isEnabled = isBothFieldsFilled
+        updateButtonColorBasedOnTextField()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == univField {
+            univField.layer.borderColor = UIColor.secondaryYellow.cgColor
+            univField.layer.borderWidth = 1
+        } else if textField == majorField {
+            majorField.layer.borderColor = UIColor.secondaryYellow.cgColor
+            majorField.layer.borderWidth = 1
+        }
+    }
     private func setButton() {
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
@@ -86,10 +127,21 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
     
-    @objc func nextButtonTapped() {
-        let univVC = UniversityViewController(currentStep: .step2)
-        self.navigationController?.pushViewController(univVC, animated: true)
-        print(self.navigationController as Any)
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateButtonColorBasedOnTextField()
     }
     
+    private func updateButtonColorBasedOnTextField() {
+        if nextButton.isEnabled {
+            nextButton.backgroundColor = .gray7
+        } else {
+            nextButton.backgroundColor = .gray2
+        }
+    }
+    
+    @objc func nextButtonTapped() {
+        let infoVC = StatusInfoViewController(currentStep: .step3)
+        self.navigationController?.pushViewController(infoVC, animated: true)
+        print(self.navigationController as Any)
+    }
 }

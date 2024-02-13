@@ -84,7 +84,7 @@ class ProfileViewController: UIViewController {
         scrollView.addSubview(mainLabel)
         mainLabel.snp.makeConstraints { make in
             make.top.equalTo(32)
-            make.left.equalTo(26)
+            make.left.equalTo(16)
         }
     }
 }
