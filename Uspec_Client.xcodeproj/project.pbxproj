@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4105E92B7B82B30039CDB6 /* AppleSDGothicNeoL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E02B7B82B30039CDB6 /* AppleSDGothicNeoL.ttf */; };
+		0D4105EA2B7B82B30039CDB6 /* AppleSDGothicNeoEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E12B7B82B30039CDB6 /* AppleSDGothicNeoEB.ttf */; };
+		0D4105EB2B7B82B30039CDB6 /* AppleSDGothicNeoUL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E22B7B82B30039CDB6 /* AppleSDGothicNeoUL.ttf */; };
+		0D4105EC2B7B82B30039CDB6 /* AppleSDGothicNeoR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E32B7B82B30039CDB6 /* AppleSDGothicNeoR.ttf */; };
+		0D4105ED2B7B82B30039CDB6 /* AppleSDGothicNeoSB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E42B7B82B30039CDB6 /* AppleSDGothicNeoSB.ttf */; };
+		0D4105EE2B7B82B30039CDB6 /* AppleSDGothicNeoT.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E52B7B82B30039CDB6 /* AppleSDGothicNeoT.ttf */; };
+		0D4105EF2B7B82B30039CDB6 /* AppleSDGothicNeoB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E62B7B82B30039CDB6 /* AppleSDGothicNeoB.ttf */; };
+		0D4105F02B7B82B30039CDB6 /* AppleSDGothicNeoH.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E72B7B82B30039CDB6 /* AppleSDGothicNeoH.ttf */; };
+		0D4105F12B7B82B30039CDB6 /* AppleSDGothicNeoM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D4105E82B7B82B30039CDB6 /* AppleSDGothicNeoM.ttf */; };
+		0D4105F42B7B84F40039CDB6 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4105F32B7B84F40039CDB6 /* UIFont+.swift */; };
 		21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B662B722444008FFDCB /* AppDelegate.swift */; };
 		21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B682B722444008FFDCB /* SceneDelegate.swift */; };
 		21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B6A2B722444008FFDCB /* ViewController.swift */; };
@@ -28,6 +38,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D4105E02B7B82B30039CDB6 /* AppleSDGothicNeoL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoL.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoL.ttf"; sourceTree = "<group>"; };
+		0D4105E12B7B82B30039CDB6 /* AppleSDGothicNeoEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoEB.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoEB.ttf"; sourceTree = "<group>"; };
+		0D4105E22B7B82B30039CDB6 /* AppleSDGothicNeoUL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoUL.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoUL.ttf"; sourceTree = "<group>"; };
+		0D4105E32B7B82B30039CDB6 /* AppleSDGothicNeoR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoR.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoR.ttf"; sourceTree = "<group>"; };
+		0D4105E42B7B82B30039CDB6 /* AppleSDGothicNeoSB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoSB.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoSB.ttf"; sourceTree = "<group>"; };
+		0D4105E52B7B82B30039CDB6 /* AppleSDGothicNeoT.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoT.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoT.ttf"; sourceTree = "<group>"; };
+		0D4105E62B7B82B30039CDB6 /* AppleSDGothicNeoB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoB.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoB.ttf"; sourceTree = "<group>"; };
+		0D4105E72B7B82B30039CDB6 /* AppleSDGothicNeoH.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoH.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoH.ttf"; sourceTree = "<group>"; };
+		0D4105E82B7B82B30039CDB6 /* AppleSDGothicNeoM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AppleSDGothicNeoM.ttf; path = "../../../Apple_산돌고딕_Neo/AppleSDGothicNeoM.ttf"; sourceTree = "<group>"; };
+		0D4105F32B7B84F40039CDB6 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		21B21B632B722444008FFDCB /* Uspec_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uspec_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B21B662B722444008FFDCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21B21B682B722444008FFDCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +85,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D4105DF2B7B829D0039CDB6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0D4105E62B7B82B30039CDB6 /* AppleSDGothicNeoB.ttf */,
+				0D4105E12B7B82B30039CDB6 /* AppleSDGothicNeoEB.ttf */,
+				0D4105E72B7B82B30039CDB6 /* AppleSDGothicNeoH.ttf */,
+				0D4105E02B7B82B30039CDB6 /* AppleSDGothicNeoL.ttf */,
+				0D4105E82B7B82B30039CDB6 /* AppleSDGothicNeoM.ttf */,
+				0D4105E32B7B82B30039CDB6 /* AppleSDGothicNeoR.ttf */,
+				0D4105E42B7B82B30039CDB6 /* AppleSDGothicNeoSB.ttf */,
+				0D4105E52B7B82B30039CDB6 /* AppleSDGothicNeoT.ttf */,
+				0D4105E22B7B82B30039CDB6 /* AppleSDGothicNeoUL.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0D4105F22B7B84C10039CDB6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0D4105F32B7B84F40039CDB6 /* UIFont+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		21B21B5A2B722444008FFDCB = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +130,8 @@
 		21B21B652B722444008FFDCB /* Uspec_Client */ = {
 			isa = PBXGroup;
 			children = (
+				0D4105F22B7B84C10039CDB6 /* Extensions */,
+				0D4105DF2B7B829D0039CDB6 /* Fonts */,
 				21B21B7F2B738F9F008FFDCB /* Resources */,
 				21B21B7E2B738F93008FFDCB /* Sources */,
 				21B21B7C2B738A1A008FFDCB /* Uspec_Client.entitlements */,
@@ -282,11 +328,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4105ED2B7B82B30039CDB6 /* AppleSDGothicNeoSB.ttf in Resources */,
+				0D4105F12B7B82B30039CDB6 /* AppleSDGothicNeoM.ttf in Resources */,
 				21B21B732B722448008FFDCB /* LaunchScreen.storyboard in Resources */,
 				21B21BB02B7A04D0008FFDCB /* Colors.xcassets in Resources */,
+				0D4105E92B7B82B30039CDB6 /* AppleSDGothicNeoL.ttf in Resources */,
 				21B21B702B722448008FFDCB /* Assets.xcassets in Resources */,
+				0D4105EB2B7B82B30039CDB6 /* AppleSDGothicNeoUL.ttf in Resources */,
+				0D4105EC2B7B82B30039CDB6 /* AppleSDGothicNeoR.ttf in Resources */,
+				0D4105EE2B7B82B30039CDB6 /* AppleSDGothicNeoT.ttf in Resources */,
+				0D4105EF2B7B82B30039CDB6 /* AppleSDGothicNeoB.ttf in Resources */,
+				0D4105F02B7B82B30039CDB6 /* AppleSDGothicNeoH.ttf in Resources */,
 				21B21BB22B7A80B5008FFDCB /* assets.xcassets in Resources */,
 				21B21B6E2B722444008FFDCB /* Main.storyboard in Resources */,
+				0D4105EA2B7B82B30039CDB6 /* AppleSDGothicNeoEB.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D4105F42B7B84F40039CDB6 /* UIFont+.swift in Sources */,
 				21B21B8D2B75F828008FFDCB /* LoginViewController.swift in Sources */,
 				21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */,
 				21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */,
