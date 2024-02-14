@@ -45,6 +45,8 @@ class StatusInfoViewController: ProfileViewController {
     )
     var score4_3 = DLRadioButton()
     var score4_5 = DLRadioButton()
+    var isScoreVisible = DLRadioButton()
+    var isScoreVisibleSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,6 +146,15 @@ class StatusInfoViewController: ProfileViewController {
         score4_3.titleLabel?.font = .body1(size: 15)
         score4_3.titleLabel?.lineBreakMode = .byWordWrapping
         score4_3.iconStrokeWidth = 1
+        if let unSelectedImage = UIImage(named: "unSelected")?.resized(toWidth: 20) {
+            score4_3.icon = unSelectedImage
+        }
+
+        if let selectedImage = UIImage(named: "selected")?.resized(toWidth: 20) {
+            score4_3.iconSelected = selectedImage
+        }
+        score4_3.iconColor = .red
+        score4_3.indicatorColor = .red
         
         score4_5.setTitle("4.5 만점", for: .normal)
         score4_5.setTitleColor( .textBlack , for: .normal)
@@ -152,6 +163,13 @@ class StatusInfoViewController: ProfileViewController {
         score4_5.titleLabel?.font = .body1(size: 15)
         score4_5.titleLabel?.lineBreakMode = .byWordWrapping
         score4_5.iconStrokeWidth = 1
+        if let unSelectedImage = UIImage(named: "unSelected")?.resized(toWidth: 20) {
+            score4_5.icon = unSelectedImage
+        }
+
+        if let selectedImage = UIImage(named: "selected")?.resized(toWidth: 20) {
+            score4_5.iconSelected = selectedImage
+        }
         score4_3.otherButtons.append(score4_5)
         
         let scoreRadioStackView = UIStackView(arrangedSubviews: [score4_3, score4_5])
@@ -171,7 +189,36 @@ class StatusInfoViewController: ProfileViewController {
             make.right.equalTo(-16)
             make.height.equalTo(48)
         }
+        
+    
+        isScoreVisible.iconSize = 20
+        isScoreVisible.setTitle("학점 비공개", for: .normal)
+        isScoreVisible.setTitleColor(.textBlack, for: .normal)
+        view.addSubview(isScoreVisible)
+        isScoreVisible.marginWidth = 10
+        isScoreVisible.titleLabel?.font = .body1(size: 15)
+        isScoreVisible.titleLabel?.lineBreakMode = .byWordWrapping
+        isScoreVisible.iconStrokeWidth = 1
+        isScoreVisible.addTarget(self, action: #selector(isScoreVisibleTapped), for: .touchUpInside)
+        if let unSelectedImage = UIImage(named: "unSelected")?.resized(toWidth: 20) {
+            isScoreVisible.icon = unSelectedImage
+        }
+
+        if let selectedImage = UIImage(named: "selected")?.resized(toWidth: 20) {
+            isScoreVisible.iconSelected = selectedImage
+        }
+        isScoreVisible.snp.makeConstraints{ make in
+            make.top.equalTo(scoreField.snp.bottom).offset(8)
+            make.right.equalTo(-16)
+            make.width.equalTo(120)
+        }
     }
+    
+    @objc func isScoreVisibleTapped(_ sender: DLRadioButton) {
+            // 선택 상태를 토글하고 UI 업데이트
+            isScoreVisibleSelected.toggle()
+            sender.isSelected = isScoreVisibleSelected
+        }
     
     @objc func btnTouch(_ sender:DLRadioButton) {
         print(sender.currentTitle!)
