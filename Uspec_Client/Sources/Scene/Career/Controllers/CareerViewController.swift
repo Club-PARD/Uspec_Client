@@ -34,7 +34,7 @@ class CareerViewController: UIViewController {
         button.layer.borderColor = UIColor.gray3.cgColor
         button.layer.cornerRadius = 4
         button.layer.borderWidth = 1
-        
+        // 다음으로 넘어가기
     }
     
     private let nextButton = UIButton().then { button in
@@ -45,6 +45,7 @@ class CareerViewController: UIViewController {
         button.layer.borderColor = UIColor.gray3.cgColor
         button.layer.cornerRadius = 4
         button.layer.borderWidth = 1
+        // 다음으로 넘어가기
     }
     
     override func viewDidLoad() {

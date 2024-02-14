@@ -20,22 +20,22 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
     
     private let nameText = UILabel().then { label in
         label.text = "대외활동의 이름을 구체적으로 입력해주세요."
-        label.font = UIFont.body1()
+        label.font = UIFont.body1(size: 15)
     }
     
     private let activityPartText = UILabel().then { label in
         label.text = "대외활동의 활동 분야를 모두 정해주세요."
-        label.font = UIFont.body1()
+        label.font = UIFont.body1(size: 15)
     }
     
     private let interestsText = UILabel().then { label in
         label.text = "대외활동의 관심분야를 모두 정해주세요."
-        label.font = UIFont.body1()
+        label.font = UIFont.body1(size: 15)
     }
     
     private let activityDateText = UILabel().then { label in
         label.text = "대외활동의 활동기간을 정해주세요."
-        label.font = UIFont.body1()
+        label.font = UIFont.body1(size: 15)
     }
     
     private let activeNametextField = UITextField().then { text in
@@ -69,6 +69,7 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         button.contentHorizontalAlignment = .left
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
     }
+    
     private lazy var selectButton1 = UIButton().then { button in
         ButtonShareAttribute(for : button)
         button.addTarget(self, action: #selector(showDropdownMenu1), for: .touchUpInside)
@@ -107,48 +108,52 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         addSubview(dropdownMenu3)
         
         nameText.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(21)
         }
         
         activeNametextField.snp.makeConstraints { make in
-            make.top.equalTo(nameText.snp.bottom).offset(10)
+            make.top.equalTo(nameText.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(20)
             make.width.equalTo(303)
             make.height.equalTo(43)
         }
         
         activityPartText.snp.makeConstraints { make in
-            make.top.equalTo(activeNametextField.snp.bottom).offset(10)
+            make.top.equalTo(activeNametextField.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(21)
         }
         
         selectButton1.snp.makeConstraints { make in
-            make.top.equalTo(activityPartText.snp.bottom).offset(10)
+            make.top.equalTo(activityPartText.snp.bottom).offset(12)
             make.width.equalTo(303)
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
         
         interestsText.snp.makeConstraints { make in
-            make.top.equalTo(selectButton1.snp.bottom).offset(10)
+            make.top.equalTo(selectButton1.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(21)
         }
         
         selectButton2.snp.makeConstraints { make in
-            make.top.equalTo(interestsText.snp.bottom).offset(10)
+            make.top.equalTo(interestsText.snp.bottom).offset(12)
             make.width.equalTo(303)
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
         
         activityDateText.snp.makeConstraints { make in
-            make.top.equalTo(selectButton2.snp.bottom).offset(10)
+            make.top.equalTo(selectButton2.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(21)
         }
         
         selectButton3.snp.makeConstraints { make in
-            make.top.equalTo(activityDateText.snp.bottom).offset(10)
+            make.top.equalTo(activityDateText.snp.bottom).offset(12)
             make.width.equalTo(303)
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
