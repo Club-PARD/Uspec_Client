@@ -9,11 +9,17 @@ import UIKit
 import SnapKit
 import Then
 
-class InputCareerCollectionViewCell: UICollectionViewCell {
-    var isDropdownMenu1Visible = false
-    var isDropdownMenu2Visible = false
-    var isDropdownMenu3Visible = false
+protocol InputCareerCollectionViewCellDelegate: AnyObject {
+    func inputCareerCell(_ cell: InputCareerCollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool
+}
+
+class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate{
     
+    weak var delegate : InputCareerCollectionViewCellDelegate?
+//    override func delete(_ sender: Any?) {
+//        <#code#>
+//    }
+    var isBothFieldsFilled = false
     var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
     var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
     var categories3 = ["Category 3-1", "Category 3-2", "Category 3-3", "Category 3-4"]
@@ -38,52 +44,34 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.body1(size: 15)
     }
     
-    private let activeNametextField = UITextField().then { text in
-        text.font = UIFont.body1()
-        text.placeholder = "대외활동 이름"
-        text.layer.cornerRadius = 20
-        text.layer.borderWidth = 1
-        text.layer.borderColor = UIColor.gray3.cgColor
+    let activeNametextField = profileTextField(
+        placeholder: "대외활동 이름",
+        fontSize: 15,
+        textColor: .textBlack,
+        borderColor: UIColor.gray3,
+        cornerRadius: 20,
+        borderWidth: 1,
+        leftPadding: 16,
+        rightPadding: -16
+    )
+    
+    private lazy var selectButton1: DropdownButton = {
+        let button = DropdownButton()
+        button.setupDropdownMenu(options: categories1)
+        return button
+    }()
 
-    }
+    private lazy var selectButton2: DropdownButton = {
+        let button = DropdownButton()
+        button.setupDropdownMenu(options: categories2)
+       return button
+    }()
 
-    private lazy var dropdownMenu1: DropdownMenu = {
-        return SeleceddropdownMenu(for : selectButton1)
+    private lazy var selectButton3: DropdownButton = {
+        let button = DropdownButton()
+        button.setupDropdownMenu(options: categories3)
+        return button
     }()
-    
-    private lazy var dropdownMenu2: DropdownMenu = {
-        return SeleceddropdownMenu(for : selectButton2)
-    }()
-    
-    private lazy var dropdownMenu3: DropdownMenu = {
-        return SeleceddropdownMenu(for : selectButton3)
-    }()
-    
-    private func ButtonShareAttribute(for button : UIButton) {
-        button.setTitle("선택하기", for: .normal)
-        button.titleLabel?.font = UIFont.body1()
-        button.setTitleColor(.gray2, for: .normal)
-        button.layer.cornerRadius = 20
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.gray2.cgColor
-        button.contentHorizontalAlignment = .left
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-    }
-    
-    private lazy var selectButton1 = UIButton().then { button in
-        ButtonShareAttribute(for : button)
-        button.addTarget(self, action: #selector(showDropdownMenu1), for: .touchUpInside)
-    }
-    
-    private lazy var selectButton2 = UIButton().then { button in
-        ButtonShareAttribute(for : button)
-        button.addTarget(self, action: #selector(showDropdownMenu2), for: .touchUpInside)
-    }
-    
-    private lazy var selectButton3 = UIButton().then { button in
-        ButtonShareAttribute(for : button)
-        button.addTarget(self, action: #selector(showDropdownMenu3), for: .touchUpInside)
-    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -103,10 +91,8 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
         addSubview(selectButton1)
         addSubview(selectButton2)
         addSubview(selectButton3)
-        addSubview(dropdownMenu1)
-        addSubview(dropdownMenu2)
-        addSubview(dropdownMenu3)
         
+        activeNametextField.delegate = self
         nameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
@@ -158,66 +144,41 @@ class InputCareerCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
-        
-        dropdownMenu1.snp.makeConstraints { make in
-            make.top.equalTo(selectButton1.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(0)
-        }
-        
-        dropdownMenu2.snp.makeConstraints { make in
-            make.top.equalTo(selectButton2.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(0)
-        }
-        
-        dropdownMenu3.snp.makeConstraints { make in
-            make.top.equalTo(selectButton3.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(0)
-        }
     }
+    
 
-    @objc private func showDropdownMenu1() {
-        isDropdownMenu1Visible.toggle()
-        showDropdownMenu(for: isDropdownMenu1Visible, with: dropdownMenu1)
-    }
-    
-    @objc private func showDropdownMenu2() {
-        isDropdownMenu2Visible.toggle()
-        showDropdownMenu(for: isDropdownMenu2Visible, with: dropdownMenu2)
-    }
-    
-    @objc private func showDropdownMenu3() {
-        isDropdownMenu3Visible.toggle()
-        showDropdownMenu(for: isDropdownMenu3Visible, with: dropdownMenu3)
-    }
-    
-    private func showDropdownMenu(for isDropdownVisble : Bool ,with dropdownMenu : DropdownMenu) {
+    private func showDropdownMenu(for isDropdownVisble : Bool ,with dropdownMenu : DropdownMenu, button selectedButton : UIButton) {
+           
         UIView.animate(withDuration: 0.3) { [weak self] in
             if isDropdownVisble {
-                    dropdownMenu.snp.updateConstraints { make in
-                        make.height.equalTo(dropdownMenu.collectionViewLayout.collectionViewContentSize.height)
-                    }
-                } else {
-                    dropdownMenu.snp.updateConstraints { make in
-                        make.height.equalTo(0)
-                    }
+                selectedButton.layer.borderColor = UIColor.secondaryYellow.cgColor
+                dropdownMenu.snp.updateConstraints { make in
+                    dropdownMenu.updateHeight()
                 }
-                self?.layoutIfNeeded()
+            } else {
+                selectedButton.layer.borderColor = UIColor.gray3.cgColor
+                dropdownMenu.snp.updateConstraints { make in
+                    make.height.equalTo(0)
+                }
+            }
+            self?.layoutIfNeeded()
         }
     }
-    
+        
     private func SeleceddropdownMenu(for selectButton : UIButton) -> DropdownMenu {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .vertical
-        let dropdownMenu = DropdownMenu(frame: .zero, collectionViewLayout: collectionViewLayout)
+        let dropdownMenu = DropdownMenu(frame: .zero)
         dropdownMenu.backgroundColor = .secondaryYellow
         dropdownMenu.options = categories1
-        dropdownMenu.didSelectOption = { selectedoption in
-            let selectedTitles = selectedoption.joined(separator : ",")
+        dropdownMenu.didSelectOption = { selectedOptions in
+            let selectedTitles = selectedOptions.joined(separator : " ")
             selectButton.setTitle(selectedTitles, for: .normal)
         }
+
         return dropdownMenu
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+            activeNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
     }
 }

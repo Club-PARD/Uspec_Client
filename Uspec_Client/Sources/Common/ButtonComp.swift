@@ -10,9 +10,21 @@ import SnapKit
 
 class NextButton: UIButton {
     
-    init(backgroundColor: UIColor, titleText: String) {
+    init(titleText: String) {
         super.init(frame: .zero)
-        self.backgroundColor = backgroundColor
+        self.setTitle(titleText, for: .normal)
+        self.titleLabel?.font = UIFont.body1(size: 15)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class NormalButton: UIButton {
+    
+    init(titleText: String) {
+        super.init(frame: .zero)
         self.setTitle(titleText, for: .normal)
         self.titleLabel?.font = UIFont.body1(size: 15)
     }

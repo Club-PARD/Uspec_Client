@@ -59,10 +59,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func joinButtonTapped() {
-        let profileVC = CareerViewController()
+        let profileVC = CareerViewController(currentStep: .step1)
         self.navigationController?.pushViewController(profileVC, animated: true)
-        print(self.navigationController as Any)
-        print("회원가입 tapped")
     }
     
     private func configureUI() {
@@ -77,7 +75,6 @@ class LoginViewController: UIViewController {
     
     private func setConstraints() {
         view.addSubview(authorizationAppleIDButton)
-        authorizationAppleIDButton.translatesAutoresizingMaskIntoConstraints = false
         authorizationAppleIDButton.snp.makeConstraints { make in
             make.bottom.equalTo(-75)
             make.centerX.equalToSuperview()

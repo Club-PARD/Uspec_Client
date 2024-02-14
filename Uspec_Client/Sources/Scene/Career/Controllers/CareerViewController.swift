@@ -9,7 +9,8 @@ import UIKit
 import SnapKit
 import Then
 
-class CareerViewController: UIViewController {
+class CareerViewController: ProfileViewController , InputCareerCollectionViewCellDelegate{
+    private var isNextVisble : Bool = false
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -36,17 +37,7 @@ class CareerViewController: UIViewController {
         button.layer.borderWidth = 1
         // 다음으로 넘어가기
     }
-    
-    private let nextButton = UIButton().then { button in
-        button.setTitle("다음", for: .normal)
-        button.setTitleColor(UIColor.gray1, for: .normal)
-        button.backgroundColor = UIColor.gray2
-        button.titleLabel?.font = UIFont.body1()
-        button.layer.borderColor = UIColor.gray3.cgColor
-        button.layer.cornerRadius = 4
-        button.layer.borderWidth = 1
-        // 다음으로 넘어가기
-    }
+    let nextButton = NextButton(titleText: "다음")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +68,7 @@ class CareerViewController: UIViewController {
         self.navigationItem.leftBarButtonItems = [backButton, textButton]
     }
     
-    @objc func backButtonTapped() {
+    @objc override func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -113,6 +104,23 @@ class CareerViewController: UIViewController {
             make.height.equalTo(45)
             make.top.equalTo(doneButton.snp.bottom).offset(4)
         }
+        nextButton.backgroundColor = .gray2
+        nextButton.layer.cornerRadius = 4
+        nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+    }
+    
+    private func updateButtonColorBasedOnTextField() {
+        if nextButton.isEnabled {
+            nextButton.backgroundColor = .gray7
+        } else {
+            nextButton.backgroundColor = .gray2
+        }
+    }
+    
+    @objc private func nextButtonTapped() {
+        let infoVC = CareerViewController(currentStep: .step3)
+        self.navigationController?.pushViewController(infoVC, animated: true)
+        print(self.navigationController as Any)
     }
 }
 
@@ -125,6 +133,12 @@ extension CareerViewController: UICollectionViewDataSource, UICollectionViewDele
         if indexPath.item == numberOfCells {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: addActivityCellIdentifier, for: indexPath) as? AddActivityCollectionViewCell else {
                 return UICollectionViewCell()
+            }
+            // AddActivityCollectionViewCell에서는 드롭다운 뷰 추가
+            if let dropdownMenu = collectionView.subviews.first(where: { $0 is DropdownMenu }) as? DropdownMenu {
+                collectionView.insertSubview(cell, belowSubview: dropdownMenu)
+            } else {
+                collectionView.addSubview(cell)
             }
             cell.configure(title: "활동 추가하기")
             return cell
@@ -143,20 +157,21 @@ extension CareerViewController: UICollectionViewDataSource, UICollectionViewDele
         if indexPath.item == numberOfCells {
             numberOfCells += 1
             collectionView.insertItems(at: [IndexPath(item: numberOfCells - 1, section: 0)])
-            print("Add activity")
-        } else {
-            print("Selected activity: \(indexPath.item)")
         }
+    }
+    
+    func inputCareerCell(_ cell: InputCareerCollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool {
+            print("값 ? \(isFilled)")
+           nextButton.isEnabled = isFilled
+            return isFilled
     }
 }
 
 extension CareerViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.item == numberOfCells {
-            // Size for "AddActivityCollectionViewCell"
             return CGSize(width: 343, height: 61)
         } else {
-            // Size for "InputCareerCollectionViewCell"
             return CGSize(width: 343, height: 412)
         }
     }

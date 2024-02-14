@@ -6,12 +6,9 @@
 //
 
 import UIKit
-import Then
-import SnapKit
 
 class AddActivityCollectionViewCell: UICollectionViewCell {
     private let titleLabel = UILabel()
-    
     private let plusimageView = UIImageView().then { image in
         image.image = UIImage(systemName: "plus")
         image.tintColor = .gray4
@@ -33,6 +30,9 @@ class AddActivityCollectionViewCell: UICollectionViewCell {
     func setUplayout() {
         addSubview(titleLabel)
         addSubview(plusimageView)
+        self.layer.cornerRadius = 20
+        self.layer.borderColor = UIColor.gray3.cgColor
+        self.layer.borderWidth = 1
         
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
@@ -43,4 +43,3 @@ class AddActivityCollectionViewCell: UICollectionViewCell {
         }
     }
 }
-
