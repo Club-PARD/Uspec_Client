@@ -141,7 +141,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
     }
     
     @objc func nextButtonTapped() {
-        let infoVC = StatusInfoViewController(currentStep: .step3)
+        let infoVC = CareerViewController(currentStep: .step3)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }
