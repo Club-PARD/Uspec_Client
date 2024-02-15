@@ -38,7 +38,6 @@ class CareerViewController: ProfileViewController {
         button.layer.borderWidth = 1
         // 다음으로 넘어가기
     }
-    
     let nextButton = NextButton(titleText: "다음")
     
     override func viewDidLoad() {

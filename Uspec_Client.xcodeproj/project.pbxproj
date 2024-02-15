@@ -226,8 +226,10 @@
 		21B21B932B75FA63008FFDCB /* Career */ = {
 			isa = PBXGroup;
 			children = (
+            
 				0D41060E2B7C848D0039CDB6 /* Controllers */,
 				0D41060B2B7C848A0039CDB6 /* Views */,
+
 			);
 			path = Career;
 			sourceTree = "<group>";
