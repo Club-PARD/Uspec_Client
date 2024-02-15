@@ -26,8 +26,8 @@ class CategoryViewController: ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUi()
-        categorySection()
         setBottomButtons()
+        categorySection()
     }
     
     private func setUi() {
@@ -54,7 +54,7 @@ class CategoryViewController: ProfileViewController {
         categoryView.snp.makeConstraints{ make in
             make.top.equalTo(subTitle.snp.bottom).offset(20)
             make.width.equalToSuperview()
-            make.bottom.equalTo(-100)
+            make.bottom.equalTo(notYetButton.snp.top).offset(0)
         }
         topCategoryTableView.delegate = self
         topCategoryTableView.dataSource = self
