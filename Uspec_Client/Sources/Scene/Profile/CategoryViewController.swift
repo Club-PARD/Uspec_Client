@@ -58,7 +58,7 @@ class CategoryViewController: ProfileViewController {
         }
         topCategoryTableView.delegate = self
         topCategoryTableView.dataSource = self
-        topCategoryTableView.backgroundColor = .green
+        topCategoryTableView.backgroundColor = .clear
         categoryView.addSubview(topCategoryTableView)
         topCategoryTableView.snp.makeConstraints{ make in
             make.top.equalToSuperview()
@@ -69,7 +69,7 @@ class CategoryViewController: ProfileViewController {
         
         detailCategoryTableView.delegate = self
         detailCategoryTableView.dataSource = self
-        detailCategoryTableView.backgroundColor = .systemPink
+        detailCategoryTableView.backgroundColor = .white
         categoryView.addSubview(detailCategoryTableView)
         detailCategoryTableView.snp.makeConstraints{ make in
             make.top.equalToSuperview()
