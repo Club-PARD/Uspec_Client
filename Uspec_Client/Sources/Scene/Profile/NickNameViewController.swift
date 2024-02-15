@@ -26,6 +26,7 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
         setButton()
         nextButton.isEnabled = false
         nickNameField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        hideKeyboardWhenTappedAround()
     }
     
     private func setUi() {

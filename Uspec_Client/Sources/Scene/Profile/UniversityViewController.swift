@@ -34,6 +34,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         setUi()
         setButton()
         searchUnivButton()
+        hideKeyboardWhenTappedAround()
     }
     
     private func searchUnivButton() {
