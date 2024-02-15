@@ -59,7 +59,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func joinButtonTapped() {
-
         // MARK: - 원래 플로우
         let profileVC = ProfileIntroViewController(currentStep: .step0)
         
@@ -67,8 +66,7 @@ class LoginViewController: UIViewController {
         //        let profileVC = CareerViewController(currentStep: .step1)
         
         // MARK: - ram test
-//        let profileVC = CategoryViewController(currentStep: .step4)
-        
+        let profileVC = CategoryViewController(currentStep: .step4)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
