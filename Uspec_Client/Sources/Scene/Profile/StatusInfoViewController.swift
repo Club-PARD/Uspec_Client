@@ -11,6 +11,7 @@ import DLRadioButton
 class StatusInfoViewController: ProfileViewController {
     private var underGraduate: UIButton!
     private var graduate: UIButton!
+    var isGraduated: Bool = false
     let nextButton = NextButton(titleText: "다음")
     let statusLabel = profileFieldLabel(text: "현재 대학교 등록 상태를 알려주세요.", fontSize: 15, textColor: .textBlack)
     let ageLabel = profileFieldLabel(text: "현재 나이와 학기 수를 입력해주세요.", fontSize: 15, textColor: .textBlack)
@@ -115,9 +116,13 @@ class StatusInfoViewController: ProfileViewController {
         sender.isSelected = !sender.isSelected
         
         if sender == underGraduate {
-            graduate.isSelected = !sender.isSelected
+            graduate.isSelected = false
+            sender.isSelected = true
+            isGraduated = false
         } else if sender == graduate {
-            underGraduate.isSelected = !sender.isSelected
+            underGraduate.isSelected = false
+            sender.isSelected = true
+            isGraduated = true
         }
         updateButtonAppearance()
     }
@@ -144,7 +149,7 @@ class StatusInfoViewController: ProfileViewController {
         ageField.addLeftPadding(width: 75)
         
         let semesterLabel = UILabel()
-        semesterLabel.text = "  학기   "
+        semesterLabel.text = "   학기   "
         semesterLabel.textColor = .textBlack
         semesterField.textAlignment = .right
         semesterField.addSubview(semesterLabel)
@@ -271,6 +276,17 @@ class StatusInfoViewController: ProfileViewController {
     }
     
     @objc func nextButtonTapped() {
+        UserDefaults.standard.set(isGraduated, forKey: "isGraduated")
+        
+        guard let age = ageField.text else { return }
+        UserDefaults.standard.set(age, forKey: "age")
+        
+        guard let semester = semesterField.text else { return }
+        UserDefaults.standard.set(semester, forKey: "semester")
+        
+        guard let score = scoreField.text else { return }
+        UserDefaults.standard.set(score, forKey: "score")
+        
         let categoryVC = CategoryViewController(currentStep: .step4)
         self.navigationController?.pushViewController(categoryVC, animated: true)
         print(self.navigationController as Any)

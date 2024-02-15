@@ -88,6 +88,8 @@ class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
     @objc func nextButtonTapped() {
         let univVC = UniversityViewController(currentStep: .step2)
         self.navigationController?.pushViewController(univVC, animated: true)
-        print(self.navigationController as Any)
+        
+        guard let nickName = nickNameField.text else { return }
+        UserDefaults.standard.set(nickName, forKey: "nickName")
     }
 }

@@ -113,11 +113,28 @@ class CategoryViewController: ProfileViewController {
         print(self.navigationController as Any)
     }
     @objc func doneButtonTapped() {
+        if let nickName = UserDefaults.standard.string(forKey: "nickName"),
+           let university = UserDefaults.standard.string(forKey: "university"),
+           let ageString = UserDefaults.standard.string(forKey: "age"),
+           let semesterString = UserDefaults.standard.string(forKey: "semester"),
+           let score = UserDefaults.standard.string(forKey: "score"),
+           let major = UserDefaults.standard.string(forKey: "major") {
+            let isGraduated = UserDefaults.standard.bool(forKey: "isGraduated")
+            if let age = Int(ageString), let semester = Int(semesterString) {
+                makePostRequest(with: nickName, university: university, age: age, semester: semester, isGraduated: isGraduated, score: score, major: major)
+            } else {
+                print("Error: Unable to convert age or semester to Int.")
+            }
+        } else {
+            print("Error: Unable to retrieve some UserDefaults values.")
+        }
+
         let profileDoneVC = ProfileDoneViewController(currentStep: .step0)
         self.navigationController?.pushViewController(profileDoneVC, animated: true)
         print(self.navigationController as Any)
     }
 }
+
 
 var selectedTopCategoryIndex: Int?
 var lastIndexPath: IndexPath?
