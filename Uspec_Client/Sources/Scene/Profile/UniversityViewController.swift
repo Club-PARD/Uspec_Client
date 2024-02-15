@@ -140,8 +140,12 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
     }
     
     @objc func nextButtonTapped() {
+        guard let univ = univField.text else { return }
+        UserDefaults.standard.set(univ, forKey: "university")
+        guard let major = majorField.text else { return }
+        UserDefaults.standard.set(major, forKey: "major")
+        
         let infoVC = StatusInfoViewController(currentStep: .step3)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
 }
