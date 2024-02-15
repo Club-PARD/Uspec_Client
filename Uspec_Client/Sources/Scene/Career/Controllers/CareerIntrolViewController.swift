@@ -29,7 +29,7 @@ class CareerIntrolViewController: CareerViewController {
     
     let doneButton = DoneButton(titleText: "참여한 대외활동 없어요")
     
-    let nextButton = NextButton(titleText: "다음")
+    let nextPageBuuton = NextButton(titleText: "다음")
     
     override func viewDidLoad() {
         super.viewDidLoad()
