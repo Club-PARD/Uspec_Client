@@ -63,10 +63,10 @@ class LoginViewController: UIViewController {
         let profileVC = ProfileIntroViewController(currentStep: .step0)
         
         // MARK: - 진세 test
-        //        let profileVC = CareerViewController(currentStep: .step1)
+//                let profileVC = CareerIntrolViewController(currentStep: .step1)
         
         // MARK: - ram test
-        let profileVC = CategoryViewController(currentStep: .step4)
+//        let profileVC = CategoryViewController(currentStep: .step4)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

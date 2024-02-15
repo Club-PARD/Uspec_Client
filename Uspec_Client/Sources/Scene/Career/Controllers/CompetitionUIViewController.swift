@@ -27,7 +27,7 @@ class CompetitionUIViewController: CareerViewController {
     }
     
     let doneButton = DoneButton(titleText: "참여한 공모전이 없어요")
-    let nextButton = NextButton(titleText: "다음")
+    let nextPageButton = NextButton(titleText: "다음")
     
     override func viewDidLoad() {
         super.viewDidLoad()
