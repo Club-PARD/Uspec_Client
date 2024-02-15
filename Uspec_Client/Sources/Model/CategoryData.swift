@@ -34,6 +34,10 @@ extension TopCategory{
 
 
 struct DetailCategory{
+    
+    init(detailCategory: String) {
+        self.detailCategory = "      " + detailCategory
+    }
     var detailCategory: String
 }
 
@@ -71,7 +75,7 @@ extension DetailCategory{
 
         ],
         [
-            DetailCategory(detailCategory: "경리/츨납/결산"),
+            DetailCategory(detailCategory: "경리/출납/결산"),
             DetailCategory(detailCategory: "보험계리사/손해사정인"),
             DetailCategory(detailCategory: "세무사"),
             DetailCategory(detailCategory: "손익/리스크관리"),
@@ -102,7 +106,7 @@ extension DetailCategory{
             DetailCategory(detailCategory: "데이터엔지니어"),
             DetailCategory(detailCategory: "빅데이터엔지니어"),
             DetailCategory(detailCategory: "BI엔지니어"),
-            DetailCategory(detailCategory: "데이서 사이언티스트"),
+            DetailCategory(detailCategory: "데이터 사이언티스트"),
             DetailCategory(detailCategory: "머신러닝엔지니어")
         ],
         [

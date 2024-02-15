@@ -12,7 +12,7 @@ import Then
 
 class LoginViewController: UIViewController {
     let authorizationAppleIDButton = ASAuthorizationAppleIDButton()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setComponents()
