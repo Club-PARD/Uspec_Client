@@ -55,6 +55,7 @@ class StatusInfoViewController: ProfileViewController {
         statusSection()
         scoreSection()
         setNextButton()
+        hideKeyboardWhenTappedAround()
     }
     
     private func setUi() {
@@ -104,6 +105,7 @@ class StatusInfoViewController: ProfileViewController {
         ageField.addSubview(agefieldLabel)
         ageField.rightView = agefieldLabel
         ageField.rightViewMode = .always
+        ageField.keyboardType = .numberPad
         ageField.addLeftPadding(width: 75)
         
         let semesterLabel = UILabel()
@@ -112,6 +114,7 @@ class StatusInfoViewController: ProfileViewController {
         semesterField.addSubview(semesterLabel)
         semesterField.rightView = semesterLabel
         semesterField.rightViewMode = .always
+        semesterField.keyboardType = .numberPad
         semesterField.addLeftPadding(width: 70)
         
         let ageSemesterStackView = UIStackView(arrangedSubviews: [ageField, semesterField])
