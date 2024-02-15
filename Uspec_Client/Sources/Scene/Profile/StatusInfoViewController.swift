@@ -9,6 +9,8 @@ import UIKit
 import DLRadioButton
 
 class StatusInfoViewController: ProfileViewController {
+    private var underGraduate: UIButton!
+    private var graduate: UIButton!
     let nextButton = NextButton(titleText: "다음")
     let statusLabel = profileFieldLabel(text: "현재 대학교 등록 상태를 알려주세요.", fontSize: 15, textColor: .textBlack)
     let ageLabel = profileFieldLabel(text: "현재 나이와 학기 수를 입력해주세요.", fontSize: 15, textColor: .textBlack)
@@ -78,10 +80,21 @@ class StatusInfoViewController: ProfileViewController {
     }
     
     private func statusSection(){
-        let underGraduate = NormalButton(titleText: "재학/휴학")
-        underGraduate.backgroundColor = .red
-        let graduate = NormalButton(titleText: "졸업/취업준비")
-        graduate.backgroundColor = .green
+        underGraduate = NormalButton(titleText: "재학/휴학")
+        underGraduate.backgroundColor = .gray7
+        underGraduate.titleLabel?.textColor = .white
+        underGraduate.layer.borderColor = UIColor.gray3.cgColor
+        underGraduate.layer.borderColor = UIColor.clear.cgColor
+        underGraduate.layer.borderWidth = 1
+        underGraduate.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        
+        graduate = NormalButton(titleText: "졸업/취업준비")
+        graduate.backgroundColor = .clear
+        graduate.setTitleColor(.gray3, for: .normal)
+        graduate.layer.borderColor = UIColor.gray3.cgColor
+        graduate.layer.borderWidth = 1
+        graduate.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        
         let statusButtons = UIStackView(arrangedSubviews: [underGraduate, graduate])
         underGraduate.layer.cornerRadius = 4
         graduate.layer.cornerRadius = 4
@@ -98,10 +111,32 @@ class StatusInfoViewController: ProfileViewController {
         }
     }
     
+    @objc private func buttonTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender == underGraduate {
+            graduate.isSelected = !sender.isSelected
+        } else if sender == graduate {
+            underGraduate.isSelected = !sender.isSelected
+        }
+        updateButtonAppearance()
+    }
+    
+    private func updateButtonAppearance() {
+        underGraduate.backgroundColor = underGraduate.isSelected ? .gray7 : .white
+        underGraduate.setTitleColor(underGraduate.isSelected ? .white : .gray3, for: .normal)
+        underGraduate.layer.borderColor = underGraduate.isSelected ? UIColor.clear.cgColor : UIColor.gray3.cgColor
+        
+        graduate.backgroundColor = graduate.isSelected ? .gray7 : .white
+        graduate.setTitleColor(graduate.isSelected ? .white : .gray3, for: .normal)
+        graduate.layer.borderColor = graduate.isSelected ? UIColor.clear.cgColor : UIColor.gray3.cgColor
+    }
+    
     private func ageSemesterSection() {
         let agefieldLabel = UILabel()
-        agefieldLabel.text = "세    "
+        agefieldLabel.text = "   세    "
         agefieldLabel.textColor = .textBlack
+        ageField.textAlignment = .right
         ageField.addSubview(agefieldLabel)
         ageField.rightView = agefieldLabel
         ageField.rightViewMode = .always
@@ -109,8 +144,9 @@ class StatusInfoViewController: ProfileViewController {
         ageField.addLeftPadding(width: 75)
         
         let semesterLabel = UILabel()
-        semesterLabel.text = "학기   "
+        semesterLabel.text = "  학기   "
         semesterLabel.textColor = .textBlack
+        semesterField.textAlignment = .right
         semesterField.addSubview(semesterLabel)
         semesterField.rightView = semesterLabel
         semesterField.rightViewMode = .always
@@ -152,13 +188,9 @@ class StatusInfoViewController: ProfileViewController {
         if let unSelectedImage = UIImage(named: "unSelected")?.resized(toWidth: 20) {
             score4_3.icon = unSelectedImage
         }
-
         if let selectedImage = UIImage(named: "selected")?.resized(toWidth: 20) {
             score4_3.iconSelected = selectedImage
         }
-        score4_3.iconColor = .red
-        score4_3.indicatorColor = .red
-        
         score4_5.setTitle("4.5 만점", for: .normal)
         score4_5.setTitleColor( .textBlack , for: .normal)
         score4_5.iconSize = 20
@@ -169,7 +201,7 @@ class StatusInfoViewController: ProfileViewController {
         if let unSelectedImage = UIImage(named: "unSelected")?.resized(toWidth: 20) {
             score4_5.icon = unSelectedImage
         }
-
+        
         if let selectedImage = UIImage(named: "selected")?.resized(toWidth: 20) {
             score4_5.iconSelected = selectedImage
         }
@@ -193,7 +225,6 @@ class StatusInfoViewController: ProfileViewController {
             make.height.equalTo(48)
         }
         
-    
         isScoreVisible.iconSize = 20
         isScoreVisible.setTitle("학점 비공개", for: .normal)
         isScoreVisible.setTitleColor(.textBlack, for: .normal)
@@ -206,7 +237,7 @@ class StatusInfoViewController: ProfileViewController {
         if let unSelectedImage = UIImage(named: "unSelected")?.resized(toWidth: 20) {
             isScoreVisible.icon = unSelectedImage
         }
-
+        
         if let selectedImage = UIImage(named: "selected")?.resized(toWidth: 20) {
             isScoreVisible.iconSelected = selectedImage
         }
@@ -218,10 +249,9 @@ class StatusInfoViewController: ProfileViewController {
     }
     
     @objc func isScoreVisibleTapped(_ sender: DLRadioButton) {
-            // 선택 상태를 토글하고 UI 업데이트
-            isScoreVisibleSelected.toggle()
-            sender.isSelected = isScoreVisibleSelected
-        }
+        isScoreVisibleSelected.toggle()
+        sender.isSelected = isScoreVisibleSelected
+    }
     
     @objc func btnTouch(_ sender:DLRadioButton) {
         print(sender.currentTitle!)
@@ -239,9 +269,10 @@ class StatusInfoViewController: ProfileViewController {
         nextButton.layer.cornerRadius = 4
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     }
+    
     @objc func nextButtonTapped() {
-        let infoVC = StatusInfoViewController(currentStep: .step3)
-        self.navigationController?.pushViewController(infoVC, animated: true)
+        let categoryVC = CategoryViewController(currentStep: .step4)
+        self.navigationController?.pushViewController(categoryVC, animated: true)
         print(self.navigationController as Any)
     }
 }
