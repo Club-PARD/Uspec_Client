@@ -9,10 +9,8 @@ import UIKit
 import SnapKit
 import Then
 
-class CareerViewController: ProfileViewController {
-    private var validation : Bool = false
-    private var isNextVisble : Bool = false
-    private let collectionView: UICollectionView = {
+class CareerIntrolViewController: ProfileViewController {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -20,16 +18,16 @@ class CareerViewController: ProfileViewController {
         return collectionView
     }()
     
-    private let addActivityCellIdentifier = "AddActivityCell"
-    private var numberOfCells = 1
+    let addActivityCellIdentifier = "AddActivityCell"
+    var numberOfCells = 1
     
-    private let semiTitleLabel = UILabel().then { label in
+    let semiTitleLabel = UILabel().then { label in
         label.text = "짱구님의 대외활동 내역을 입력해주세요."
         label.font = UIFont.header3(size: 18)
         label.textColor = .primaryYellow
     }
     
-    private let doneButton = UIButton().then { button in
+    let doneButton = UIButton().then { button in
         button.setTitle("참여한 대외활동이 없어요.", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont.body1()
@@ -44,30 +42,12 @@ class CareerViewController: ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setUpNavigationbar()
         setUpLayout()
 
         collectionView.register(InputCareerCollectionViewCell.self, forCellWithReuseIdentifier: "InputCareerCollectionViewCell")
         collectionView.register(AddActivityCollectionViewCell.self, forCellWithReuseIdentifier: addActivityCellIdentifier)
         collectionView.dataSource = self
         collectionView.delegate = self
-    }
-    
-    private func setUpNavigationbar() {
-        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-        backButton.tintColor = UIColor(resource: .textBlack)
-        let textButton = UIBarButtonItem(title: "이력 입력", style: .plain, target: self, action: #selector(backButtonTapped))
-        let attributes = [NSAttributedString.Key.font: UIFont.header2(size: 20)]
-        textButton.tintColor = UIColor(resource: .textBlack)
-        textButton.setTitleTextAttributes(attributes, for: .normal)
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .backgroundWhite
-        appearance.shadowImage = UIImage(named: "line1")
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        
-        self.navigationItem.leftBarButtonItems = [backButton, textButton]
     }
     
     @objc override func backButtonTapped() {
@@ -120,13 +100,13 @@ class CareerViewController: ProfileViewController {
     }
     
     @objc private func nextButtonTapped() {
-        let infoVC = CareerViewController(currentStep: .step3)
+        let infoVC = CompetitionUIViewController(currentStep: .step2)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }
 }
 
-extension CareerViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfCells + 1
     }
@@ -148,6 +128,7 @@ extension CareerViewController: UICollectionViewDataSource, UICollectionViewDele
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 20.0
             cell.delegate = self
+            cell.delegateValid = self
             return cell
         }
     }
@@ -160,7 +141,7 @@ extension CareerViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-extension CareerViewController: UICollectionViewDelegateFlowLayout {
+extension CareerIntrolViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.item == numberOfCells {
             return CGSize(width: 343, height: 61)
@@ -170,11 +151,27 @@ extension CareerViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CareerViewController : InputCareerCollectionViewCellDelegate {
-    func inputCareerCellDidRequestDelete(_ cell: InputCareerCollectionViewCell) {
+extension CareerIntrolViewController: InputCareerCollectionViewCellDelegate {
+    func inputCareerCellDidRequestDelete(_ cell: UICollectionViewCell) {
             guard let indexPath = collectionView.indexPath(for: cell) else { return }
         numberOfCells -= 1
         collectionView.deleteItems(at: [indexPath])
         collectionView.reloadData()
+    }
+}
+
+extension CareerIntrolViewController: InputCareerValidCheckDelegate {
+    func inputCareerCell(_ cell: UICollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool {
+        print("다음의 값은 \(isFilled)")
+        if isFilled {
+            nextButton.isEnabled = true
+            nextButton.backgroundColor = .gray7
+        } else {
+            nextButton.isEnabled = false
+            nextButton.backgroundColor = .gray1
+           
+        }
+
+        return isFilled
     }
 }

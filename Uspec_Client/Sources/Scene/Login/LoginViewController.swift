@@ -59,8 +59,8 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func joinButtonTapped() {
-//        let profileVC = ProfileIntroViewController(currentStep: .step0)
-        let profileVC = CareerViewController(currentStep: .step1)
+        //let profileVC = ProfileIntroViewController(currentStep: .step0)
+        let profileVC = CareerIntrolViewController(currentStep: .step1)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

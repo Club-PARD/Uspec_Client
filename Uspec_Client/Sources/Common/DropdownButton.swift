@@ -8,11 +8,19 @@ import UIKit
 import SnapKit
 import Then
 
+protocol DropdownButtonDelegate: AnyObject {
+    func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool)
+}
+
 class DropdownButton: UIView {
     private var isDropdownMenuVisible = true
     private let maxHeight: CGFloat = 172 // 드롭다운 메뉴의 최대 높이
     private let dropDownMenu = DropdownMenu()
+    weak var DropButtondelegate: DropdownButtonDelegate?
+
     var buttonoption : [String] = []
+    
+    var isSelectedOption : Bool = false
     
     lazy var button: UIButton = {
         let button = UIButton(type: .system)
@@ -64,8 +72,12 @@ class DropdownButton: UIView {
         dropDownMenu.didSelectOption = { [weak self] selectedOptions in
             guard let self = self else { return }
             if selectedOptions.isEmpty {
+                isSelectedOption = false
+                self.DropButtondelegate?.dropdownButton(self, didSelectOption: false)
                 self.button.setTitle("선택하기", for: .normal)
             } else {
+                isSelectedOption = true
+                self.DropButtondelegate?.dropdownButton(self, didSelectOption: true)
                 self.button.setTitle(selectedOptions.joined(separator: ", "), for: .normal)
                 print("Selected options: \(selectedOptions)")
             }
@@ -96,8 +108,6 @@ class DropdownButton: UIView {
             }
         }
     }
-    
-   
 }
 
 //MARK: DropdownMenuVIiew , 드롭다운 버튼 눌렀을 때 생기는 뷰
