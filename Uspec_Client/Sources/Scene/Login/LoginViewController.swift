@@ -60,10 +60,10 @@ class LoginViewController: UIViewController {
     
     @objc private func joinButtonTapped() {
         // MARK: - 원래 플로우
-        let profileVC = ProfileIntroViewController(currentStep: .step0)
+        //let profileVC = ProfileIntroViewController(currentStep: .step0)
         
         // MARK: - 진세 test
-//                let profileVC = CareerIntrolViewController(currentStep: .step1)
+                let profileVC = CareerIntrolViewController(currentStep: .step1)
         
         // MARK: - ram test
 //        let profileVC = CategoryViewController(currentStep: .step4)
