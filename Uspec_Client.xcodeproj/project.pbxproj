@@ -18,6 +18,7 @@
 		210254212B7E0D85009370E5 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254202B7E0D85009370E5 /* API.swift */; };
 		210254232B7E1AC7009370E5 /* TopCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254222B7E1AC7009370E5 /* TopCategoryCell.swift */; };
 		210254252B7E23DA009370E5 /* DetailCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254242B7E23DA009370E5 /* DetailCategoryCell.swift */; };
+		210254272B7E6500009370E5 /* ProfileDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254262B7E6500009370E5 /* ProfileDoneViewController.swift */; };
 		21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B662B722444008FFDCB /* AppDelegate.swift */; };
 		21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B682B722444008FFDCB /* SceneDelegate.swift */; };
 		21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B6A2B722444008FFDCB /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		210254202B7E0D85009370E5 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		210254222B7E1AC7009370E5 /* TopCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryCell.swift; sourceTree = "<group>"; };
 		210254242B7E23DA009370E5 /* DetailCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryCell.swift; sourceTree = "<group>"; };
+		210254262B7E6500009370E5 /* ProfileDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDoneViewController.swift; sourceTree = "<group>"; };
 		21B21B632B722444008FFDCB /* Uspec_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uspec_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B21B662B722444008FFDCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21B21B682B722444008FFDCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				21B21BD02B7BCDF4008FFDCB /* UniversityViewController.swift */,
 				21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */,
 				2102541D2B7E06FF009370E5 /* CategoryViewController.swift */,
+				210254262B7E6500009370E5 /* ProfileDoneViewController.swift */,
 				210254222B7E1AC7009370E5 /* TopCategoryCell.swift */,
 				210254242B7E23DA009370E5 /* DetailCategoryCell.swift */,
 			);
@@ -466,6 +469,7 @@
 				21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */,
 				21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */,
 				2102541E2B7E06FF009370E5 /* CategoryViewController.swift in Sources */,
+				210254272B7E6500009370E5 /* ProfileDoneViewController.swift in Sources */,
 				21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */,
 				0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* ButtonComp.swift in Sources */,

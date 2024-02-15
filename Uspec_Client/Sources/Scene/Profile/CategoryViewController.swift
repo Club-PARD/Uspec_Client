@@ -26,8 +26,8 @@ class CategoryViewController: ProfileViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUi()
-        categorySection()
         setBottomButtons()
+        categorySection()
     }
     
     private func setUi() {
@@ -54,11 +54,11 @@ class CategoryViewController: ProfileViewController {
         categoryView.snp.makeConstraints{ make in
             make.top.equalTo(subTitle.snp.bottom).offset(20)
             make.width.equalToSuperview()
-            make.bottom.equalTo(-100)
+            make.bottom.equalTo(notYetButton.snp.top).offset(0)
         }
         topCategoryTableView.delegate = self
         topCategoryTableView.dataSource = self
-        topCategoryTableView.backgroundColor = .green
+        topCategoryTableView.backgroundColor = .clear
         categoryView.addSubview(topCategoryTableView)
         topCategoryTableView.snp.makeConstraints{ make in
             make.top.equalToSuperview()
@@ -69,7 +69,7 @@ class CategoryViewController: ProfileViewController {
         
         detailCategoryTableView.delegate = self
         detailCategoryTableView.dataSource = self
-        detailCategoryTableView.backgroundColor = .systemPink
+        detailCategoryTableView.backgroundColor = .white
         categoryView.addSubview(detailCategoryTableView)
         detailCategoryTableView.snp.makeConstraints{ make in
             make.top.equalToSuperview()
@@ -78,7 +78,6 @@ class CategoryViewController: ProfileViewController {
             make.bottom.equalToSuperview()
         }
         detailCategoryTableView.register(DetailCategoryCell.self, forCellReuseIdentifier: "detailCell")
-        
     }
     
     private func setBottomButtons() {
@@ -109,13 +108,13 @@ class CategoryViewController: ProfileViewController {
         doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
     }
     @objc func notYetButtonTapped() {
-        let categoryVC = CategoryViewController(currentStep: .step4)
-        self.navigationController?.pushViewController(categoryVC, animated: true)
+        let profileDoneVC = ProfileDoneViewController(currentStep: .step0)
+        self.navigationController?.pushViewController(profileDoneVC, animated: true)
         print(self.navigationController as Any)
     }
     @objc func doneButtonTapped() {
-        let categoryVC = CategoryViewController(currentStep: .step4)
-        self.navigationController?.pushViewController(categoryVC, animated: true)
+        let profileDoneVC = ProfileDoneViewController(currentStep: .step0)
+        self.navigationController?.pushViewController(profileDoneVC, animated: true)
         print(self.navigationController as Any)
     }
 }
@@ -189,9 +188,6 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate{
         } else if tableView == detailCategoryTableView {
             if let lastIndexPath = lastIndexPath, let lastCell = tableView.cellForRow(at: lastIndexPath) {
                 lastCell.backgroundColor = .white
-            }
-            if let cell = tableView.cellForRow(at: indexPath) {
-                cell.backgroundColor = .systemTeal
             }
             
             lastIndexPath = indexPath
