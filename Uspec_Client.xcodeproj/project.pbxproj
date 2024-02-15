@@ -16,6 +16,11 @@
 		0D4106192B7D95490039CDB6 /* DropDownCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */; };
 		0D41061E2B7DF61B0039CDB6 /* CompetitionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41061D2B7DF61B0039CDB6 /* CompetitionUIViewController.swift */; };
 		0D4106202B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */; };
+		0D4106222B7E137F0039CDB6 /* CareerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106212B7E137F0039CDB6 /* CareerViewController.swift */; };
+		0D4106282B7E6A2F0039CDB6 /* InternActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106272B7E6A2F0039CDB6 /* InternActivityViewController.swift */; };
+		0D41062A2B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */; };
+		0D41062C2B7E764B0039CDB6 /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */; };
+		0D41062E2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */; };
 		21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B662B722444008FFDCB /* AppDelegate.swift */; };
 		21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B682B722444008FFDCB /* SceneDelegate.swift */; };
 		21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B6A2B722444008FFDCB /* ViewController.swift */; };
@@ -58,6 +63,11 @@
 		0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D41061D2B7DF61B0039CDB6 /* CompetitionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionUIViewController.swift; sourceTree = "<group>"; };
 		0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionCollectionViewCell.swift; sourceTree = "<group>"; };
+		0D4106212B7E137F0039CDB6 /* CareerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerViewController.swift; sourceTree = "<group>"; };
+		0D4106272B7E6A2F0039CDB6 /* InternActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternActivityViewController.swift; sourceTree = "<group>"; };
+		0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternActCollectionViewCell.swift; sourceTree = "<group>"; };
+		0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
+		0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifivateCollectionViewCell.swift; sourceTree = "<group>"; };
 		21B21B632B722444008FFDCB /* Uspec_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uspec_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B21B662B722444008FFDCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21B21B682B722444008FFDCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,8 +129,10 @@
 		0D41060B2B7C848A0039CDB6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */,
 				0D41060C2B7C848A0039CDB6 /* InputCareerCollectionViewCell.swift */,
+				0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */,
+				0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */,
+				0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */,
 				0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -129,8 +141,11 @@
 		0D41060E2B7C848D0039CDB6 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0D4106212B7E137F0039CDB6 /* CareerViewController.swift */,
 				21B21B942B75FA6F008FFDCB /* CareerIntrolViewController.swift */,
 				0D41061D2B7DF61B0039CDB6 /* CompetitionUIViewController.swift */,
+				0D4106272B7E6A2F0039CDB6 /* InternActivityViewController.swift */,
+				0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -444,6 +459,7 @@
 				21B21B8D2B75F828008FFDCB /* LoginViewController.swift in Sources */,
 				21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */,
 				21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */,
+				0D41062C2B7E764B0039CDB6 /* CertificateViewController.swift in Sources */,
 				0D4106132B7C86700039CDB6 /* DropdownButton.swift in Sources */,
 				0D4106192B7D95490039CDB6 /* DropDownCollectionViewCell.swift in Sources */,
 				21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */,
@@ -454,15 +470,19 @@
 				0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* ButtonComp.swift in Sources */,
 				0D41061E2B7DF61B0039CDB6 /* CompetitionUIViewController.swift in Sources */,
+				0D4106222B7E137F0039CDB6 /* CareerViewController.swift in Sources */,
 				0D4106172B7D17FF0039CDB6 /* OutingActingPart.swift in Sources */,
 				0D4106112B7C84D40039CDB6 /* InputCareerCollectionViewCell.swift in Sources */,
 				21B21BCB2B7BAAEA008FFDCB /* ProfileViewController.swift in Sources */,
+				0D41062E2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift in Sources */,
 				21B21BAA2B792F69008FFDCB /* AppleLoginManager.swift in Sources */,
 				21B21BCF2B7BC2AA008FFDCB /* Extensions.swift in Sources */,
 				21B21BC92B7BA8C7008FFDCB /* NickNameViewController.swift in Sources */,
+				0D41062A2B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift in Sources */,
 				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
 				0D4106202B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift in Sources */,
 				21B21BA82B779FC4008FFDCB /* MockData.swift in Sources */,
+				0D4106282B7E6A2F0039CDB6 /* InternActivityViewController.swift in Sources */,
 				0D4106152B7D11030039CDB6 /* UIViewExtension.swift in Sources */,
 				21C100312B7BE71B00BED0A8 /* StatusInfoViewController.swift in Sources */,
 				21B21BD12B7BCDF4008FFDCB /* UniversityViewController.swift in Sources */,

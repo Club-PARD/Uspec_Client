@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class CareerIntrolViewController: ProfileViewController {
+class CareerIntrolViewController: CareerViewController {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -27,41 +27,48 @@ class CareerIntrolViewController: ProfileViewController {
         label.textColor = .primaryYellow
     }
     
-    let doneButton = UIButton().then { button in
-        button.setTitle("참여한 대외활동이 없어요.", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont.body1()
-        button.layer.borderColor = UIColor.gray3.cgColor
-        button.layer.cornerRadius = 4
-        button.layer.borderWidth = 1
-        // 다음으로 넘어가기
-    }
+    let doneButton = DoneButton(titleText: "참여한 대외활동 없어요")
     
     let nextButton = NextButton(titleText: "다음")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .backgroundWhite
+        
         setUpLayout()
 
         collectionView.register(InputCareerCollectionViewCell.self, forCellWithReuseIdentifier: "InputCareerCollectionViewCell")
         collectionView.register(AddActivityCollectionViewCell.self, forCellWithReuseIdentifier: addActivityCellIdentifier)
+        doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+
     
     @objc override func backButtonTapped() {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc private func doneButtonTapped() {
+        let infoVC = InternActivityViewController(currentStep: .step2)
+        self.navigationController?.pushViewController(infoVC, animated: true)
+        print(self.navigationController as Any)
+    }
+    
+    @objc private func nextButtonTapped() {
+        let infoVC = CompetitionUIViewController(currentStep: .step1)
+        self.navigationController?.pushViewController(infoVC, animated: true)
+        print(self.navigationController as Any)
+    }
+    
     private func setUpLayout(){
-        view.addSubview(collectionView)
+        scrollView.addSubview(collectionView)
         view.addSubview(semiTitleLabel)
         view.addSubview(doneButton)
         view.addSubview(nextButton)
         
         semiTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
+            make.top.equalTo(scrollView.snp.top).offset(32)
             make.leading.equalTo(view.snp.leading).offset(12)
             make.trailing.equalTo(view.snp.trailing)
         }
@@ -70,14 +77,14 @@ class CareerIntrolViewController: ProfileViewController {
             make.top.equalTo(semiTitleLabel.snp.bottom).offset(32)
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-100)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-130)
         }
         
         doneButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.width.equalTo(343)
             make.height.equalTo(45)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-100)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-120)
         }
         
         nextButton.snp.makeConstraints { make in
@@ -98,12 +105,6 @@ class CareerIntrolViewController: ProfileViewController {
             nextButton.backgroundColor = .gray2
         }
     }
-    
-    @objc private func nextButtonTapped() {
-        let infoVC = CompetitionUIViewController(currentStep: .step2)
-        self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
-    }
 }
 
 extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -123,7 +124,6 @@ extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionVi
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InputCareerCollectionViewCell", for: indexPath) as? InputCareerCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            
             cell.layer.borderColor = UIColor.secondaryYellow.cgColor
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 20.0

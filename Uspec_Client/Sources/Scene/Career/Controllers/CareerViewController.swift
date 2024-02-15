@@ -1,23 +1,22 @@
 //
-//  ProfileNavigationViewController.swift
+//  CareerViewController.swift
 //  Uspec_Client
 //
-//  Created by 김하람 on 2/13/24.
+//  Created by 진세진 on 2/15/24.
 //
-
 import UIKit
 
-enum ProfileStep: Int {
+enum CareerStep: Int {
     case step0, step1, step2, step3, step4 // 필요한 만큼 단계 추가
 }
 
 // MARK: - 이미지, main title, button title
-class ProfileViewController: UIViewController {
+class CareerViewController: UIViewController {
     var scrollView: UIScrollView!
     let mainLabel = UILabel()
-    var currentStep: ProfileStep
+    var currentStep: CareerStep
     
-    init(currentStep: ProfileStep) {
+    init(currentStep: CareerStep) {
         self.currentStep = currentStep
         super.init(nibName: nil, bundle: nil)
     }
@@ -35,7 +34,6 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func backButtonTapped() {
-        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -51,7 +49,7 @@ class ProfileViewController: UIViewController {
     private func navigationUI() {
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
         backButton.tintColor = UIColor(resource: .textBlack)
-        let textButton = UIBarButtonItem(title: "회원가입", style: .plain, target: self, action: #selector(backButtonTapped))
+        let textButton = UIBarButtonItem(title: "이력 입력", style: .plain, target: self, action: #selector(backButtonTapped))
         let attributes = [NSAttributedString.Key.font: UIFont.header2(size: 20)]
         textButton.tintColor = UIColor(resource: .textBlack)
         textButton.setTitleTextAttributes(attributes, for: .normal)

@@ -1,23 +1,13 @@
 //
-//  CompetitionCollectionViewCell.swift
+//  CertifivateCollectionViewCell.swift
 //  Uspec_Client
 //
-//  Created by 진세진 on 2/15/24.
+//  Created by 진세진 on 2/16/24.
 //
 
 import UIKit
-import SnapKit
-import Then
 
-protocol InputCareerCollectionViewCellDelegate: AnyObject {
-    func inputCareerCellDidRequestDelete(_ cell: UICollectionViewCell)
-}
-
-protocol InputCareerValidCheckDelegate: AnyObject {
-    func inputCareerCell(_ cell: UICollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool
-}
-
-class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
+class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
@@ -25,19 +15,14 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
     var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
     var categories3 = ["Category 3-1", "Category 3-2", "Category 3-3", "Category 3-4"]
-
-    private let nameText = UILabel().then { label in
-        label.text = "공모전의 이름을 구체적으로 입력해주세요."
+    
+    private let certifiCateNameText = UILabel().then { label in
+        label.text = "짱구님의 자격증 취득 내역을 입력해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
-    private let competitionPartText = UILabel().then { label in
-        label.text = "공모전의 공모 분야를 모두 정해주세요."
-        label.font = UIFont.body1(size: 15)
-    }
-    
-    private let interestsText = UILabel().then { label in
-        label.text = "공모전의 시상규모를 선택해주세요."
+    private let getCertificateDateText = UILabel().then { label in
+        label.text = "자격증 취득 일자를 선택해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
@@ -50,8 +35,8 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         delegate?.inputCareerCellDidRequestDelete(self)
     }
     
-    let activeNametextField = profileTextField(
-        placeholder: "대외활동 이름",
+    let CertificateTextField = profileTextField(
+        placeholder: "자격증 이름",
         fontSize: 15,
         textColor: .textBlack,
         borderColor: UIColor.gray3,
@@ -60,18 +45,6 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         leftPadding: 16,
         rightPadding: -16
     )
-    
-    private lazy var selectButton1: DropdownButton = {
-        let button = DropdownButton()
-        button.setupDropdownMenu(options: categories1, selectedvalue: true)
-        return button
-    }()
-
-    private lazy var selectButton2: DropdownButton = {
-        let button = DropdownButton()
-        button.setupDropdownMenu(options: categories2, selectedvalue: false)
-       return button
-    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -82,29 +55,16 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         setupLayout()
     }
     
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        // 새로운 부모 뷰가 nil이면(화면에서 pop될 때)
-        if newSuperview == nil {
-            selectButton1.hideDropdownMenu()
-            selectButton2.hideDropdownMenu()
-        }
-    }
-    
     func setupLayout() {
-        addSubview(nameText)
-        addSubview(activeNametextField)
-        addSubview(competitionPartText)
-        addSubview(interestsText)
+        addSubview(certifiCateNameText)
+        addSubview(CertificateTextField)
+        addSubview(getCertificateDateText)
         addSubview(deleteButton)
-        addSubview(selectButton1)
-        addSubview(selectButton2)
+        //addSubview(calindarButton)
         
-        activeNametextField.delegate = self
-        selectButton1.DropButtondelegate = self
-        selectButton2.DropButtondelegate = self
-        
-        nameText.snp.makeConstraints { make in
+        validateNextButton()
+        CertificateTextField.delegate = self
+        certifiCateNameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-40)
@@ -113,42 +73,22 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         
         deleteButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.equalTo(nameText.snp.trailing).offset(10)
+            make.leading.equalTo(certifiCateNameText.snp.trailing).offset(10)
             make.width.equalTo(16)
             make.height.equalTo(16)
         }
         
-        activeNametextField.snp.makeConstraints { make in
-            make.top.equalTo(nameText.snp.bottom).offset(12)
+        CertificateTextField.snp.makeConstraints { make in
+            make.top.equalTo(certifiCateNameText.snp.bottom).offset(12)
             make.leading.equalToSuperview().inset(20)
             make.width.equalTo(303)
             make.height.equalTo(43)
         }
         
-        competitionPartText.snp.makeConstraints { make in
-            make.top.equalTo(activeNametextField.snp.bottom).offset(16)
+        getCertificateDateText.snp.makeConstraints { make in
+            make.top.equalTo(CertificateTextField.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(21)
-        }
-        
-        selectButton1.snp.makeConstraints { make in
-            make.top.equalTo(competitionPartText.snp.bottom).offset(12)
-            make.width.equalTo(303)
-            make.height.equalTo(43)
-            make.leading.equalToSuperview().offset(20)
-        }
-        
-        interestsText.snp.makeConstraints { make in
-            make.top.equalTo(selectButton1.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(21)
-        }
-        
-        selectButton2.snp.makeConstraints { make in
-            make.top.equalTo(interestsText.snp.bottom).offset(12)
-            make.width.equalTo(303)
-            make.height.equalTo(43)
-            make.leading.equalToSuperview().offset(20)
         }
     }
     
@@ -186,7 +126,7 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        CertificateTextField.layer.borderColor = UIColor.secondaryYellow.cgColor
         validateNextButton()
     }
     
@@ -196,7 +136,8 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     }
 }
 
-extension CompetitionCollectionViewCell : DropdownButtonDelegate {
+
+extension CertifivateCollectionViewCell: DropdownButtonDelegate{
     func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
         if isSelected {
             UpDateDatavalidation()
@@ -209,15 +150,9 @@ extension CompetitionCollectionViewCell : DropdownButtonDelegate {
     
     func UpDateDatavalidation() -> Bool {
         var wholevalid : Bool = false
-        let activityName = activeNametextField.text ?? ""
+        let activityName = CertificateTextField.text ?? ""
         let activityNameValid = !(activityName.isEmpty)
-        print(selectButton1.isSelectedOption)
-        print(selectButton2.isSelectedOption)
-        let activityValid : Bool = selectButton1.isSelectedOption
-        let interestingValid : Bool = selectButton2.isSelectedOption
-        if activityValid == true &&
-            interestingValid == true &&
-            activityNameValid == true {
+        if  activityNameValid == true {
             wholevalid = true
             return wholevalid
         } else {
@@ -233,5 +168,3 @@ extension CompetitionCollectionViewCell : DropdownButtonDelegate {
         delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
     }
 }
-
-
