@@ -8,105 +8,11 @@ import UIKit
 import SnapKit
 import Then
 
-class DropdownMenu: UIView {
-    var options: [String] = [] {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
-    var selectedOptions: [String] = []
-    
-    var didSelectOption: (([String]) -> Void)?
-    
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .secondaryYellow
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        return collectionView
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupCollectionView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupCollectionView() {
-        addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-}
-
-extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return options.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = .clear
-        
-        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
-        
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: cell.contentView.bounds.width, height: 50))
-        label.text = options[indexPath.item]
-        label.textAlignment = .center
-        label.textColor = selectedOptions.contains(options[indexPath.item]) ? .blue : .black
-        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        cell.contentView.addSubview(label)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = (collectionView.bounds.width - 30) / 3
-        return CGSize(width: itemWidth, height: 50)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedOption = options[indexPath.item]
-        if let index = selectedOptions.firstIndex(of: selectedOption) {
-            selectedOptions.remove(at: index)
-        } else {
-            selectedOptions.append(selectedOption)
-        }
-        didSelectOption?(selectedOptions)
-        collectionView.reloadData()
-    }
-    
-    func updateHeight() {
-        collectionView.layoutIfNeeded()
-        let contentHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
-        let maxHeight: CGFloat = 172
-        let newHeight = min(contentHeight, maxHeight)
-        snp.updateConstraints { make in
-            make.height.equalTo(newHeight)
-        }
-    }
-}
-
 class DropdownButton: UIView {
     private var isDropdownMenuVisible = true
     private let maxHeight: CGFloat = 172 // 드롭다운 메뉴의 최대 높이
     private let dropDownMenu = DropdownMenu()
-    let option : [String] = []
+    var buttonoption : [String] = []
     
     lazy var button: UIButton = {
         let button = UIButton(type: .system)
@@ -125,7 +31,7 @@ class DropdownButton: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        setupDropdownMenu(options: option)
+        setupDropdownMenu(options: buttonoption)
     }
     
     required init?(coder: NSCoder) {
@@ -141,23 +47,38 @@ class DropdownButton: UIView {
     }
     
     func setupDropdownMenu(options: [String]) {
-        dropDownMenu.options = options
-        dropDownMenu.didSelectOption = { selectedOptions in
-           print("Selected options: \(selectedOptions)")
-        }
+        buttonoption = options
+        selectedDropdownMenu(options: buttonoption)
         dropDownMenu.clipsToBounds = true
         dropDownMenu.layer.cornerRadius = 5
         dropDownMenu.backgroundColor = .white
-        
         self.addSubview(dropDownMenu)
         dropDownMenu.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         dropDownMenu.isHidden = isDropdownMenuVisible
     }
+    
+    func selectedDropdownMenu(options: [String]) {
+        dropDownMenu.options = options
+        dropDownMenu.didSelectOption = { [weak self] selectedOptions in
+            guard let self = self else { return }
+            if selectedOptions.isEmpty {
+                self.button.setTitle("선택하기", for: .normal)
+            } else {
+                self.button.setTitle(selectedOptions.joined(separator: ", "), for: .normal)
+                print("Selected options: \(selectedOptions)")
+            }
+        }
+    }
 
     @objc private func didTapButton() {
         isDropdownMenuVisible.toggle()
+        if isDropdownMenuVisible {
+            button.layer.borderColor = UIColor.gray3.cgColor
+        } else {
+            button.layer.borderColor = UIColor.secondaryYellow.cgColor
+        }
         print(isDropdownMenuVisible)
         dropDownMenu.isHidden = isDropdownMenuVisible
         setUplayoutPullButtonView()
@@ -174,5 +95,132 @@ class DropdownButton: UIView {
                 }
             }
         }
+    }
+    
+   
+}
+
+//MARK: DropdownMenuVIiew , 드롭다운 버튼 눌렀을 때 생기는 뷰
+
+class DropdownMenu: UIView {
+    var options: [String] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    var selectedOptions: [String] = []
+    
+    var didSelectOption: (([String]) -> Void)?
+    
+    private let layout = LeftAlignedCollectionViewFlowLayout().then { layout in
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 5
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.layer.cornerRadius = 20
+        collectionView.layer.borderWidth = 1
+        collectionView.layer.borderColor = UIColor.secondaryYellow.cgColor
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(DropDownCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        return collectionView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupCollectionView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupCollectionView() {
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-12)
+        }
+    }
+}
+
+extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return options.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? DropDownCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.backgroundColor = .clear
+        cell.contentView.subviews.forEach { $0.removeFromSuperview() }
+        cell.configureIncategory(with: options[indexPath.item], isSelected: selectedOptions.contains(options[indexPath.item]))
+
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let text = options[indexPath.item]
+        let font = UIFont.body3(size: 13)
+        
+        let textWidth = text.size(withAttributes: [.font: font]).width
+
+        let cellWidth = textWidth + 16
+        
+        return CGSize(width: cellWidth, height: 28)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedOption = options[indexPath.item]
+        if let index = selectedOptions.firstIndex(of: selectedOption) {
+            selectedOptions.remove(at: index)
+            
+        } else {
+            selectedOptions.append(selectedOption)
+        }
+        didSelectOption?(selectedOptions)
+        
+        collectionView.reloadData()
+    }
+    
+    func updateHeight() {
+        collectionView.layoutIfNeeded()
+        let contentHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
+        let maxHeight: CGFloat = 172
+        let newHeight = min(contentHeight, maxHeight)
+        snp.updateConstraints { make in
+            make.height.equalTo(newHeight)
+        }
+    }
+}
+
+
+class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let attributes = super.layoutAttributesForElements(in: rect)
+
+        var leftMargin = sectionInset.left
+        var maxY: CGFloat = -1.0
+        attributes?.forEach { layoutAttribute in
+            if layoutAttribute.frame.origin.y >= maxY {
+                leftMargin = sectionInset.left
+            }
+
+            layoutAttribute.frame.origin.x = leftMargin
+
+            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+            maxY = max(layoutAttribute.frame.maxY , maxY)
+        }
+
+        return attributes
     }
 }

@@ -9,22 +9,23 @@ import UIKit
 import SnapKit
 import Then
 
-
 protocol InputCareerCollectionViewCellDelegate: AnyObject {
-    func inputCareerCell(_ cell: InputCareerCollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool
+    func inputCareerCellDidRequestDelete(_ cell: InputCareerCollectionViewCell)
 }
+//
+//protocol InputCareerCollectionViewCellDelegate: AnyObject {
+//    func inputCareerCell(_ cell: InputCareerCollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool
+//}
 
 class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate{
     
     weak var delegate : InputCareerCollectionViewCellDelegate?
-//    override func delete(_ sender: Any?) {
-//        <#code#>
-//    }
     var isBothFieldsFilled = false
+    
     var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
     var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
     var categories3 = ["Category 3-1", "Category 3-2", "Category 3-3", "Category 3-4"]
-    
+
     private let nameText = UILabel().then { label in
         label.text = "대외활동의 이름을 구체적으로 입력해주세요."
         label.font = UIFont.body1(size: 15)
@@ -43,6 +44,14 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate{
     private let activityDateText = UILabel().then { label in
         label.text = "대외활동의 활동기간을 정해주세요."
         label.font = UIFont.body1(size: 15)
+    }
+    private lazy var deleteButton = UIButton().then { button in
+        button.setImage(UIImage(named: "delete_Icon"), for: .normal) 
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func deleteButtonTapped() {
+        delegate?.inputCareerCellDidRequestDelete(self)
     }
     
     let activeNametextField = profileTextField(
@@ -89,6 +98,7 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate{
         addSubview(activityDateText)
         addSubview(activityPartText)
         addSubview(interestsText)
+        addSubview(deleteButton)
         addSubview(selectButton1)
         addSubview(selectButton2)
         addSubview(selectButton3)
@@ -96,8 +106,16 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate{
         activeNametextField.delegate = self
         nameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-40)
             make.height.equalTo(21)
+        }
+        
+        deleteButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalTo(nameText.snp.trailing).offset(10)
+            make.width.equalTo(16)
+            make.height.equalTo(16)
         }
         
         activeNametextField.snp.makeConstraints { make in
