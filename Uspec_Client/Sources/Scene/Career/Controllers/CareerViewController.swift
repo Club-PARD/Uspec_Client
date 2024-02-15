@@ -24,6 +24,8 @@ class CareerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+  
+    let nextButton = NextButton(titleText: "다음")
     
     override func viewDidLoad() {
         super.viewDidLoad()

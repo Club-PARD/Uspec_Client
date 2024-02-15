@@ -12,7 +12,7 @@ import Then
 
 class LoginViewController: UIViewController {
     let authorizationAppleIDButton = ASAuthorizationAppleIDButton()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setComponents()
@@ -59,8 +59,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func joinButtonTapped() {
-//        let profileVC = ProfileIntroViewController(currentStep: .step0)
-        let profileVC = CareerIntrolViewController(currentStep: .step0)
+        // MARK: - 원래 플로우
+        let profileVC = ProfileIntroViewController(currentStep: .step0)
+        
+        // MARK: - 진세 test
+        //        let profileVC = CareerViewController(currentStep: .step1)
+        
+        // MARK: - ram test
+        let profileVC = CategoryViewController(currentStep: .step4)
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

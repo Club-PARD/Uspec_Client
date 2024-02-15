@@ -8,7 +8,7 @@
 import UIKit
 
 enum ProfileStep: Int {
-    case step0, step1, step2, step3, step4 // 필요한 만큼 단계 추가
+    case step0, step1, step2, step3, step4
 }
 
 // MARK: - 이미지, main title, button title
@@ -70,6 +70,8 @@ class ProfileViewController: UIViewController {
             appearance.shadowImage = UIImage(named: "line3")
         case .step4:
             appearance.shadowImage = UIImage(named: "line4")
+        default:
+            appearance.shadowImage = nil
         }
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance

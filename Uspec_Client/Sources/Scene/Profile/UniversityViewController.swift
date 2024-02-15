@@ -34,6 +34,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         setUi()
         setButton()
         searchUnivButton()
+        hideKeyboardWhenTappedAround()
     }
     
     private func searchUnivButton() {
@@ -62,7 +63,6 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
             make.top.equalTo(mainLabel.snp.bottom).offset(32)
             make.left.equalTo(16)
         }
-        
         view.addSubview(univField)
         univField.delegate = self
         univField.snp.makeConstraints{ make in
@@ -80,7 +80,6 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
             make.top.equalTo(univField.snp.bottom).offset(32)
             make.left.equalTo(16)
         }
-        
         view.addSubview(majorField)
         majorField.delegate = self
         majorField.snp.makeConstraints{ make in
@@ -94,7 +93,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         if let searchButton = univField.rightView as? UIButton {
-            searchButton.isEnabled = !(univField.text?.isEmpty ?? true) // univField에 대한 검사만 여기서 수행
+            searchButton.isEnabled = !(univField.text?.isEmpty ?? true) 
         }
         updateButtonStatus()
     }
@@ -114,6 +113,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
             majorField.layer.borderWidth = 1
         }
     }
+    
     private func setButton() {
         view.addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
@@ -140,8 +140,12 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
     }
     
     @objc func nextButtonTapped() {
-        let infoVC = CareerIntrolViewController(currentStep: .step3)
+        guard let univ = univField.text else { return }
+        UserDefaults.standard.set(univ, forKey: "university")
+        guard let major = majorField.text else { return }
+        UserDefaults.standard.set(major, forKey: "major")
+        
+        let infoVC = StatusInfoViewController(currentStep: .step3)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
 }

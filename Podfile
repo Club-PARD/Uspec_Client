@@ -8,4 +8,5 @@ target 'Uspec_Client' do
   # Pods for Uspec_Client
 pod 'SnapKit'
 pod 'Then'
+pod 'DLRadioButton', '~> 1.4'
 end
