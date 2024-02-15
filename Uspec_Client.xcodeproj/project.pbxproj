@@ -12,6 +12,8 @@
 		0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */; };
 		0D4106132B7C86700039CDB6 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */; };
 		0D4106152B7D11030039CDB6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106142B7D11020039CDB6 /* UIViewExtension.swift */; };
+		0D4106172B7D17FF0039CDB6 /* OutingActingPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106162B7D17FF0039CDB6 /* OutingActingPart.swift */; };
+		0D4106192B7D95490039CDB6 /* DropDownCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */; };
 		21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B662B722444008FFDCB /* AppDelegate.swift */; };
 		21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B682B722444008FFDCB /* SceneDelegate.swift */; };
 		21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B6A2B722444008FFDCB /* ViewController.swift */; };
@@ -50,6 +52,8 @@
 		0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		0D4106142B7D11020039CDB6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		0D4106162B7D17FF0039CDB6 /* OutingActingPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingActingPart.swift; sourceTree = "<group>"; };
+		0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCollectionViewCell.swift; sourceTree = "<group>"; };
 		21B21B632B722444008FFDCB /* Uspec_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uspec_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B21B662B722444008FFDCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21B21B682B722444008FFDCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */,
 				0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */,
 				0D4106142B7D11020039CDB6 /* UIViewExtension.swift */,
+				0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				21B21BA72B779FC4008FFDCB /* MockData.swift */,
+				0D4106162B7D17FF0039CDB6 /* OutingActingPart.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */,
 				21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */,
 				0D4106132B7C86700039CDB6 /* DropdownButton.swift in Sources */,
+				0D4106192B7D95490039CDB6 /* DropDownCollectionViewCell.swift in Sources */,
 				21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */,
 				21B21B982B75FA80008FFDCB /* ProfileIntroViewController.swift in Sources */,
 				21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */,
@@ -442,6 +449,7 @@
 				21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */,
 				0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* ButtonComp.swift in Sources */,
+				0D4106172B7D17FF0039CDB6 /* OutingActingPart.swift in Sources */,
 				0D4106112B7C84D40039CDB6 /* InputCareerCollectionViewCell.swift in Sources */,
 				21B21BCB2B7BAAEA008FFDCB /* ProfileViewController.swift in Sources */,
 				21B21BAA2B792F69008FFDCB /* AppleLoginManager.swift in Sources */,

@@ -9,7 +9,8 @@ import UIKit
 import SnapKit
 import Then
 
-class CareerViewController: ProfileViewController , InputCareerCollectionViewCellDelegate{
+class CareerViewController: ProfileViewController {
+    private var validation : Bool = false
     private var isNextVisble : Bool = false
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -134,21 +135,18 @@ extension CareerViewController: UICollectionViewDataSource, UICollectionViewDele
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: addActivityCellIdentifier, for: indexPath) as? AddActivityCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            // AddActivityCollectionViewCell에서는 드롭다운 뷰 추가
-            if let dropdownMenu = collectionView.subviews.first(where: { $0 is DropdownMenu }) as? DropdownMenu {
-                collectionView.insertSubview(cell, belowSubview: dropdownMenu)
-            } else {
-                collectionView.addSubview(cell)
-            }
+            
             cell.configure(title: "활동 추가하기")
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InputCareerCollectionViewCell", for: indexPath) as? InputCareerCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            
             cell.layer.borderColor = UIColor.secondaryYellow.cgColor
             cell.layer.borderWidth = 1.0
             cell.layer.cornerRadius = 20.0
+            cell.delegate = self
             return cell
         }
     }
@@ -159,12 +157,6 @@ extension CareerViewController: UICollectionViewDataSource, UICollectionViewDele
             collectionView.insertItems(at: [IndexPath(item: numberOfCells - 1, section: 0)])
         }
     }
-    
-    func inputCareerCell(_ cell: InputCareerCollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool {
-            print("값 ? \(isFilled)")
-           nextButton.isEnabled = isFilled
-            return isFilled
-    }
 }
 
 extension CareerViewController: UICollectionViewDelegateFlowLayout {
@@ -174,5 +166,14 @@ extension CareerViewController: UICollectionViewDelegateFlowLayout {
         } else {
             return CGSize(width: 343, height: 412)
         }
+    }
+}
+
+extension CareerViewController : InputCareerCollectionViewCellDelegate {
+    func inputCareerCellDidRequestDelete(_ cell: InputCareerCollectionViewCell) {
+            guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        numberOfCells -= 1
+        collectionView.deleteItems(at: [indexPath])
+        collectionView.reloadData()
     }
 }
