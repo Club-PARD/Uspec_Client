@@ -29,13 +29,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundWhite
+        
         setTopUi()
         setBackground()
         activityView()
+        setRanking()
     }
     
     private func setTopUi() {
-        
         logo.image = UIImage(named: "splash_logo")
         view.addSubview(logo)
         logo.snp.makeConstraints{ make in
@@ -44,18 +45,22 @@ class HomeViewController: UIViewController {
             make.width.equalTo(120)
             make.height.equalTo(30)
         }
-        let myPageLabel = UILabel().then {
-            $0.text = "\(nickName)님의 마이페이지"
-            $0.font = .body1(size: 15)
-            $0.textColor = .gray7
+        let myPageButton = UIButton().then {
+            $0.setTitle("\(nickName)님의 마이페이지", for: .normal)
+            $0.titleLabel?.font = .body1(size: 15)
+            $0.setTitleColor(.gray7, for: .normal)
+            $0.addTarget(self, action: #selector(myPageButtonTapped), for: .touchUpInside)
         }
-        view.addSubview(myPageLabel)
-        myPageLabel.snp.makeConstraints{ make in
+        view.addSubview(myPageButton)
+        myPageButton.snp.makeConstraints{ make in
             make.top.equalTo(75)
             make.right.equalTo(-16)
         }
     }
     
+    @objc func myPageButtonTapped(){
+        print("myPage")
+    }
     private func setBackground() {
         backImage1.image = UIImage(named: "homeBack1")
         view.addSubview(backImage1)
@@ -200,7 +205,7 @@ class HomeViewController: UIViewController {
             $0.titleLabel?.font = .body1(size: 15)
             $0.setTitleColor(.white, for: .normal)
             $0.backgroundColor = .gray7
-            $0.layer.cornerRadius = 29
+            $0.layer.cornerRadius = 28
             $0.snp.makeConstraints{ make in
                 make.top.equalTo(activitySubLabel.snp.bottom).offset(12)
                 make.left.equalTo(16)
@@ -209,4 +214,64 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func setRanking() {
+        backImage2.isUserInteractionEnabled = true
+        let titleLabel = UILabel().then{
+            backImage2.addSubview($0)
+            $0.text = "이 분야 스펙 랭킹"
+            $0.textColor = .gray7
+            $0.font = .header3(size: 18)
+        }
+        
+        let infoIcon = UIImageView().then{
+            backImage2.addSubview($0)
+            $0.image = UIImage(named: "infoIcon")
+            $0.image?.resized(toWidth: 20)
+        }
+        
+        let titleInfoStackView = UIStackView().then{
+            backImage2.addSubview($0)
+            $0.addArrangedSubview(titleLabel)
+            $0.addArrangedSubview(infoIcon)
+            $0.axis = .horizontal
+            $0.spacing = 6
+            $0.snp.makeConstraints{ make in
+                make.top.equalToSuperview().offset(24)
+                make.left.equalTo(40)
+            }
+        }
+        
+        let rank1 = SpecRankingCard(nameText: "김유리", numIndex: 1, activityNum: 2, semester: 3).then{
+            backImage2.addSubview($0)
+            $0.snp.makeConstraints{ make in
+                make.top.equalTo(74)
+                make.left.equalTo(16)
+                make.right.equalTo(-16)
+                make.height.equalTo(57)
+            }
+        }
+        
+        let rank2 = SpecRankingCard(nameText: "이철수", numIndex: 2, activityNum: 5, semester: 3).then{
+            backImage2.addSubview($0)
+            $0.snp.makeConstraints{ make in
+                make.top.equalTo(rank1.snp.bottom).offset(12)
+                make.left.equalTo(16)
+                make.right.equalTo(-16)
+                make.height.equalTo(57)
+            }
+        }
+        
+        let rank3 = SpecRankingCard(nameText: "진맹구", numIndex: 3, activityNum: 2, semester: 3).then{
+            backImage2.addSubview($0)
+            $0.snp.makeConstraints{ make in
+                make.top.equalTo(rank2.snp.bottom).offset(12)
+                make.left.equalTo(16)
+                make.right.equalTo(-16)
+                make.height.equalTo(57)
+            }
+        }
+    }
+    
+    
 }
