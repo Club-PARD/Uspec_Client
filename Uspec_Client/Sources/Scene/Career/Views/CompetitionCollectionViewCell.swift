@@ -9,23 +9,13 @@ import UIKit
 import SnapKit
 import Then
 
-protocol InputCareerCollectionViewCellDelegate: AnyObject {
-    func inputCareerCellDidRequestDelete(_ cell: UICollectionViewCell)
-}
-
-protocol InputCareerValidCheckDelegate: AnyObject {
-    func inputCareerCell(_ cell: UICollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool
-}
-
 class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
+    private let shadowView = UIView()
+    var datas : SeveralCompetitionPart?
     
-    var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
-    var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
-    var categories3 = ["Category 3-1", "Category 3-2", "Category 3-3", "Category 3-4"]
-
     private let nameText = UILabel().then { label in
         label.text = "공모전의 이름을 구체적으로 입력해주세요."
         label.font = UIFont.body1(size: 15)
@@ -63,13 +53,13 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     
     private lazy var selectButton1: DropdownButton = {
         let button = DropdownButton()
-        button.setupDropdownMenu(options: categories1, selectedvalue: true)
+        button.setupDropdownMenu(options: SelectCategoryInCareer().competitionPart, selectedvalue: true)
         return button
     }()
 
     private lazy var selectButton2: DropdownButton = {
         let button = DropdownButton()
-        button.setupDropdownMenu(options: categories2, selectedvalue: false)
+        button.setupDropdownMenu(options: SelectCategoryInCareer().actingDate , selectedvalue: false)
        return button
     }()
     
@@ -79,7 +69,9 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
         setupLayout()
+        self.setViewShadow(backView: self)
     }
     
     override func willMove(toSuperview newSuperview: UIView?) {
@@ -92,13 +84,16 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     }
     
     func setupLayout() {
-        addSubview(nameText)
-        addSubview(activeNametextField)
-        addSubview(competitionPartText)
-        addSubview(interestsText)
-        addSubview(deleteButton)
-        addSubview(selectButton1)
-        addSubview(selectButton2)
+        addSubview(shadowView)
+        shadowView.addSubview(nameText)
+        shadowView.addSubview(activeNametextField)
+        shadowView.addSubview(competitionPartText)
+        shadowView.addSubview(interestsText)
+        shadowView.addSubview(deleteButton)
+        shadowView.addSubview(selectButton1)
+        shadowView.addSubview(selectButton2)
+        
+        
         
         activeNametextField.delegate = self
         selectButton1.DropButtondelegate = self
@@ -150,6 +145,9 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
+        shadowView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
 
@@ -171,20 +169,6 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         }
     }
         
-    private func SeleceddropdownMenu(for selectButton : UIButton) -> DropdownMenu {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .vertical
-        let dropdownMenu = DropdownMenu(frame: .zero)
-        dropdownMenu.backgroundColor = .secondaryYellow
-        dropdownMenu.options = categories1
-        dropdownMenu.didSelectOption = { selectedOptions in
-            let selectedTitles = selectedOptions.joined(separator : " ")
-            selectButton.setTitle(selectedTitles, for: .normal)
-        }
-
-        return dropdownMenu
-    }
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
         validateNextButton()
@@ -234,4 +218,22 @@ extension CompetitionCollectionViewCell : DropdownButtonDelegate {
     }
 }
 
+// MARK: - 드랍다운에서 선택한 데이터 전달!! 부분
 
+extension CompetitionCollectionViewCell: DropdownMenuDelegate {
+    
+    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String) {
+        if dropdownMenu == selectButton2.dropDownMenu {
+            datas?.awardScalePart = option
+        }
+        validateNextButton()
+    }
+    
+    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOptions options: [String]) {
+        if dropdownMenu == selectButton1.dropDownMenu {
+            // selectButton1에 대한 처리
+            datas?.competitionPart = options
+        }
+        validateNextButton()
+    }
+}
