@@ -8,8 +8,7 @@
 import UIKit
 
 class ProfileDoneViewController: ProfileViewController{
-//    let userName = UserDefaults.name
-    let userName = "dd"
+    let userName = UserDefaults.standard.string(forKey: "nickName") ?? "null"
     let appearance = UINavigationBarAppearance()
     let notYetButton = NextButton(titleText: "지금은 건너뛰기")
     let doneButton = NextButton(titleText: "이력 입력하기")

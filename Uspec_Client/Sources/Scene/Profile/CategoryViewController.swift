@@ -8,7 +8,8 @@
 import UIKit
 
 class CategoryViewController: ProfileViewController {
-    
+    var path = ""
+    let topWidth = 150
     let topCategoryTableView = UITableView()
     let detailCategoryTableView = UITableView()
     let notYetButton = NextButton(titleText: "아직 진로 방향을 정하지 못했어요.")
@@ -49,7 +50,7 @@ class CategoryViewController: ProfileViewController {
         let categoryView = UIView().then{
             $0.backgroundColor = .gray1
         }
-        let topWidth = 150
+        
         view.addSubview(categoryView)
         categoryView.snp.makeConstraints{ make in
             make.top.equalTo(subTitle.snp.bottom).offset(20)
@@ -64,6 +65,7 @@ class CategoryViewController: ProfileViewController {
             make.top.equalToSuperview()
             make.width.equalTo(topWidth)
             make.bottom.equalToSuperview()
+            make.height.equalToSuperview()
         }
         topCategoryTableView.register(TopCategoryCell.self, forCellReuseIdentifier: "topCell")
         
@@ -76,6 +78,7 @@ class CategoryViewController: ProfileViewController {
             make.left.equalTo(topWidth)
             make.right.equalTo(0)
             make.bottom.equalToSuperview()
+            make.height.equalToSuperview()
         }
         detailCategoryTableView.register(DetailCategoryCell.self, forCellReuseIdentifier: "detailCell")
     }
@@ -113,28 +116,31 @@ class CategoryViewController: ProfileViewController {
         print(self.navigationController as Any)
     }
     @objc func doneButtonTapped() {
+        UserDefaults.standard.set(path, forKey: "path")
         if let nickName = UserDefaults.standard.string(forKey: "nickName"),
            let university = UserDefaults.standard.string(forKey: "university"),
            let ageString = UserDefaults.standard.string(forKey: "age"),
            let semesterString = UserDefaults.standard.string(forKey: "semester"),
            let score = UserDefaults.standard.string(forKey: "score"),
+           let path = UserDefaults.standard.string(forKey: "path"),
            let major = UserDefaults.standard.string(forKey: "major") {
             let isGraduated = UserDefaults.standard.bool(forKey: "isGraduated")
+            let isThree = UserDefaults.standard.bool(forKey: "isThree")
+            let isGradeOpen = UserDefaults.standard.bool(forKey: "isGradeOpen")
             if let age = Int(ageString), let semester = Int(semesterString) {
-                makePostRequest(with: nickName, university: university, age: age, semester: semester, isGraduated: isGraduated, score: score, major: major)
+                makePostRequest(with: nickName, university: university, age: age, semester: semester, isGraduated: isGraduated, score: score, major: major, isThree: isThree, isGradeOpen: isGradeOpen, path: path)
             } else {
                 print("Error: Unable to convert age or semester to Int.")
             }
         } else {
             print("Error: Unable to retrieve some UserDefaults values.")
         }
-
+        
         let profileDoneVC = ProfileDoneViewController(currentStep: .step0)
         self.navigationController?.pushViewController(profileDoneVC, animated: true)
         print(self.navigationController as Any)
     }
 }
-
 
 var selectedTopCategoryIndex: Int?
 var lastIndexPath: IndexPath?
@@ -208,8 +214,18 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate{
             }
             
             lastIndexPath = indexPath
-            print("second category: \(String(describing: lastIndexPath))")
+            // selectedTopCategoryIndex를 사용하여 현재 선택된 top category에 해당하는 detail category 데이터를 가져옵니다.
+            if let selectedIndex = selectedTopCategoryIndex, selectedIndex < DetailCategory.model.count {
+                let detailCategories = DetailCategory.model[selectedIndex]
+                
+                // lastIndexPath.row를 사용하여 선택된 detail category의 데이터를 가져옵니다.
+                if lastIndexPath!.row < detailCategories.count {
+                   path = detailCategories[lastIndexPath!.row].detailCategory
+                    print("second category: \(String(describing: lastIndexPath)), text: \(path)")
+                
+                }
+            }
+            tableView.deselectRow(at: indexPath, animated: false)
         }
-        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
