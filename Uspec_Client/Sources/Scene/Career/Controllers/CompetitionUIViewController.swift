@@ -47,13 +47,13 @@ class CompetitionUIViewController: CareerViewController {
     }
     
     @objc func doneButtonTapped() {
-        let infoVC = InternActivityViewController(currentStep: .step2)
+        let infoVC = InternActivityViewController(currentStep: .step3)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }
     
     @objc func nextButtonTapped() {
-        let infoVC = InternActivityViewController(currentStep: .step2)
+        let infoVC = InternActivityViewController(currentStep: .step3)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }
@@ -135,6 +135,7 @@ extension CompetitionUIViewController: UICollectionViewDataSource, UICollectionV
         if indexPath.item == numberOfCells {
             numberOfCells += 1
             collectionView.insertItems(at: [IndexPath(item: numberOfCells - 1, section: 0)])
+            collectionView.reloadData()
         }
     }
 }

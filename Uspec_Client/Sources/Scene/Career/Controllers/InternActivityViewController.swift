@@ -36,16 +36,6 @@ class InternActivityViewController: CompetitionUIViewController {
 }
 
 extension InternActivityViewController {
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfCells + 1
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item == numberOfCells {
-            numberOfCells += 1
-            collectionView.insertItems(at: [IndexPath(item: numberOfCells - 1, section: 0)])
-        }
-    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == numberOfCells {
@@ -77,7 +67,7 @@ extension InternActivityViewController {
         if indexPath.item == numberOfCells {
             return CGSize(width: 343, height: 61)
         } else {
-            return CGSize(width: 343, height: 315)
+            return CGSize(width: 343, height: 345)
         }
     }
 }

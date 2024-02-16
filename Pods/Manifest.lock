@@ -1,24 +1,28 @@
 PODS:
   - DLRadioButton (1.4.12)
+  - FSCalendar (2.8.4)
   - SnapKit (5.6.0)
   - Then (3.0.0)
 
 DEPENDENCIES:
   - DLRadioButton (~> 1.4)
+  - FSCalendar
   - SnapKit
   - Then
 
 SPEC REPOS:
   trunk:
     - DLRadioButton
+    - FSCalendar
     - SnapKit
     - Then
 
 SPEC CHECKSUMS:
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: 9f0439b5859e472789c48d51ef5dd95c13073d3a
+PODFILE CHECKSUM: 4da39b89281abbc62eb8fabd76a13209426f668d
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2

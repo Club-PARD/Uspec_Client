@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import SnapKit
+import Then
+import DLRadioButton
+//import FSCalendar
 
 class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
@@ -36,12 +40,30 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
+    let dividerInDateView = UIView().then { view in
+        view.layer.cornerRadius = 20
+        view.layer.borderWidth = 2
+        view.layer.masksToBounds = true
+        view.backgroundColor = .gray3
+    }
+    
+    let selectWorking = DLRadioButton().then { radio in
+        radio.setTitle("재직중", for: .normal)
+        radio.titleLabel?.font = UIFont.body1(size: 15)
+        radio.setTitleColor(.gray7, for: .normal)
+//        radio.setImage(UIImage(named: "selected"), for: .normal)
+    }
+    
+    let startInternButton = CalendarButton(titleText: "시작 일자")
+    
+    let lastInternButton = CalendarButton(titleText: "종료 일자")
+    
     @objc func deleteButtonTapped() {
         delegate?.inputCareerCellDidRequestDelete(self)
     }
     
     let companyNametextField = profileTextField(
-        placeholder: "대외활동 이름",
+        placeholder: "회사 이름",
         fontSize: 15,
         textColor: .textBlack,
         borderColor: UIColor.gray3,
@@ -52,7 +74,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     )
     
     let jobPartTextFiedl = profileTextField(
-        placeholder: "대외활동 이름",
+        placeholder: "직무 이름",
         fontSize: 15,
         textColor: .textBlack,
         borderColor: UIColor.gray3,
@@ -61,6 +83,8 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         leftPadding: 16,
         rightPadding: -16
     )
+    
+//    private lazy var startCalendar : UICalendarView
     
     private lazy var selectButton1: DropdownButton = {
         let button = DropdownButton()
@@ -83,15 +107,18 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         setupLayout()
     }
     
+    
     func setupLayout() {
         addSubview(companyText)
         addSubview(companyNametextField)
         addSubview(workingDateText)
         addSubview(activityDateText)
         addSubview(deleteButton)
-        addSubview(selectButton1)
-        addSubview(selectButton2)
+        addSubview(startInternButton)
         addSubview(jobPartTextFiedl)
+        addSubview(dividerInDateView)
+        addSubview(lastInternButton)
+        addSubview(selectWorking)
         
         validateNextButton()
         companyNametextField.delegate = self
@@ -125,16 +152,36 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
             make.height.equalTo(21)
         }
         
-        selectButton1.snp.makeConstraints { make in
-            make.top.equalTo(workingDateText.snp.bottom).offset(12)
-            make.width.equalTo(303)
-            make.height.equalTo(43)
+        startInternButton.snp.makeConstraints { make in
+            make.top.equalTo(workingDateText.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(20)
+            make.width.equalTo(144)
+            make.height.equalTo(48)
         }
         
+        dividerInDateView.snp.makeConstraints { make in
+            make.top.equalTo(startInternButton.snp.top).offset(20)
+            make.leading.equalTo(startInternButton.snp.trailing).offset(5)
+            make.width.equalTo(10)
+            make.height.equalTo(5)
+        }
+        
+        lastInternButton.snp.makeConstraints { make in
+            make.top.equalTo(workingDateText.snp.bottom).offset(8)
+            make.leading.equalTo(dividerInDateView.snp.trailing).offset(5)
+            make.width.equalTo(144)
+            make.height.equalTo(48)
+        }
+        
+        selectWorking.snp.makeConstraints { make in
+            make.top.equalTo(lastInternButton.snp.bottom).offset(8)
+            make.trailing.equalToSuperview().offset(-20)
+            make.width.equalTo(80)
+            make.height.equalTo(25)
+        }
         
         activityDateText.snp.makeConstraints { make in
-            make.top.equalTo(selectButton1.snp.bottom).offset(16)
+            make.top.equalTo(startInternButton.snp.bottom).offset(46)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(21)
         }
@@ -145,9 +192,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
-        
     }
-    
 
     private func showDropdownMenu(for isDropdownVisble : Bool ,with dropdownMenu : DropdownMenu, button selectedButton : UIButton) {
            
@@ -228,4 +273,9 @@ extension InternActCollectionViewCell: DropdownButtonDelegate{
         print("isBothFieldsFilled = \(isBothFieldsFilled)")
         delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
     }
+}
+
+extension InternActCollectionViewCell {
+    
+    
 }

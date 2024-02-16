@@ -43,6 +43,11 @@ class CareerIntrolViewController: CareerViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        hideDropdownMenusInInputCareerCollectionViewCells()
+    }
 
     
     @objc override func backButtonTapped() {
@@ -50,7 +55,7 @@ class CareerIntrolViewController: CareerViewController {
     }
     
     @objc private func doneButtonTapped() {
-        let infoVC = InternActivityViewController(currentStep: .step2)
+        let infoVC = CompetitionUIViewController(currentStep: .step2)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }
@@ -137,6 +142,7 @@ extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionVi
         if indexPath.item == numberOfCells {
             numberOfCells += 1
             collectionView.insertItems(at: [IndexPath(item: numberOfCells - 1, section: 0)])
+            collectionView.reloadData()
         }
     }
 }
@@ -157,6 +163,19 @@ extension CareerIntrolViewController: InputCareerCollectionViewCellDelegate {
         numberOfCells -= 1
         collectionView.deleteItems(at: [indexPath])
         collectionView.reloadData()
+//        dataArray.remove(at: sender.tag)
+    }
+    
+    func hideDropdownMenusInInputCareerCollectionViewCells() {
+        let visibleIndexPaths = collectionView.indexPathsForVisibleItems
+        
+        for indexPath in visibleIndexPaths {
+            if let cell = collectionView.cellForItem(at: indexPath) as? InputCareerCollectionViewCell {
+                cell.selectButton1.hideDropdownMenu()
+                cell.selectButton2.hideDropdownMenu()
+                cell.selectButton3.hideDropdownMenu()
+            }
+        }
     }
 }
 
@@ -171,7 +190,6 @@ extension CareerIntrolViewController: InputCareerValidCheckDelegate {
             nextButton.backgroundColor = .gray1
            
         }
-
         return isFilled
     }
 }

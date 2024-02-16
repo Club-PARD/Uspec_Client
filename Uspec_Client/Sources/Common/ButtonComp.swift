@@ -50,3 +50,19 @@ class DoneButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class CalendarButton: UIButton {
+    init(titleText: String) {
+        super.init(frame: .zero)
+        self.setTitle(titleText, for: .normal)
+        self.setTitleColor(UIColor.gray, for: .normal)
+        self.titleLabel?.font = UIFont.body1(size: 15)
+        self.layer.borderColor = UIColor.gray3.cgColor
+        self.layer.cornerRadius = 20
+        self.layer.borderWidth = 1
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}

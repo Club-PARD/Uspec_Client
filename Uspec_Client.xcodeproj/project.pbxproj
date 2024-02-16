@@ -12,7 +12,7 @@
 		0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */; };
 		0D4106132B7C86700039CDB6 /* DropdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */; };
 		0D4106152B7D11030039CDB6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106142B7D11020039CDB6 /* UIViewExtension.swift */; };
-		0D4106172B7D17FF0039CDB6 /* OutingActingPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106162B7D17FF0039CDB6 /* OutingActingPart.swift */; };
+		0D4106172B7D17FF0039CDB6 /* CareerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106162B7D17FF0039CDB6 /* CareerData.swift */; };
 		0D4106192B7D95490039CDB6 /* DropDownCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */; };
 		0D41061E2B7DF61B0039CDB6 /* CompetitionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41061D2B7DF61B0039CDB6 /* CompetitionUIViewController.swift */; };
 		0D4106202B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */; };
@@ -21,12 +21,12 @@
 		0D41062A2B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */; };
 		0D41062C2B7E764B0039CDB6 /* CertificateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */; };
 		0D41062E2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */; };
+		0D516D8E2B7F7274003F7923 /* UIlabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D516D8D2B7F7274003F7923 /* UIlabelPadding.swift */; };
 		2102541E2B7E06FF009370E5 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102541D2B7E06FF009370E5 /* CategoryViewController.swift */; };
 		210254212B7E0D85009370E5 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254202B7E0D85009370E5 /* API.swift */; };
 		210254232B7E1AC7009370E5 /* TopCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254222B7E1AC7009370E5 /* TopCategoryCell.swift */; };
 		210254252B7E23DA009370E5 /* DetailCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254242B7E23DA009370E5 /* DetailCategoryCell.swift */; };
 		210254272B7E6500009370E5 /* ProfileDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254262B7E6500009370E5 /* ProfileDoneViewController.swift */; };
-
 		21B21B672B722444008FFDCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B662B722444008FFDCB /* AppDelegate.swift */; };
 		21B21B692B722444008FFDCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B682B722444008FFDCB /* SceneDelegate.swift */; };
 		21B21B6B2B722444008FFDCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B6A2B722444008FFDCB /* ViewController.swift */; };
@@ -65,9 +65,8 @@
 		0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownButton.swift; sourceTree = "<group>"; };
 		0D4106142B7D11020039CDB6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		0D4106162B7D17FF0039CDB6 /* OutingActingPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutingActingPart.swift; sourceTree = "<group>"; };
+		0D4106162B7D17FF0039CDB6 /* CareerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerData.swift; sourceTree = "<group>"; };
 		0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCollectionViewCell.swift; sourceTree = "<group>"; };
-
 		0D41061D2B7DF61B0039CDB6 /* CompetitionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionUIViewController.swift; sourceTree = "<group>"; };
 		0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D4106212B7E137F0039CDB6 /* CareerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerViewController.swift; sourceTree = "<group>"; };
@@ -75,13 +74,12 @@
 		0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternActCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
 		0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifivateCollectionViewCell.swift; sourceTree = "<group>"; };
-
+		0D516D8D2B7F7274003F7923 /* UIlabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIlabelPadding.swift; sourceTree = "<group>"; };
 		2102541D2B7E06FF009370E5 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		210254202B7E0D85009370E5 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		210254222B7E1AC7009370E5 /* TopCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryCell.swift; sourceTree = "<group>"; };
 		210254242B7E23DA009370E5 /* DetailCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryCell.swift; sourceTree = "<group>"; };
 		210254262B7E6500009370E5 /* ProfileDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDoneViewController.swift; sourceTree = "<group>"; };
-
 		21B21B632B722444008FFDCB /* Uspec_Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uspec_Client.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B21B662B722444008FFDCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		21B21B682B722444008FFDCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +132,7 @@
 		0D4105F22B7B84C10039CDB6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0D4106142B7D11020039CDB6 /* UIViewExtension.swift */,
 				0D4105F32B7B84F40039CDB6 /* UIFont+.swift */,
 				21B21BCE2B7BC2AA008FFDCB /* Extensions.swift */,
 			);
@@ -314,8 +313,8 @@
 				21B21BA22B75FAE2008FFDCB /* ButtonComp.swift */,
 				21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */,
 				0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */,
-				0D4106142B7D11020039CDB6 /* UIViewExtension.swift */,
 				0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */,
+				0D516D8D2B7F7274003F7923 /* UIlabelPadding.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -324,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				21B21BA72B779FC4008FFDCB /* CategoryData.swift */,
-				0D4106162B7D17FF0039CDB6 /* OutingActingPart.swift */,
+				0D4106162B7D17FF0039CDB6 /* CareerData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -494,18 +493,16 @@
 				21B21B982B75FA80008FFDCB /* ProfileIntroViewController.swift in Sources */,
 				21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */,
 				21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */,
-
+				0D516D8E2B7F7274003F7923 /* UIlabelPadding.swift in Sources */,
 				21B21B952B75FA6F008FFDCB /* CareerIntrolViewController.swift in Sources */,
-
 				2102541E2B7E06FF009370E5 /* CategoryViewController.swift in Sources */,
 				210254272B7E6500009370E5 /* ProfileDoneViewController.swift in Sources */,
-				21B21B952B75FA6F008FFDCB /* CareerViewController.swift in Sources */,
-
+				21B21B952B75FA6F008FFDCB /* CareerIntrolViewController.swift in Sources */,
 				0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* ButtonComp.swift in Sources */,
 				0D41061E2B7DF61B0039CDB6 /* CompetitionUIViewController.swift in Sources */,
 				0D4106222B7E137F0039CDB6 /* CareerViewController.swift in Sources */,
-				0D4106172B7D17FF0039CDB6 /* OutingActingPart.swift in Sources */,
+				0D4106172B7D17FF0039CDB6 /* CareerData.swift in Sources */,
 				0D4106112B7C84D40039CDB6 /* InputCareerCollectionViewCell.swift in Sources */,
 				21B21BCB2B7BAAEA008FFDCB /* ProfileViewController.swift in Sources */,
 				0D41062E2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift in Sources */,
@@ -514,11 +511,9 @@
 				21B21BC92B7BA8C7008FFDCB /* NickNameViewController.swift in Sources */,
 				0D41062A2B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift in Sources */,
 				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
-
 				0D4106202B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift in Sources */,
-				21B21BA82B779FC4008FFDCB /* MockData.swift in Sources */,
+				21B21BA82B779FC4008FFDCB /* CategoryData.swift in Sources */,
 				0D4106282B7E6A2F0039CDB6 /* InternActivityViewController.swift in Sources */,
-
 				21B21BA82B779FC4008FFDCB /* CategoryData.swift in Sources */,
 				0D4106152B7D11030039CDB6 /* UIViewExtension.swift in Sources */,
 				21C100312B7BE71B00BED0A8 /* StatusInfoViewController.swift in Sources */,
