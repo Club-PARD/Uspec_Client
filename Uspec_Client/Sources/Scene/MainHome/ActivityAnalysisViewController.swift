@@ -56,6 +56,7 @@ class ActivityAnalysisViewController: UIViewController {
         backImage2.then{
             view.addSubview($0)
             $0.image = UIImage(named: "activityBack2")
+            $0.isUserInteractionEnabled = true
             $0.snp.makeConstraints{ make in
                 make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(157)
                 make.left.equalToSuperview()
@@ -77,6 +78,20 @@ class ActivityAnalysisViewController: UIViewController {
                 make.right.equalTo(40)
             }
         }
+        let categoryChip = UIButton().then{
+            backImage1.addSubview($0)
+            $0.setTitle("\(modifiedPath)", for: .normal)
+            $0.setTitleColor(.gray7, for: .normal)
+            $0.titleLabel?.font = .caption1(size: 12)
+            $0.layer.cornerRadius = 13
+            $0.backgroundColor = .white
+            $0.snp.makeConstraints{ make in
+                make.height.equalTo(26)
+                make.left.equalTo(40)
+                make.width.equalTo(73)
+                make.top.equalTo(categoryTitle.snp.bottom).offset(16)
+            }
+        }
     }
     
     private func activitySection() {
@@ -93,7 +108,7 @@ class ActivityAnalysisViewController: UIViewController {
         
         let activity = UILabel().then{
             backImage2.addSubview($0)
-            $0.text = "\(modifiedPath)"
+            $0.text = "공모전"
             $0.font = .header3(size: 18)
             $0.textColor = .gray7
         }
@@ -108,7 +123,7 @@ class ActivityAnalysisViewController: UIViewController {
         let activityTitleStackView = UIStackView().then{
             backImage2.addSubview($0)
             $0.axis = .horizontal
-            $0.spacing = 5
+            $0.spacing = 3
             $0.addArrangedSubview(activity)
             $0.addArrangedSubview(activitySubTitle)
             $0.snp.makeConstraints{ make in
@@ -117,13 +132,54 @@ class ActivityAnalysisViewController: UIViewController {
             }
         }
         
-        let card = ActivityAnalysisCardButton(activity: "공모전", rank: 1, ratio: 100, background: .gray7).then{
+        let card1 = ActivityAnalysisCardButton(activity: "공모전", rank: 1, ratio: 100, background: .gray6, width: 151, height: 135, imgHeight: 60, image: "contest").then{
             backImage2.addSubview($0)
+            $0.isUserInteractionEnabled = true
             $0.snp.makeConstraints{ make in
-                make.top.equalTo(activityTitleStackView.snp.bottom).offset(20)
+                make.top.equalTo(activityTitleStackView.snp.bottom).offset(30)
                 make.left.equalTo(16)
                 make.right.equalTo(-16)
-                make.height.equalTo(53)
+            }
+        }
+        
+        let card2 = ActivityAnalysisCardButton(activity: "대외활동", rank: 2, ratio: 32, background: .gray5, width: 100, height: 135, imgHeight: 60, image: "contest").then{
+            backImage2.addSubview($0)
+            $0.isUserInteractionEnabled = true
+            $0.snp.makeConstraints{ make in
+                make.top.equalTo(card1.snp.bottom).offset(12)
+                make.left.equalTo(16)
+                make.right.equalTo(-16)
+            }
+        }
+        
+        let card3 = ActivityAnalysisCardButton(activity: "인턴십", rank: 3, ratio: 14, background: .gray4, width: 50, height: 175, imgHeight: 103, image: "intern").then{
+            backImage2.addSubview($0)
+            $0.isUserInteractionEnabled = true
+            $0.snp.makeConstraints{ make in
+                make.top.equalTo(card2.snp.bottom).offset(12)
+                make.left.equalTo(16)
+                make.right.equalTo(-16)
+            }
+        }
+        
+        let card4 = ActivityAnalysisCardButton(activity: "자격증", rank: 4, ratio: 11, background: .gray3, width: 30, height: 175, imgHeight: 103, image: "certification").then{
+            backImage2.addSubview($0)
+            $0.isUserInteractionEnabled = true
+            $0.snp.makeConstraints{ make in
+                make.top.equalTo(card3.snp.bottom).offset(12)
+                make.left.equalTo(16)
+                make.right.equalTo(-16)
+            }
+        }
+        
+        let card5 = ActivityAnalysisCardButton(activity: "교내활동", rank: 5, ratio: 6, background: .gray2, width: 20, height: 175, imgHeight: 103, image: "schoolActivity"
+        ).then{
+            backImage2.addSubview($0)
+            $0.isUserInteractionEnabled = true
+            $0.snp.makeConstraints{ make in
+                make.top.equalTo(card4.snp.bottom).offset(12)
+                make.left.equalTo(16)
+                make.right.equalTo(-16)
             }
         }
         

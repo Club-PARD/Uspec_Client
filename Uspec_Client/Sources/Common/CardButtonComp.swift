@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 
 class SpecRankingCard: UIView {
@@ -105,13 +106,36 @@ class SpecRankingCard: UIView {
 class ActivityAnalysisCardButton: UIView {
     var activityID = 0
     var width1 = 400
+    var rank = 0
+    var isCardTapped: Bool = false {
+        didSet {
+            adjustCardHeight()
+        }
+    }
+    var categoryHeight = 0
+    var heightConstraint: Constraint?
+    var imgHeight = 0
+    var image = ""
     
-    init(activity: String, rank: Int, ratio: Int, background: UIColor) {
+    let imageView = UIImageView()
+    init(activity: String, rank: Int, ratio: Int, background: UIColor, width: Int, height: Int, imgHeight: Int, image: String) {
         super.init(frame: .zero)
-        self.backgroundColor = .systemPink
+        self.backgroundColor = .white
         self.layer.cornerRadius = 25
         self.isUserInteractionEnabled = true
+        self.rank = rank
         activityID = rank
+        categoryHeight = height
+        self.imgHeight = imgHeight
+        self.image = image
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cardTapped))
+        self.addGestureRecognizer(tapGesture)
+        self.isUserInteractionEnabled = true
+        self.snp.makeConstraints{ make in
+            heightConstraint =  make.height.equalTo(53).constraint
+        }
         
         let activityLabel = UILabel().then{
             super.addSubview($0)
@@ -119,7 +143,7 @@ class ActivityAnalysisCardButton: UIView {
             $0.textColor = .textBlack
             $0.font = .header4(size: 15)
             $0.snp.makeConstraints{ make in
-                make.centerY.equalToSuperview()
+                make.top.equalTo(16)
                 make.left.equalTo(24)
             }
         }
@@ -130,8 +154,9 @@ class ActivityAnalysisCardButton: UIView {
             $0.backgroundColor = background
             $0.snp.makeConstraints{ make in
                 make.left.equalToSuperview().offset(94)
-                make.centerY.equalToSuperview()
-                make.width.equalTo(width1)
+                make.top.equalTo(20)
+                make.width.equalTo(width)
+                make.height.equalTo(10)
             }
         }
         
@@ -141,9 +166,8 @@ class ActivityAnalysisCardButton: UIView {
             $0.titleLabel?.font = .body3(size: 13)
             $0.setTitleColor(.gray7, for: .normal)
             $0.setImage(UIImage(named: "arrow"), for: .normal)
-            $0.addTarget(self, action: #selector(detailButtonTapped), for: .touchUpInside)
             $0.snp.makeConstraints{ make in
-                make.centerY.equalToSuperview()
+                make.top.equalTo(18)
                 make.right.equalToSuperview().offset(-24)
             }
             if let imageSize = $0.imageView?.image?.size,
@@ -154,13 +178,36 @@ class ActivityAnalysisCardButton: UIView {
                 $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: textWidth, bottom: 0, right: -textWidth)
             }
         }
-    }
-    
-    @objc func detailButtonTapped(){
-        print("detailButton Tapped -> \(activityID)")
+        imageView.isHidden = true
+        addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.top.equalTo(53)
+            make.left.equalTo(24)
+            make.right.equalTo(-24)
+            make.height.equalTo(imgHeight) //60
+        }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func cardTapped() {
+        isCardTapped.toggle()
+    }
+    
+    func adjustCardHeight() {
+        if isCardTapped {
+            heightConstraint?.update(offset: categoryHeight)
+            imageView.isHidden = false
+            imageView.image = UIImage(named: "\(image)")
+   
+        } else {
+            heightConstraint?.update(offset: 53)
+            imageView.isHidden = true
+        }
+        UIView.animate(withDuration: 0.3) {
+            self.superview?.layoutIfNeeded()
+        }
     }
 }
