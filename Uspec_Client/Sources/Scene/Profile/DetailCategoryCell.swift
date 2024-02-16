@@ -39,7 +39,6 @@ class DetailCategoryCell: UITableViewCell {
         textlabel.font = .body1(size: 15)
         textlabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(checkBoxButton.snp.trailing).offset(10)
             make.trailing.equalTo(-10)
         }
     }
@@ -47,7 +46,6 @@ class DetailCategoryCell: UITableViewCell {
     func setCheckIcon() {
         checkBoxButton.snp.makeConstraints { make in
             make.leading.equalTo(16)
-            make.leftMargin.equalTo(10)
             make.width.equalTo(20)
             make.height.equalTo(20)
             make.top.equalTo(13)

@@ -9,7 +9,7 @@ import UIKit
 
 let urlLink = "http://mz-env-1.eba-mmgm92cc.ap-northeast-2.elasticbeanstalk.com"
 
-func makePostRequest(with nickName: String, university: String, age: Int, semester: Int, isGraduated: Bool, score: String, major: String) {
+func makePostRequest(with nickName: String, university: String, age: Int, semester: Int, isGraduated: Bool, score: String, major: String, isThree: Bool, isGradeOpen: Bool, path: String ) {
     guard let url = URL(string: "\(urlLink)/user") else {
         print("🚨 Invalid URL")
         return
@@ -24,8 +24,13 @@ func makePostRequest(with nickName: String, university: String, age: Int, semest
         "school": university,
         "graduate": isGraduated,
         "semester": semester,
-        "major":major
+        "major": major,
+        "grade": score,
+        "gradeOpen": isGradeOpen,
+        "three": isThree,
+        "path": path
     ]
+    
     request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
 
     let task = URLSession.shared.dataTask(with: request) { data, _, error in
