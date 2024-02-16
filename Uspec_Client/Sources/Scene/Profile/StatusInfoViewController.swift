@@ -12,6 +12,7 @@ class StatusInfoViewController: ProfileViewController {
     private var underGraduate: UIButton!
     private var graduate: UIButton!
     var isGraduated: Bool = false
+    var isScore4_3Selected: Bool = true
     let nextButton = NextButton(titleText: "다음")
     let statusLabel = profileFieldLabel(text: "현재 대학교 등록 상태를 알려주세요.", fontSize: 15, textColor: .textBlack)
     let ageLabel = profileFieldLabel(text: "현재 나이와 학기 수를 입력해주세요.", fontSize: 15, textColor: .textBlack)
@@ -211,6 +212,8 @@ class StatusInfoViewController: ProfileViewController {
             score4_5.iconSelected = selectedImage
         }
         score4_3.otherButtons.append(score4_5)
+        score4_3.addTarget(self, action: #selector(radioButtonTapped(_:)), for: .touchUpInside)
+        score4_5.addTarget(self, action: #selector(radioButtonTapped(_:)), for: .touchUpInside)
         
         let scoreRadioStackView = UIStackView(arrangedSubviews: [score4_3, score4_5])
         self.view.addSubview(scoreRadioStackView)
@@ -253,6 +256,10 @@ class StatusInfoViewController: ProfileViewController {
         }
     }
     
+    @objc func radioButtonTapped(_ sender: UIButton) {
+        isScore4_3Selected = (sender == score4_3)
+    }
+    
     @objc func isScoreVisibleTapped(_ sender: DLRadioButton) {
         isScoreVisibleSelected.toggle()
         sender.isSelected = isScoreVisibleSelected
@@ -277,6 +284,10 @@ class StatusInfoViewController: ProfileViewController {
     
     @objc func nextButtonTapped() {
         UserDefaults.standard.set(isGraduated, forKey: "isGraduated")
+        
+        UserDefaults.standard.set(isScore4_3Selected, forKey: "isThree")
+        
+        UserDefaults.standard.set(isScoreVisibleSelected, forKey: "isGradeOpen")
         
         guard let age = ageField.text else { return }
         UserDefaults.standard.set(age, forKey: "age")
