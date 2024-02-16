@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
 //        let profileVC = CareerIntrolViewController(currentStep: .step1)
         
         // MARK: - ram test
-        let profileVC = HomeViewController()
+        let profileVC = ActivityAnalysisViewController()
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

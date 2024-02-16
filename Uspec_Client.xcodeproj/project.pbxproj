@@ -56,6 +56,7 @@
 		21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */; };
 		21C100312B7BE71B00BED0A8 /* StatusInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */; };
 		21D8CC032B7FC953006F8425 /* ActivityAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CC022B7FC953006F8425 /* ActivityAnalysisViewController.swift */; };
+		21D8CC052B7FD2A9006F8425 /* CardButtonComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CC042B7FD2A9006F8425 /* CardButtonComp.swift */; };
 		5919BE55D4E4EFD2B827C1F6 /* Pods_Uspec_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldComp.swift; sourceTree = "<group>"; };
 		21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusInfoViewController.swift; sourceTree = "<group>"; };
 		21D8CC022B7FC953006F8425 /* ActivityAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityAnalysisViewController.swift; sourceTree = "<group>"; };
+		21D8CC042B7FD2A9006F8425 /* CardButtonComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonComp.swift; sourceTree = "<group>"; };
 		59256D33766EEB3A06ED83CB /* Pods-Uspec_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.debug.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.debug.xcconfig"; sourceTree = "<group>"; };
 		5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uspec_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		860805B32C94A2E517AC2C3D /* Pods-Uspec_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.release.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.release.xcconfig"; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */,
 				0D4106142B7D11020039CDB6 /* UIViewExtension.swift */,
 				0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */,
+				21D8CC042B7FD2A9006F8425 /* CardButtonComp.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				21B21B952B75FA6F008FFDCB /* CareerIntrolViewController.swift in Sources */,
 				0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* ButtonComp.swift in Sources */,
+				21D8CC052B7FD2A9006F8425 /* CardButtonComp.swift in Sources */,
 				0D41061E2B7DF61B0039CDB6 /* CompetitionUIViewController.swift in Sources */,
 				0D4106222B7E137F0039CDB6 /* CareerViewController.swift in Sources */,
 				0D4106172B7D17FF0039CDB6 /* OutingActingPart.swift in Sources */,
