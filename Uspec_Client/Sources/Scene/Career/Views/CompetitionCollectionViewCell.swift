@@ -13,6 +13,7 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
+    private let shadowView = UIView()
     var datas : SeveralCompetitionPart?
     
     private let nameText = UILabel().then { label in
@@ -82,13 +83,14 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     }
     
     func setupLayout() {
-        addSubview(nameText)
-        addSubview(activeNametextField)
-        addSubview(competitionPartText)
-        addSubview(interestsText)
-        addSubview(deleteButton)
-        addSubview(selectButton1)
-        addSubview(selectButton2)
+        addSubview(shadowView)
+        shadowView.addSubview(nameText)
+        shadowView.addSubview(activeNametextField)
+        shadowView.addSubview(competitionPartText)
+        shadowView.addSubview(interestsText)
+        shadowView.addSubview(deleteButton)
+        shadowView.addSubview(selectButton1)
+        shadowView.addSubview(selectButton2)
         
         
         
@@ -141,6 +143,9 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
             make.width.equalTo(303)
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
+        }
+        shadowView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     

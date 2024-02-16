@@ -34,3 +34,22 @@ extension UIView {
     }
 }
 
+extension UIWindow {
+    
+    static func visibleWindow() -> UIWindow? {
+        var currentWindow = UIApplication.shared.keyWindow
+        
+        if currentWindow == nil {
+            let frontToBackWindows = Array(UIApplication.shared.windows.reversed())
+            
+            for window in frontToBackWindows {
+                if window.windowLevel == UIWindow.Level.normal {
+                    currentWindow = window
+                    break
+                }
+            }
+        }
+        return currentWindow
+    }
+}
+

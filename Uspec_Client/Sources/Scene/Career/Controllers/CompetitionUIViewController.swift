@@ -26,8 +26,8 @@ class CompetitionUIViewController: CareerViewController {
         label.textColor = .primaryYellow
     }
     
-    let doneButton = DoneButton(titleText: "참여한 공모전이 없어요")
-    let nextPageButton = NextButton(titleText: "다음")
+    let doneButton = DoneButton(titleText: "참여한 공모전이 없어요.")
+    let nextPageButton = NextButton(titleText: "다음.")
     
     override func viewDidLoad() {
         super.viewDidLoad()

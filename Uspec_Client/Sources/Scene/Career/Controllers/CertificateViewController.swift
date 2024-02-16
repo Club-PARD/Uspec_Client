@@ -17,7 +17,8 @@ class CertificateViewController: InternActivityViewController {
     }
     
     override func setUpComponent() {
-        semiTitleLabel.text = "짱구님의 자격증 내역을 입력해주세요"
+        semiTitleLabel.text = "짱구님의 자격증 취득 내역을 입력해주세요."
+        doneButton.setTitle("취득한 자격증이 없어요.", for: .normal)
         collectionView.register(
             CertifivateCollectionViewCell.self,
             forCellWithReuseIdentifier: identifierInCertifivate
@@ -47,7 +48,7 @@ extension CertificateViewController {
                 return UICollectionViewCell()
             }
 
-            cell.configure(title: "인턴 추가하기")
+            cell.configure(title: "자격증 추가하기")
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(

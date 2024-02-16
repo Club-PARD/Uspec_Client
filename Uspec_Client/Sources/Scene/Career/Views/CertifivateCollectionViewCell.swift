@@ -11,6 +11,7 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
+    private let shadowView = UIView()
     
     var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
     var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
@@ -21,10 +22,12 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
         label.font = UIFont.body1(size: 15)
     }
     
-    private let getCertificateDateText = UILabel().then { label in
+    private let gettingCertificateDateText = UILabel().then { label in
         label.text = "자격증 취득 일자를 선택해주세요."
         label.font = UIFont.body1(size: 15)
     }
+    
+    let Calderbutton = CertificationCalendarButton(titleText: "취득일자", image: "defalutcalendar")
     
     private lazy var deleteButton = UIButton().then { button in
         button.setImage(UIImage(named: "delete_Icon"), for: .normal)
@@ -56,26 +59,21 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     }
     
     func setupLayout() {
-        addSubview(certifiCateNameText)
-        addSubview(CertificateTextField)
-        addSubview(getCertificateDateText)
-        addSubview(deleteButton)
-        //addSubview(calindarButton)
+        addSubview(shadowView)
+        shadowView.addSubview(certifiCateNameText)
+        shadowView.addSubview(CertificateTextField)
+        shadowView.addSubview(gettingCertificateDateText)
+        shadowView.addSubview(deleteButton)
+        shadowView.addSubview(Calderbutton)
         
         validateNextButton()
         CertificateTextField.delegate = self
+        
         certifiCateNameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-40)
             make.height.equalTo(21)
-        }
-        
-        deleteButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalTo(certifiCateNameText.snp.trailing).offset(10)
-            make.width.equalTo(16)
-            make.height.equalTo(16)
         }
         
         CertificateTextField.snp.makeConstraints { make in
@@ -85,10 +83,28 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
             make.height.equalTo(43)
         }
         
-        getCertificateDateText.snp.makeConstraints { make in
+        deleteButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalTo(certifiCateNameText.snp.trailing).offset(10)
+            make.width.equalTo(16)
+            make.height.equalTo(16)
+        }
+        
+        gettingCertificateDateText.snp.makeConstraints { make in
             make.top.equalTo(CertificateTextField.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(21)
+        }
+        
+        Calderbutton.snp.makeConstraints { make in
+            make.top.equalTo(gettingCertificateDateText.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(20)
+            make.width.equalTo(303)
+            make.height.equalTo(43)
+        }
+        
+        shadowView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     

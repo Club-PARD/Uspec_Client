@@ -79,11 +79,14 @@ class DropdownButton: UIView {
                 guard let self = self else { return }
                 if selectedOptions.isEmpty {
                     isSelectedOption = false
+                    
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: false)
+                    button.setTitleColor(UIColor.gray3, for: .normal)
                     self.button.setTitle("선택하기", for: .normal)
                 } else {
                     isSelectedOption = true
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: true)
+                    button.setTitleColor(UIColor.gray7, for: .normal)
                     self.button.titleLabel?.font = UIFont.body3(size: 13)
                     self.button.setTitle(selectedOptions.joined(separator: ", "), for: .normal)
                     print("Selected options: \(selectedOptions)")
@@ -94,11 +97,13 @@ class DropdownButton: UIView {
                 guard let self = self else { return }
                 if selectedOptions == "" || selectedOptions == nil {
                     isSelectedOption = false
+                    button.setTitleColor(UIColor.gray3, for: .normal)
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: false)
                     self.button.setTitle("선택하기", for: .normal)
                 } else {
                     isSelectedOption = true
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: true)
+                    button.setTitleColor(UIColor.gray7, for: .normal)
                     self.button.setTitle(selectedOptions, for: .normal)
                     print("Selected options: \(selectedOptions)")
                 }
@@ -136,7 +141,6 @@ class DropdownButton: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
         if window == nil {
-            // 뷰가 윈도우에서 제거될 때 dropDownMenu를 숨깁니다.
             hideDropdownMenu()
         }
     }
@@ -300,26 +304,5 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
 
         return attributes
-    }
-}
-
-
-
-extension UIWindow {
-    
-    static func visibleWindow() -> UIWindow? {
-        var currentWindow = UIApplication.shared.keyWindow
-        
-        if currentWindow == nil {
-            let frontToBackWindows = Array(UIApplication.shared.windows.reversed())
-            
-            for window in frontToBackWindows {
-                if window.windowLevel == UIWindow.Level.normal {
-                    currentWindow = window
-                    break
-                }
-            }
-        }
-        return currentWindow
     }
 }
