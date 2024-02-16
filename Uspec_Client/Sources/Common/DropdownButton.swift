@@ -13,8 +13,8 @@ protocol DropdownButtonDelegate: AnyObject {
 }
 
 class DropdownButton: UIView {
-    private var isDropdownMenuVisible = true
-    private let dropDownMenu = DropdownMenu()
+    var isDropdownMenuVisible = true
+    let dropDownMenu = DropdownMenu()
     weak var DropButtondelegate: DropdownButtonDelegate?
 
     var buttonoption : [String] = []
@@ -79,11 +79,15 @@ class DropdownButton: UIView {
                 guard let self = self else { return }
                 if selectedOptions.isEmpty {
                     isSelectedOption = false
+                    
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: false)
+                    button.setTitleColor(UIColor.gray3, for: .normal)
                     self.button.setTitle("선택하기", for: .normal)
                 } else {
                     isSelectedOption = true
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: true)
+                    button.setTitleColor(UIColor.gray7, for: .normal)
+                    self.button.titleLabel?.font = UIFont.body3(size: 13)
                     self.button.setTitle(selectedOptions.joined(separator: ", "), for: .normal)
                     print("Selected options: \(selectedOptions)")
                 }
@@ -93,11 +97,13 @@ class DropdownButton: UIView {
                 guard let self = self else { return }
                 if selectedOptions == "" || selectedOptions == nil {
                     isSelectedOption = false
+                    button.setTitleColor(UIColor.gray3, for: .normal)
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: false)
                     self.button.setTitle("선택하기", for: .normal)
                 } else {
                     isSelectedOption = true
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: true)
+                    button.setTitleColor(UIColor.gray7, for: .normal)
                     self.button.setTitle(selectedOptions, for: .normal)
                     print("Selected options: \(selectedOptions)")
                 }
@@ -132,15 +138,25 @@ class DropdownButton: UIView {
         }
     }
     
-    func hideDropdownMenu() {
-        isDropdownMenuVisible = false
-        dropDownMenu.isHidden = true
-        dropDownMenu.removeFromSuperview()
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        if window == nil {
+            hideDropdownMenu()
+        }
     }
     
+    func hideDropdownMenu() {
+        isDropdownMenuVisible = true
+        dropDownMenu.isHidden = true
+        dropDownMenu.willRemoveSubview(self)
+    }
 }
 
 //MARK: DropdownMenuVIiew , 드롭다운 버튼 눌렀을 때 생기는 뷰
+protocol DropdownMenuDelegate: AnyObject {
+    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOptions options: [String])
+    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String)
+}
 
 class DropdownMenu: UIView {
     var options: [String] = [] {
@@ -148,7 +164,9 @@ class DropdownMenu: UIView {
             collectionView.reloadData()
         }
     }
-    var selectedOptions: [String] = []
+    weak var delegate : DropdownMenuDelegate?
+    var selectedOptionsText: [String] = []
+    var selectedOptionsOnlyText: String = " "
     var isSelectedOnly : Bool = true // 다중일지 단일일지 선택하는
     var didSelectOption: (([String]) -> Void)? //다중
     var didSelectOptionOnly : ((String)-> Void)? // 단일
@@ -205,10 +223,10 @@ extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlow
         if isSelectedOnly {
             // 다중 선택
             cell.contentView.subviews.forEach { $0.removeFromSuperview() }
-            cell.configureIncategory(with: options[indexPath.item], isSelected: selectedOptions.contains(options[indexPath.item]))
+            cell.configureIncategory(with: options[indexPath.item], isSelected: selectedOptionsText.contains(options[indexPath.item]))
         } else {
             // 단일 선택
-            let isSelected = selectedOptions.contains(options[indexPath.item])
+            let isSelected = selectedOptionsText.contains(options[indexPath.item])
             cell.configureIncategory(with: options[indexPath.item], isSelected: isSelected)
         }
         
@@ -232,17 +250,23 @@ extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlow
             
         // isSelectedOnly 값에 따라 다중 선택 또는 단일 선택으로 동작
         if isSelectedOnly {
-            if let index = selectedOptions.firstIndex(of: selectedOption) {
-                selectedOptions.remove(at: index)
+            if let index = selectedOptionsText.firstIndex(of: selectedOption) {
+                selectedOptionsText.remove(at: index)
             } else {
-                selectedOptions.append(selectedOption)
+                selectedOptionsText.append(selectedOption)
             }
-            didSelectOption?(selectedOptions)
+            didSelectOption?(selectedOptionsText)
+            
+            self.delegate?.dropdownMenu(self, didSelectOptions: selectedOptionsText)
             
         } else {
             didSelectOptionOnly?(selectedOption)
-            selectedOptions = [selectedOption]
+            selectedOptionsText = [selectedOption]
+            selectedOptionsOnlyText = selectedOption
+            self.delegate?.dropdownMenu(self, didSelectOption: selectedOptionsOnlyText)
         }
+        
+        
         
         
         

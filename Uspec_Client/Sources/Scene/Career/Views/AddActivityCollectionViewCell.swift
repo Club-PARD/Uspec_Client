@@ -9,6 +9,7 @@ import UIKit
 
 class AddActivityCollectionViewCell: UICollectionViewCell {
     private let titleLabel = UILabel()
+    private let shadowView = UIView()
     private let plusimageView = UIImageView().then { image in
         image.image = UIImage(systemName: "plus")
         image.tintColor = .gray4
@@ -30,10 +31,15 @@ class AddActivityCollectionViewCell: UICollectionViewCell {
     func setUplayout() {
         addSubview(titleLabel)
         addSubview(plusimageView)
+        addSubview(shadowView)
+        self.backgroundColor = .white
         self.layer.cornerRadius = 20
         self.layer.borderColor = UIColor.gray3.cgColor
         self.layer.borderWidth = 1
         
+        shadowView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
@@ -41,6 +47,8 @@ class AddActivityCollectionViewCell: UICollectionViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalTo(titleLabel.snp.leading).offset(-12)
         }
+        
+        setViewShadow(backView: shadowView)
     }
 }
 
