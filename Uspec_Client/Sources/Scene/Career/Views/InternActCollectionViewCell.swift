@@ -13,6 +13,8 @@ import FSCalendar
 class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
+    private var selectedDateStringStart = String()
+    private var selectedDateStringLast = String()
     private let shadowView = UIView()
     var isBothFieldsFilled = false
     var isScoreVisibleRadioButton = false
@@ -27,7 +29,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         label.text = "근무하신 회사의 이름을 적어주세요."
         label.font = UIFont.body1(size: 15)
     }
-    private let calendarView = CalendarView()
+    
     private let workingDateText = UILabel().then { label in
         label.text = "인턴 근무 기간을 선택해주세요."
         label.font = UIFont.body1(size: 15)
@@ -98,10 +100,12 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
+        backgroundColor = .white
     }
     
     
     func setupLayout() {
+        
         addSubview(shadowView)
         shadowView.addSubview(companyText)
         shadowView.addSubview(companyNametextField)
@@ -113,9 +117,11 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         shadowView.addSubview(dividerInDateView)
         shadowView.addSubview(lastInternButton)
         shadowView.addSubview(selectWorking)
-        
+        self.setViewShadow(backView: shadowView)
         validateNextButton()
         companyNametextField.delegate = self
+        startCalendar.delegate = self
+        startCalendar.delegate = self
         startInternButton.addTarget(self, action: #selector(showCaledarStart), for: .touchUpInside)
         lastInternButton.addTarget(self, action: #selector(showCaledarLast), for: .touchUpInside)
         companyText.snp.makeConstraints { make in
@@ -228,15 +234,22 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
             if let visibleWindow = UIWindow.visibleWindow() {
                 if !(visibleWindow.subviews.contains(startCalendar)) {
                     visibleWindow.addSubview(startCalendar)
+                    startCalendar.setViewShadow(backView: shadowView)
                     startCalendar.snp.makeConstraints({ make in
                         make.top.equalTo(startInternButton.snp.top).offset(50)
                         make.leading.equalToSuperview().offset(20)
                         make.width.equalTo(222)
                         make.height.equalTo(218)
                     })
+                    
                 }
             }
+            selectedDateStringInStartButton()
         }
+    }
+     
+    func selectedDateStringInStartButton() {
+        startInternButton.setTitle(selectedDateStringStart, for: .normal)
     }
 
     @objc func showCaledarLast() {
@@ -258,6 +271,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
             if let visibleWindow = UIWindow.visibleWindow() {
                 if !(visibleWindow.subviews.contains(lastcalendar)) {
                     visibleWindow.addSubview(lastcalendar)
+//                    startCalendar.setViewShadow(backView: shadowView)
                     lastcalendar.snp.makeConstraints({ make in
                         make.top.equalTo(startInternButton.snp.top).offset(50)
                         make.trailing.equalToSuperview().offset(-20)
@@ -266,7 +280,12 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
                     })
                 }
             }
+            selectedDateStringInLastButton()
         }
+    }
+    
+    func selectedDateStringInLastButton() {
+        lastInternButton.setTitle(selectedDateStringLast, for: .normal)
     }
     
     @objc func isScoreVisibleTapped(_ sender: DLRadioButton) {
@@ -301,7 +320,15 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
 }
 
 
-extension InternActCollectionViewCell: DropdownButtonDelegate{
+extension InternActCollectionViewCell: DropdownButtonDelegate, CalendarViewDelegate {
+    func didSelectDate(_ calendar: CalendarView, _ date: String) {
+        if startCalendar == calendar {
+            selectedDateStringStart = date
+        } else {
+            selectedDateStringLast = date
+        }
+    }
+    
     func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
         if isSelected {
             UpDateDatavalidation()

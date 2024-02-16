@@ -23,6 +23,8 @@
 		0D41062E2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */; };
 		0D516D8E2B7F7274003F7923 /* UIlabelPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D516D8D2B7F7274003F7923 /* UIlabelPadding.swift */; };
 		0D516DD12B7FC6E2003F7923 /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D516DD02B7FC6E2003F7923 /* CalenderView.swift */; };
+		0D516DD32B7FEFE4003F7923 /* CampusActivitiyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D516DD22B7FEFE4003F7923 /* CampusActivitiyViewController.swift */; };
+		0D516DD52B7FF027003F7923 /* CampusActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D516DD42B7FF027003F7923 /* CampusActivityCollectionViewCell.swift */; };
 		2102541E2B7E06FF009370E5 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2102541D2B7E06FF009370E5 /* CategoryViewController.swift */; };
 		210254212B7E0D85009370E5 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254202B7E0D85009370E5 /* API.swift */; };
 		210254232B7E1AC7009370E5 /* TopCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210254222B7E1AC7009370E5 /* TopCategoryCell.swift */; };
@@ -77,6 +79,8 @@
 		0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifivateCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D516D8D2B7F7274003F7923 /* UIlabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIlabelPadding.swift; sourceTree = "<group>"; };
 		0D516DD02B7FC6E2003F7923 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		0D516DD22B7FEFE4003F7923 /* CampusActivitiyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusActivitiyViewController.swift; sourceTree = "<group>"; };
+		0D516DD42B7FF027003F7923 /* CampusActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		2102541D2B7E06FF009370E5 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		210254202B7E0D85009370E5 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		210254222B7E1AC7009370E5 /* TopCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryCell.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */,
 				0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */,
 				0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */,
+				0D516DD42B7FF027003F7923 /* CampusActivityCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 				0D41061D2B7DF61B0039CDB6 /* CompetitionUIViewController.swift */,
 				0D4106272B7E6A2F0039CDB6 /* InternActivityViewController.swift */,
 				0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */,
+				0D516DD22B7FEFE4003F7923 /* CampusActivitiyViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -514,8 +520,10 @@
 				21B21BCF2B7BC2AA008FFDCB /* Extensions.swift in Sources */,
 				21B21BC92B7BA8C7008FFDCB /* NickNameViewController.swift in Sources */,
 				0D41062A2B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift in Sources */,
+				0D516DD52B7FF027003F7923 /* CampusActivityCollectionViewCell.swift in Sources */,
 				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
 				0D4106202B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift in Sources */,
+				0D516DD32B7FEFE4003F7923 /* CampusActivitiyViewController.swift in Sources */,
 				21B21BA82B779FC4008FFDCB /* CategoryData.swift in Sources */,
 				0D4106282B7E6A2F0039CDB6 /* InternActivityViewController.swift in Sources */,
 				21B21BA82B779FC4008FFDCB /* CategoryData.swift in Sources */,

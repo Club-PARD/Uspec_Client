@@ -1,15 +1,13 @@
 //
-//  CompetitionCollectionViewCell.swift
+//  CampusActivityCollectionViewCell.swift
 //  Uspec_Client
 //
-//  Created by 진세진 on 2/15/24.
+//  Created by 진세진 on 2/17/24.
 //
 
 import UIKit
-import SnapKit
-import Then
 
-class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
+class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
@@ -17,19 +15,30 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     var datas : SeveralCompetitionPart?
     
     private let nameText = UILabel().then { label in
-        label.text = "공모전의 이름을 구체적으로 입력해주세요."
+        label.text = "교내활동의 이름을 구체적으로 입력해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
-    private let competitionPartText = UILabel().then { label in
-        label.text = "공모전의 공모 분야를 모두 정해주세요."
+    private let campusActPartText = UILabel().then { label in
+        label.text = "교내활동의 활동 분야를 설정해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
-    private let interestsText = UILabel().then { label in
-        label.text = "공모전의 시상규모를 선택해주세요."
+    private let actingContentText = UILabel().then { label in
+        label.text = "세부적인 활동 내용을 설명해주세요."
         label.font = UIFont.body1(size: 15)
     }
+    
+    private let actingContentTextField = profileTextField (
+        placeholder: "활동 내용 설명",
+        fontSize: 15,
+        textColor: .textBlack,
+        borderColor: UIColor.gray3,
+        cornerRadius: 20,
+        borderWidth: 1,
+        leftPadding: 16,
+        rightPadding: -16
+    )
     
     private lazy var deleteButton = UIButton().then { button in
         button.setImage(UIImage(named: "delete_Icon"), for: .normal)
@@ -41,7 +50,7 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     }
     
     let activeNametextField = profileTextField(
-        placeholder: "대외활동 이름",
+        placeholder: "교내활동 이름",
         fontSize: 15,
         textColor: .textBlack,
         borderColor: UIColor.gray3,
@@ -87,17 +96,14 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         addSubview(shadowView)
         shadowView.addSubview(nameText)
         shadowView.addSubview(activeNametextField)
-        shadowView.addSubview(competitionPartText)
-        shadowView.addSubview(interestsText)
+        shadowView.addSubview(campusActPartText)
+        shadowView.addSubview(actingContentText)
         shadowView.addSubview(deleteButton)
         shadowView.addSubview(selectButton1)
-        shadowView.addSubview(selectButton2)
-        
-        
+        shadowView.addSubview(actingContentTextField)
         
         activeNametextField.delegate = self
         selectButton1.DropButtondelegate = self
-        selectButton2.DropButtondelegate = self
         
         nameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
@@ -120,31 +126,31 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
             make.height.equalTo(43)
         }
         
-        competitionPartText.snp.makeConstraints { make in
+        campusActPartText.snp.makeConstraints { make in
             make.top.equalTo(activeNametextField.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(21)
         }
         
         selectButton1.snp.makeConstraints { make in
-            make.top.equalTo(competitionPartText.snp.bottom).offset(12)
+            make.top.equalTo(campusActPartText.snp.bottom).offset(12)
             make.width.equalTo(303)
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
         
-        interestsText.snp.makeConstraints { make in
+        actingContentText.snp.makeConstraints { make in
             make.top.equalTo(selectButton1.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(21)
         }
-        
-        selectButton2.snp.makeConstraints { make in
-            make.top.equalTo(interestsText.snp.bottom).offset(12)
+        actingContentTextField.snp.makeConstraints { make in
+            make.top.equalTo(actingContentText.snp.bottom).offset(12)
             make.width.equalTo(303)
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
+    
         shadowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -180,7 +186,7 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     }
 }
 
-extension CompetitionCollectionViewCell : DropdownButtonDelegate {
+extension CampusActivityCollectionViewCell : DropdownButtonDelegate {
     func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
         if isSelected {
             UpDateDatavalidation()
@@ -195,8 +201,6 @@ extension CompetitionCollectionViewCell : DropdownButtonDelegate {
         var wholevalid : Bool = false
         let activityName = activeNametextField.text ?? ""
         let activityNameValid = !(activityName.isEmpty)
-        print(selectButton1.isSelectedOption)
-        print(selectButton2.isSelectedOption)
         let activityValid : Bool = selectButton1.isSelectedOption
         let interestingValid : Bool = selectButton2.isSelectedOption
         if activityValid == true &&
@@ -220,7 +224,7 @@ extension CompetitionCollectionViewCell : DropdownButtonDelegate {
 
 // MARK: - 드랍다운에서 선택한 데이터 전달!! 부분
 
-extension CompetitionCollectionViewCell: DropdownMenuDelegate {
+extension CampusActivityCollectionViewCell: DropdownMenuDelegate {
     
     func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String) {
         if dropdownMenu == selectButton2.dropDownMenu {

@@ -61,7 +61,7 @@ class CareerIntrolViewController: CareerViewController {
     }
     
     @objc private func nextButtonTapped() {
-        let infoVC = CompetitionUIViewController(currentStep: .step1)
+        let infoVC = CompetitionUIViewController(currentStep: .step2)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }

@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
         //let profileVC = ProfileIntroViewController(currentStep: .step0)
         
         // MARK: - 진세 test
-                let profileVC = CareerIntrolViewController(currentStep: .step1)
+                let profileVC = CareerIntrolViewController(currentStep: .step0)
         
         // MARK: - ram test
 //        let profileVC = CategoryViewController(currentStep: .step4)
