@@ -50,6 +50,7 @@ class DoneButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 class CalendarButton: UIButton {
     init(titleText: String, image : String) {
         super.init(frame: .zero)
@@ -188,3 +189,4 @@ class SpecRankingCard: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+

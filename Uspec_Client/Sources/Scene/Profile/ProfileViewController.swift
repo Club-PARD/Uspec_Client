@@ -35,7 +35,6 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func backButtonTapped() {
-        
         self.navigationController?.popViewController(animated: true)
     }
     
