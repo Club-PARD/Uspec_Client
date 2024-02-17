@@ -9,31 +9,37 @@ import UIKit
 import SnapKit
 import Then
 
+protocol InputCareerCollectionViewCellDelegate: AnyObject {
+    func inputCareerCellDidRequestDelete(_ cell: UICollectionViewCell)
+}
+
+protocol InputCareerValidCheckDelegate: AnyObject {
+    func inputCareerCell(_ cell: UICollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool
+}
+
 class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
+    private let shadowView = UIView()
     var isBothFieldsFilled = false
-    
-    var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
-    var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
-    var categories3 = ["Category 3-1", "Category 3-2", "Category 3-3", "Category 3-4"]
+    var datas : SeveralOutignActPart?
 
-    private let nameText = UILabel().then { label in
+    let nameText = UILabel().then { label in
         label.text = "대외활동의 이름을 구체적으로 입력해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
-    private let activityPartText = UILabel().then { label in
+    let activityPartText = UILabel().then { label in
         label.text = "대외활동의 활동 분야를 모두 정해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
-    private let interestsText = UILabel().then { label in
+    let interestsText = UILabel().then { label in
         label.text = "대외활동의 관심분야를 모두 정해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
-    private let activityDateText = UILabel().then { label in
+    let activityDateText = UILabel().then { label in
         label.text = "대외활동의 활동기간을 정해주세요."
         label.font = UIFont.body1(size: 15)
     }
@@ -43,6 +49,9 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     }
     
     @objc func deleteButtonTapped() {
+        selectButton1.hideDropdownMenu()
+        selectButton2.hideDropdownMenu()
+        selectButton3.hideDropdownMenu()
         delegate?.inputCareerCellDidRequestDelete(self)
     }
     
@@ -57,23 +66,41 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         rightPadding: -16
     )
     
-    private lazy var selectButton1: DropdownButton = {
+    lazy var selectButton1: DropdownButton = {
         let button = DropdownButton()
-        button.setupDropdownMenu(options: categories1, selectedvalue: true)
+        button.setupDropdownMenu(options: SelectCategoryInCareer().actingPart, selectedvalue: true)
         return button
     }()
 
-    private lazy var selectButton2: DropdownButton = {
+    lazy var selectButton2: DropdownButton = {
         let button = DropdownButton()
-        button.setupDropdownMenu(options: categories2, selectedvalue: true)
+        button.setupDropdownMenu(options: SelectCategoryInCareer().inTerestingPart, selectedvalue: true)
        return button
     }()
 
-    private lazy var selectButton3: DropdownButton = {
+    lazy var selectButton3: DropdownButton = {
         let button = DropdownButton()
-        button.setupDropdownMenu(options: categories3, selectedvalue: true)
+        button.setupDropdownMenu(options: SelectCategoryInCareer().actingDate , selectedvalue: false)
         return button
     }()
+    
+    private func showDropdownMenu(for isDropdownVisble : Bool ,with dropdownMenu : DropdownMenu, button selectedButton : UIButton) {
+           
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            if isDropdownVisble {
+                selectedButton.layer.borderColor = UIColor.secondaryYellow.cgColor
+                dropdownMenu.snp.updateConstraints { make in
+                    dropdownMenu.updateHeight()
+                }
+            } else {
+                selectedButton.layer.borderColor = UIColor.gray3.cgColor
+                dropdownMenu.snp.updateConstraints { make in
+                    make.height.equalTo(0)
+                }
+            }
+            self?.layoutIfNeeded()
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -81,35 +108,106 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
         setupLayout()
     }
     
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        // 새로운 부모 뷰가 nil이면(화면에서 pop될 때)
-        if newSuperview == nil {
-            selectButton1.hideDropdownMenu()
-            selectButton2.hideDropdownMenu()
-            selectButton3.hideDropdownMenu()// 드롭다운 메뉴 숨기기
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        validateNextButton()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        validateNextButton()
+        return true
+    }
+}
+
+extension InputCareerCollectionViewCell: DropdownButtonDelegate{
+    func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
+        if isSelected {
+            UpDateDatavalidation()
+            validateNextButton()
+        } else {
+            UpDateDatavalidation()
+            validateNextButton()
         }
     }
     
+    func UpDateDatavalidation() -> Bool {
+        var wholevalid : Bool = false
+        let activityName = activeNametextField.text ?? ""
+        let activityNameValid = !(activityName.isEmpty)
+        print(selectButton1.isSelectedOption)
+        print(selectButton2.isSelectedOption)
+        print(selectButton3.isSelectedOption)
+        let activityValid : Bool = selectButton1.isSelectedOption
+        let interestingValid : Bool = selectButton2.isSelectedOption
+        let activityDateValid : Bool = selectButton3.isSelectedOption
+        if activityValid == true &&
+            interestingValid == true &&
+            activityDateValid == true &&
+            activityNameValid == true {
+            wholevalid = true
+            return wholevalid
+        } else {
+            wholevalid = false
+            return wholevalid
+        }
+        
+    }
+    
+    func validateNextButton() {
+        isBothFieldsFilled = UpDateDatavalidation()
+        print("isBothFieldsFilled = \(isBothFieldsFilled)")
+        delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
+    }
+}
+
+extension InputCareerCollectionViewCell: DropdownMenuDelegate {
+    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String) {
+        if dropdownMenu == selectButton3.dropDownMenu {
+            datas?.interestDate = option
+        }
+    }
+    
+    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOptions options: [String]) {
+        if dropdownMenu == selectButton1.dropDownMenu {
+            // selectButton1에 대한 처리
+            datas?.outingActPart = options
+        } else if dropdownMenu == selectButton2.dropDownMenu {
+            // selectButton2에 대한 처리
+            datas?.interestPart = options
+        }
+        
+        // 선택된 옵션을 확인하고 다른 처리를 수행할 수 있음
+        // 예를 들어, validateNextButton()을 호출하여 다른 필수 입력란을 확인할 수 있음
+        validateNextButton()
+    }
+}
+
+extension InputCareerCollectionViewCell {
+   
     func setupLayout() {
-        addSubview(nameText)
-        addSubview(activeNametextField)
-        addSubview(activityDateText)
-        addSubview(activityPartText)
-        addSubview(interestsText)
-        addSubview(deleteButton)
-        addSubview(selectButton1)
-        addSubview(selectButton2)
-        addSubview(selectButton3)
+        addSubview(shadowView)
+        shadowView.addSubview(nameText)
+        shadowView.addSubview(activeNametextField)
+        shadowView.addSubview(activityDateText)
+        shadowView.addSubview(activityPartText)
+        shadowView.addSubview(interestsText)
+        shadowView.addSubview(deleteButton)
+        shadowView.addSubview(selectButton1)
+        shadowView.addSubview(selectButton2)
+        shadowView.addSubview(selectButton3)
+        
         
         validateNextButton()
         activeNametextField.delegate = self
         selectButton1.DropButtondelegate = self
         selectButton2.DropButtondelegate = self
         selectButton3.DropButtondelegate = self
+        self.setViewShadow(backView: shadowView)
         
         nameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
@@ -170,89 +268,10 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
             make.height.equalTo(43)
             make.leading.equalToSuperview().offset(20)
         }
-    }
-    
-
-    private func showDropdownMenu(for isDropdownVisble : Bool ,with dropdownMenu : DropdownMenu, button selectedButton : UIButton) {
-           
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            if isDropdownVisble {
-                selectedButton.layer.borderColor = UIColor.secondaryYellow.cgColor
-                dropdownMenu.snp.updateConstraints { make in
-                    dropdownMenu.updateHeight()
-                }
-            } else {
-                selectedButton.layer.borderColor = UIColor.gray3.cgColor
-                dropdownMenu.snp.updateConstraints { make in
-                    make.height.equalTo(0)
-                }
-            }
-            self?.layoutIfNeeded()
+        shadowView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
-        
-    private func SeleceddropdownMenu(for selectButton : UIButton) -> DropdownMenu {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .vertical
-        let dropdownMenu = DropdownMenu(frame: .zero)
-        dropdownMenu.backgroundColor = .secondaryYellow
-        dropdownMenu.options = categories1
-        dropdownMenu.didSelectOption = { selectedOptions in
-            let selectedTitles = selectedOptions.joined(separator : " ")
-            selectButton.setTitle(selectedTitles, for: .normal)
-        }
 
-        return dropdownMenu
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
-        validateNextButton()
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        validateNextButton()
-        return true
-    }
 }
 
-extension InputCareerCollectionViewCell: DropdownButtonDelegate{
-    func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
-        if isSelected {
-            UpDateDatavalidation()
-            validateNextButton()
-        } else {
-            UpDateDatavalidation()
-            validateNextButton()
-        }
-    }
-    
-    func UpDateDatavalidation() -> Bool {
-        var wholevalid : Bool = false
-        let activityName = activeNametextField.text ?? ""
-        let activityNameValid = !(activityName.isEmpty)
-        print(selectButton1.isSelectedOption)
-        print(selectButton2.isSelectedOption)
-        print(selectButton3.isSelectedOption)
-        let activityValid : Bool = selectButton1.isSelectedOption
-        let interestingValid : Bool = selectButton2.isSelectedOption
-        let activityDateValid : Bool = selectButton3.isSelectedOption
-        if activityValid == true &&
-            interestingValid == true &&
-            activityDateValid == true &&
-            activityNameValid == true {
-            wholevalid = true
-            return wholevalid
-        } else {
-            wholevalid = false
-            return wholevalid
-        }
-        
-    }
-    
-    func validateNextButton() {
-        isBothFieldsFilled = UpDateDatavalidation()
-        print("isBothFieldsFilled = \(isBothFieldsFilled)")
-        delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
-    }
-}

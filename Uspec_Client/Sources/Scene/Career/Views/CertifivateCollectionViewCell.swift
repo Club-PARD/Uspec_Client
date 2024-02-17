@@ -6,25 +6,29 @@
 //
 
 import UIKit
+import SnapKit
+import Then
+import FSCalendar
 
 class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
-    
-    var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
-    var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
-    var categories3 = ["Category 3-1", "Category 3-2", "Category 3-3", "Category 3-4"]
+    private let shadowView = UIView()
+    var isselectedStartButton = false
+    private let calendarView = CalendarView()
     
     private let certifiCateNameText = UILabel().then { label in
         label.text = "짱구님의 자격증 취득 내역을 입력해주세요."
         label.font = UIFont.body1(size: 15)
     }
     
-    private let getCertificateDateText = UILabel().then { label in
+    private let gettingCertificateDateText = UILabel().then { label in
         label.text = "자격증 취득 일자를 선택해주세요."
         label.font = UIFont.body1(size: 15)
     }
+    
+    let calderbutton = CertificationCalendarButton(titleText: "취득일자", image: "defalutcalendar")
     
     private lazy var deleteButton = UIButton().then { button in
         button.setImage(UIImage(named: "delete_Icon"), for: .normal)
@@ -53,29 +57,28 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayout()
+        backgroundColor = .white
     }
     
     func setupLayout() {
-        addSubview(certifiCateNameText)
-        addSubview(CertificateTextField)
-        addSubview(getCertificateDateText)
-        addSubview(deleteButton)
-        //addSubview(calindarButton)
+        addSubview(shadowView)
+        shadowView.addSubview(certifiCateNameText)
+        shadowView.addSubview(CertificateTextField)
+        shadowView.addSubview(gettingCertificateDateText)
+        shadowView.addSubview(deleteButton)
+        shadowView.addSubview(calderbutton)
+        
+        self.setViewShadow(backView: shadowView)
         
         validateNextButton()
         CertificateTextField.delegate = self
+        calderbutton.addTarget(self, action: #selector(showCaledar), for: .touchUpInside)
+        
         certifiCateNameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-40)
             make.height.equalTo(21)
-        }
-        
-        deleteButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalTo(certifiCateNameText.snp.trailing).offset(10)
-            make.width.equalTo(16)
-            make.height.equalTo(16)
         }
         
         CertificateTextField.snp.makeConstraints { make in
@@ -85,10 +88,28 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
             make.height.equalTo(43)
         }
         
-        getCertificateDateText.snp.makeConstraints { make in
+        deleteButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalTo(certifiCateNameText.snp.trailing).offset(10)
+            make.width.equalTo(16)
+            make.height.equalTo(16)
+        }
+        
+        gettingCertificateDateText.snp.makeConstraints { make in
             make.top.equalTo(CertificateTextField.snp.bottom).offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(21)
+        }
+        
+        calderbutton.snp.makeConstraints { make in
+            make.top.equalTo(gettingCertificateDateText.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(20)
+            make.width.equalTo(303)
+            make.height.equalTo(43)
+        }
+        
+        shadowView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
     
@@ -116,13 +137,41 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
         collectionViewLayout.scrollDirection = .vertical
         let dropdownMenu = DropdownMenu(frame: .zero)
         dropdownMenu.backgroundColor = .secondaryYellow
-        dropdownMenu.options = categories1
         dropdownMenu.didSelectOption = { selectedOptions in
             let selectedTitles = selectedOptions.joined(separator : " ")
             selectButton.setTitle(selectedTitles, for: .normal)
         }
 
         return dropdownMenu
+    }
+    
+    @objc func showCaledar() {
+        isselectedStartButton.toggle()
+        
+        calderbutton.layer.borderColor = isselectedStartButton ? UIColor.secondaryYellow.cgColor : UIColor.gray3.cgColor
+        calderbutton.setTitleColor(
+            (isselectedStartButton ? .secondaryYellow: .gray3),
+            for: .normal
+        )
+        calderbutton.setImage(UIImage(named: isselectedStartButton ? "selectedcalendar" : "defalutcalendar"), for: .normal)
+        
+        if !isselectedStartButton {
+            calendarView.removeFromSuperview()
+            calendarView.isHidden = true
+        } else {
+            calendarView.isHidden = false
+            if let visibleWindow = UIWindow.visibleWindow() {
+                if !(visibleWindow.subviews.contains(calendarView)) {
+                    visibleWindow.addSubview(calendarView)
+                    calendarView.snp.makeConstraints({ make in
+                        make.top.equalTo(calderbutton.snp.top).offset(50)
+                        make.leading.equalToSuperview().offset(140)
+                        make.width.equalTo(222)
+                        make.height.equalTo(218)
+                    })
+                }
+            }
+        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

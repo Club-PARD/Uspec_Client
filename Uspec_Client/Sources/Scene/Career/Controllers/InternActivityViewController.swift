@@ -15,37 +15,31 @@ class InternActivityViewController: CompetitionUIViewController {
         
         setUpComponent()
     }
+
     
     func setUpComponent() {
-        semiTitleLabel.text = "짱구님의 인턴 내역을 입력해주세요"
+        semiTitleLabel.text = "짱구님의 인턴 내역을 입력해주세요."
+        doneButton.setTitle("활동한 인턴 경험이 없어요.", for: .normal)
         collectionView.register(InternActCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         collectionView.register(AddActivityCollectionViewCell.self, forCellWithReuseIdentifier: addActivityCellIdentifier)
     }
     
     @objc override func doneButtonTapped() {
-        let infoVC = CertificateViewController(currentStep: .step2)
+        let infoVC = CertificateViewController(currentStep: .step4)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }
     
     @objc override func nextButtonTapped() {
-        let infoVC = CertificateViewController(currentStep: .step2)
+        let infoVC = CertificateViewController(currentStep: .step4)
         self.navigationController?.pushViewController(infoVC, animated: true)
         print(self.navigationController as Any)
     }
+    
+   
 }
 
 extension InternActivityViewController {
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfCells + 1
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item == numberOfCells {
-            numberOfCells += 1
-            collectionView.insertItems(at: [IndexPath(item: numberOfCells - 1, section: 0)])
-        }
-    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == numberOfCells {
@@ -77,7 +71,7 @@ extension InternActivityViewController {
         if indexPath.item == numberOfCells {
             return CGSize(width: 343, height: 61)
         } else {
-            return CGSize(width: 343, height: 315)
+            return CGSize(width: 343, height: 345)
         }
     }
 }
