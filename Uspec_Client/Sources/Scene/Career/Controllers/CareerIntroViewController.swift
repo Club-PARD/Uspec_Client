@@ -69,7 +69,7 @@ class CareerIntroViewController: CareerViewController {
         view.addSubview(semiTitleLabel)
         view.addSubview(doneButton)
         view.addSubview(nextButton)
-        
+       
         semiTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(scrollView.snp.top).offset(32)
             make.leading.equalTo(view.snp.leading).offset(12)
@@ -161,7 +161,6 @@ extension CareerIntroViewController: InputCareerCollectionViewCellDelegate {
         numberOfCells -= 1
         collectionView.deleteItems(at: [indexPath])
         collectionView.reloadData()
-//        dataArray.remove(at: sender.tag)
     }
     
     func hideDropdownMenusInInputCareerCollectionViewCells() {
@@ -184,7 +183,7 @@ extension CareerIntroViewController: InputCareerValidCheckDelegate {
             nextButton.backgroundColor = .gray7
         } else {
             nextButton.isEnabled = false
-            nextButton.backgroundColor = .gray1
+            nextButton.backgroundColor = .gray2
            
         }
         return isFilled

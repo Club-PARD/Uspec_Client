@@ -14,7 +14,7 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
     private let shadowView = UIView()
-    var datas : SeveralCompetitionPart?
+    var datas = SeveralCompetitionPart()
     
     private let nameText = UILabel().then { label in
         label.text = "교내활동의 이름을 구체적으로 입력해주세요."
@@ -67,12 +67,6 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
         button.setupDropdownMenu(options: SelectCategoryInCareer().campushActivities, selectedvalue: true)
         return button
     }()
-
-    private lazy var selectButton2: DropdownButton = {
-        let button = DropdownButton()
-        button.setupDropdownMenu(options: SelectCategoryInCareer().actingDate , selectedvalue: false)
-       return button
-    }()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -87,10 +81,8 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
     
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        // 새로운 부모 뷰가 nil이면(화면에서 pop될 때)
         if newSuperview == nil {
             selectButton1.hideDropdownMenu()
-            selectButton2.hideDropdownMenu()
         }
     }
     
@@ -192,29 +184,22 @@ extension CampusActivityCollectionViewCell : DropdownButtonDelegate {
     func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
         if isSelected {
             UpDateDatavalidation()
-            validateNextButton()
         } else {
             UpDateDatavalidation()
-            validateNextButton()
         }
+        validateNextButton()
     }
     
     func UpDateDatavalidation() -> Bool {
-        var wholevalid : Bool = false
-        let activityName = activeNametextField.text ?? ""
-        let activityNameValid = !(activityName.isEmpty)
-        let activityValid : Bool = selectButton1.isSelectedOption
-        let interestingValid : Bool = selectButton2.isSelectedOption
-        if activityValid == true &&
-            interestingValid == true &&
-            activityNameValid == true {
-            wholevalid = true
-            return wholevalid
-        } else {
-            wholevalid = false
-            return wholevalid
-        }
         
+        let actingContent = actingContentTextField.text ?? ""
+        let activeName = activeNametextField.text ?? ""
+        let activityCategoryValid = selectButton1.isSelectedOption
+        let actingContentValid = !(actingContent.isEmpty)
+        let activeNameValid = !(activeName.isEmpty)
+        
+        
+        return activityCategoryValid == true && activeNameValid == true && actingContentValid == true
     }
     
     func validateNextButton() {
@@ -227,17 +212,10 @@ extension CampusActivityCollectionViewCell : DropdownButtonDelegate {
 
 extension CampusActivityCollectionViewCell: DropdownMenuDelegate {
     
-    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String) {
-        if dropdownMenu == selectButton2.dropDownMenu {
-            datas?.awardScalePart = option
-        }
-        validateNextButton()
-    }
-    
     func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOptions options: [String]) {
         if dropdownMenu == selectButton1.dropDownMenu {
             // selectButton1에 대한 처리
-            datas?.competitionPart = options
+            datas.competitionPart = options
         }
         validateNextButton()
     }

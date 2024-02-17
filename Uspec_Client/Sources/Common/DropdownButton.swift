@@ -149,9 +149,9 @@ class DropdownButton: UIView {
 }
 
 //MARK: DropdownMenuVIiew , 드롭다운 버튼 눌렀을 때 생기는 뷰
-protocol DropdownMenuDelegate: AnyObject {
-    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOptions options: [String])
-    func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String)
+@objc protocol DropdownMenuDelegate: AnyObject {
+    @objc optional func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOptions options: [String])
+    @objc optional func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String)
 }
 
 class DropdownMenu: UIView {
@@ -170,7 +170,7 @@ class DropdownMenu: UIView {
     private let layout = LeftAlignedCollectionViewFlowLayout().then { layout in
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 5
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        layout.sectionInset = UIEdgeInsets(top: 13, left: 16, bottom: 10, right: 10)
     }
     
     private lazy var collectionView: UICollectionView = {
@@ -243,7 +243,6 @@ extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlow
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedOption = options[indexPath.item]
-            
         // isSelectedOnly 값에 따라 다중 선택 또는 단일 선택으로 동작
         if isSelectedOnly {
             if let index = selectedOptionsText.firstIndex(of: selectedOption) {
@@ -253,19 +252,14 @@ extension DropdownMenu: UICollectionViewDataSource, UICollectionViewDelegateFlow
             }
             didSelectOption?(selectedOptionsText)
             
-            self.delegate?.dropdownMenu(self, didSelectOptions: selectedOptionsText)
+            self.delegate?.dropdownMenu?(self, didSelectOptions: selectedOptionsText)
             
         } else {
             didSelectOptionOnly?(selectedOption)
             selectedOptionsText = [selectedOption]
             selectedOptionsOnlyText = selectedOption
-            self.delegate?.dropdownMenu(self, didSelectOption: selectedOptionsOnlyText)
+            self.delegate?.dropdownMenu?(self, didSelectOption: selectedOptionsOnlyText)
         }
-        
-        
-        
-        
-        
         collectionView.reloadData()
     }
     
