@@ -14,6 +14,7 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
+    var selectedDateStringStart = String()
     private let shadowView = UIView()
     var isselectedStartButton = false
     private let calendarView = CalendarView()
@@ -28,7 +29,12 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
         label.font = UIFont.body1(size: 15)
     }
     
-    let calderbutton = CertificationCalendarButton(titleText: "취득일자", image: "defalutcalendar")
+    let calderbutton = CertificationCalendarButton(
+        titleText: "취득일자",
+        image: "defalutcalendar"
+    ).then { button in
+        button.setTitleColor(.gray3, for: .normal)
+    }
     
     private lazy var deleteButton = UIButton().then { button in
         button.setImage(UIImage(named: "delete_Icon"), for: .normal)
@@ -72,6 +78,8 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
         
         validateNextButton()
         CertificateTextField.delegate = self
+        calendarView.delegate = self
+        
         calderbutton.addTarget(self, action: #selector(showCaledar), for: .touchUpInside)
         
         certifiCateNameText.snp.makeConstraints { make in
@@ -113,38 +121,6 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
         }
     }
     
-
-    private func showDropdownMenu(for isDropdownVisble : Bool ,with dropdownMenu : DropdownMenu, button selectedButton : UIButton) {
-           
-        UIView.animate(withDuration: 0.3) { [weak self] in
-            if isDropdownVisble {
-                selectedButton.layer.borderColor = UIColor.secondaryYellow.cgColor
-                dropdownMenu.snp.updateConstraints { make in
-                    dropdownMenu.updateHeight()
-                }
-            } else {
-                selectedButton.layer.borderColor = UIColor.gray3.cgColor
-                dropdownMenu.snp.updateConstraints { make in
-                    make.height.equalTo(0)
-                }
-            }
-            self?.layoutIfNeeded()
-        }
-    }
-        
-    private func SeleceddropdownMenu(for selectButton : UIButton) -> DropdownMenu {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .vertical
-        let dropdownMenu = DropdownMenu(frame: .zero)
-        dropdownMenu.backgroundColor = .secondaryYellow
-        dropdownMenu.didSelectOption = { selectedOptions in
-            let selectedTitles = selectedOptions.joined(separator : " ")
-            selectButton.setTitle(selectedTitles, for: .normal)
-        }
-
-        return dropdownMenu
-    }
-    
     @objc func showCaledar() {
         isselectedStartButton.toggle()
         
@@ -153,7 +129,10 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
             (isselectedStartButton ? .secondaryYellow: .gray3),
             for: .normal
         )
-        calderbutton.setImage(UIImage(named: isselectedStartButton ? "selectedcalendar" : "defalutcalendar"), for: .normal)
+        calderbutton.setImage(
+            UIImage(named: isselectedStartButton ? "selectedcalendar" : "defalutcalendar"),
+            for: .normal
+        )
         
         if !isselectedStartButton {
             calendarView.removeFromSuperview()
@@ -200,20 +179,27 @@ extension CertifivateCollectionViewCell: DropdownButtonDelegate{
     func UpDateDatavalidation() -> Bool {
         var wholevalid : Bool = false
         let activityName = CertificateTextField.text ?? ""
-        let activityNameValid = !(activityName.isEmpty)
-        if  activityNameValid == true {
-            wholevalid = true
-            return wholevalid
-        } else {
-            wholevalid = false
-            return wholevalid
-        }
+        let textFieldNameValid = !(activityName.isEmpty)
+        let selectDate = !(selectedDateStringStart.isEmpty)
+
+        return textFieldNameValid == true && selectDate == true
         
     }
     
     func validateNextButton() {
         isBothFieldsFilled = UpDateDatavalidation()
-        print("isBothFieldsFilled = \(isBothFieldsFilled)")
         delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
+    }
+}
+
+extension CertifivateCollectionViewCell : CalendarViewDelegate {
+    func didSelectDate(_ calendar: CalendarView,_ date: String) {
+        selectedDateStringStart = date
+        if !(selectedDateStringStart.isEmpty) {
+            calderbutton.setTitle(selectedDateStringStart, for: .normal)
+            calderbutton.setTitleColor(.black1, for: .normal)
+        } else {
+            calderbutton.setTitleColor(.gray3, for: .normal)
+        }
     }
 }

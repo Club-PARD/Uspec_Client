@@ -139,28 +139,15 @@ extension InputCareerCollectionViewCell: DropdownButtonDelegate{
         var wholevalid : Bool = false
         let activityName = activeNametextField.text ?? ""
         let activityNameValid = !(activityName.isEmpty)
-        print(selectButton1.isSelectedOption)
-        print(selectButton2.isSelectedOption)
-        print(selectButton3.isSelectedOption)
         let activityValid : Bool = selectButton1.isSelectedOption
         let interestingValid : Bool = selectButton2.isSelectedOption
         let activityDateValid : Bool = selectButton3.isSelectedOption
-        if activityValid == true &&
-            interestingValid == true &&
-            activityDateValid == true &&
-            activityNameValid == true {
-            wholevalid = true
-            return wholevalid
-        } else {
-            wholevalid = false
-            return wholevalid
-        }
         
+        return activityValid == true && interestingValid == true && activityDateValid == true && activityNameValid == true
     }
     
     func validateNextButton() {
         isBothFieldsFilled = UpDateDatavalidation()
-        print("isBothFieldsFilled = \(isBothFieldsFilled)")
         delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
     }
 }

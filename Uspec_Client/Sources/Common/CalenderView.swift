@@ -12,13 +12,11 @@ import Then
 
 protocol CalendarViewDelegate : AnyObject {
     func didSelectDate(_ calendar: CalendarView,_ date: String)
-//    @objc optional func didSelectDateLast(_ calendar: CalendarView,_ date: String)
-//    @objc optional func didselectDateActiviy(_ calendar: CalendarView,_ date: String)
 }
                                                 
 class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
-    let shadowView = UIView()
     weak var delegate: CalendarViewDelegate?
+    let shadowView = UIView()
     let calendar = FSCalendar().then { calendar in
         calendar.backgroundColor = .white
         calendar.scrollDirection = .horizontal
@@ -31,7 +29,7 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
         calendar.appearance.headerMinimumDissolvedAlpha = 0
         calendar.appearance.headerDateFormat = "YYYY년 MM월"
         calendar.appearance.headerTitleFont = UIFont.body2()
-        calendar.appearance.headerTitleColor = UIColor.gray3
+        calendar.appearance.headerTitleColor = UIColor.secondaryYellow
         calendar.appearance.headerTitleAlignment = .center
         calendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
         calendar.layer.cornerRadius = 10
@@ -67,12 +65,10 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
     func setCalendarUI() {
         addSubview(shadowView)
         shadowView.addSubview(calendar)
-        setViewShadow(backView: shadowView)
-        
+        self.setViewShadow(backView: shadowView)
         shadowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
         calendar.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -107,7 +103,6 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
 
     // 날짜를 선택했을 때 할일을 지정
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print(dateFormatter.string(from: date) + " 선택됨")
         delegate?.didSelectDate(self, dateFormatter.string(from: date))
     }
 
@@ -118,7 +113,7 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
 
     // 선택된 날짜 테두리 색상
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderSelectionColorFor date: Date) -> UIColor? {
-        self.isHidden = true
+     
         return UIColor.secondaryYellow
     }
 
@@ -130,7 +125,7 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
     
     // title의 디폴트 색상
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        return UIColor.gray3
+        return UIColor.secondaryYellow
     }
     // subtitle의 디폴트 색상
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, subtitleDefaultColorFor date: Date) -> UIColor? {

@@ -20,13 +20,11 @@ class CampusActivitiyViewController: InternActivityViewController {
     @objc override func doneButtonTapped() {
         let infoVC = HomeViewController()
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
     @objc override func nextButtonTapped() {
         let infoVC = HomeViewController()
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
 

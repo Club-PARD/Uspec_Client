@@ -117,7 +117,7 @@ class ProfileDoneViewController: ProfileViewController{
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
     @objc func doneButtonTapped() {
-        let careerVC = CareerViewController(currentStep: .step1)
+        let careerVC = CareerIntroViewController(currentStep: .step1)
         self.navigationController?.pushViewController(careerVC, animated: true)
     }
     

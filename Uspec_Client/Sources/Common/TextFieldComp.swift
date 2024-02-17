@@ -42,4 +42,3 @@ class profileTextField: UITextField, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
