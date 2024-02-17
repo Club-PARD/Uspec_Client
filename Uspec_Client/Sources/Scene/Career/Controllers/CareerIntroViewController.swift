@@ -72,7 +72,7 @@ class CareerIntroViewController: CareerViewController {
        
         semiTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(scrollView.snp.top).offset(32)
-            make.leading.equalTo(view.snp.leading).offset(12)
+            make.left.equalTo(25)
             make.trailing.equalTo(view.snp.trailing)
         }
         
@@ -122,6 +122,7 @@ extension CareerIntroViewController: UICollectionViewDataSource, UICollectionVie
             }
             
             cell.configure(title: "활동 추가하기")
+            cell.tintColor = .gray4
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InputCareerCollectionViewCell", for: indexPath) as? InputCareerCollectionViewCell else {
