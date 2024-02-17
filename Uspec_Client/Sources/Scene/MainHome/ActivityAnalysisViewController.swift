@@ -147,7 +147,7 @@ class ActivityAnalysisViewController: UIViewController {
             }
         }
         
-        let card2 = ActivityAnalysisCardButton(activity: "대외활동", rank: 2, ratio: 32, background: .gray5, width: 100, height: 135, imgHeight: 60, image: "contest").then{
+        let card2 = ActivityAnalysisCardButton(activity: "대외활동", rank: 2, ratio: 32, background: .gray5, width: 100, height: 135, imgHeight: 60, image: "outActivity").then{
             backImage2.addSubview($0)
             $0.isUserInteractionEnabled = true
             $0.snp.makeConstraints{ make in

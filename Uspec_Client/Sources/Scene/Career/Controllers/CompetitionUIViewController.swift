@@ -65,7 +65,7 @@ class CompetitionUIViewController: CareerViewController {
         
         semiTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(scrollView.snp.top).offset(32)
-            make.leading.equalTo(view.snp.leading).offset(12)
+            make.left.equalTo(25)
             make.trailing.equalTo(view.snp.trailing)
         }
         

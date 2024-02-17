@@ -122,6 +122,7 @@ extension CareerIntroViewController: UICollectionViewDataSource, UICollectionVie
             }
             
             cell.configure(title: "활동 추가하기")
+            cell.configure(title: "활동 추가하기")
             cell.tintColor = .gray4
             return cell
         } else {
