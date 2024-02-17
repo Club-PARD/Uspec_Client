@@ -65,13 +65,13 @@ class CareerViewController: UIViewController {
         case .step0:
             appearance.shadowImage = UIImage(named: "line0")
         case .step1:
-            appearance.shadowImage = UIImage(named: "line1")
+            appearance.shadowImage = UIImage(named: "careerline1")
         case .step2:
-            appearance.shadowImage = UIImage(named: "line2")
+            appearance.shadowImage = UIImage(named: "careerline2")
         case .step3:
-            appearance.shadowImage = UIImage(named: "line3")
+            appearance.shadowImage = UIImage(named: "careerline3")
         case .step4:
-            appearance.shadowImage = UIImage(named: "line4")
+            appearance.shadowImage = UIImage(named: "careerline4")
         case .step5:
             appearance.shadowImage = UIImage(named: "line5")
         }
