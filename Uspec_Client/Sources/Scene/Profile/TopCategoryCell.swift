@@ -18,6 +18,12 @@ class TopCategoryCell: UITableViewCell {
         setUplabel()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // 셀의 상태 초기화
+        self.backgroundColor = .clear // 또는 기본 상태로 돌리기
+    }
+    
     func setUplabel(){
         textlabel.font = .body1(size: 15)
         textlabel.textColor = .gray7

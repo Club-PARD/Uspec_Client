@@ -226,6 +226,7 @@ class StatusInfoViewController: ProfileViewController {
         }
         
         view.addSubview(scoreField)
+        scoreField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         scoreField.snp.makeConstraints{ make in
             make.top.equalTo(scoreRadioStackView.snp.bottom).offset(9)
             make.left.equalTo(16)
@@ -253,6 +254,20 @@ class StatusInfoViewController: ProfileViewController {
             make.top.equalTo(scoreField.snp.bottom).offset(8)
             make.right.equalTo(-16)
             make.width.equalTo(120)
+        }
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let isMajorFieldFilled = !(scoreField.text?.isEmpty ?? true)
+        nextButton.isEnabled = isMajorFieldFilled
+        updateButtonColorBasedOnTextField()
+    }
+    
+    private func updateButtonColorBasedOnTextField() {
+        if nextButton.isEnabled {
+            nextButton.backgroundColor = .gray7
+        } else {
+            nextButton.backgroundColor = .gray2
         }
     }
     

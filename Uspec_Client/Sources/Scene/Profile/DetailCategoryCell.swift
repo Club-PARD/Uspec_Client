@@ -21,6 +21,12 @@ class DetailCategoryCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // 셀의 상태 초기화
+        self.backgroundColor = .clear // 또는 기본 상태로 돌리기
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: "detailCell")
         contentView.addSubview(checkBoxButton)
