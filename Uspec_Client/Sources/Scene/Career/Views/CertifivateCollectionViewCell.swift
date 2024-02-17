@@ -201,5 +201,7 @@ extension CertifivateCollectionViewCell : CalendarViewDelegate {
         } else {
             calderbutton.setTitleColor(.gray3, for: .normal)
         }
+        validateNextButton()
     }
+
 }

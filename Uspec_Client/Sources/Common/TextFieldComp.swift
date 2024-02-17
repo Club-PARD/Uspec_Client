@@ -33,6 +33,8 @@ class profileTextField: UITextField, UITextFieldDelegate {
         self.setPlaceholder(color: .gray4)
         self.addLeftPadding(width: leftPadding)
         self.addRightPadding(width: rightPadding)
+        self.autocorrectionType = .no
+        self.spellCheckingType = .no
         self.translatesAutoresizingMaskIntoConstraints = false
         self.autocorrectionType = .no
         self.spellCheckingType = .no
