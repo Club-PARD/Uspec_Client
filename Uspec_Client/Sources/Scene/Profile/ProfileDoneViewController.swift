@@ -120,5 +120,4 @@ class ProfileDoneViewController: ProfileViewController{
         let careerVC = CareerIntroViewController(currentStep: .step1)
         self.navigationController?.pushViewController(careerVC, animated: true)
     }
-    
 }

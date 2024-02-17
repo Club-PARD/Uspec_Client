@@ -314,27 +314,18 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
 }
 
 
-extension InternActCollectionViewCell: DropdownButtonDelegate {
-    
-    func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
-        if isSelected {
-            UpDateDatavalidation()
-            validateNextButton()
-        } else {
-            UpDateDatavalidation()
-            validateNextButton()
-        }
-    }
+extension InternActCollectionViewCell {
     
     func UpDateDatavalidation() -> Bool {
+        
         let companyName = companyNametextField.text ?? ""
         let jopName = jobNametextField.text ?? ""
         let textFieldNameValid = !(companyName.isEmpty)
         let textFieldjopNameValid = !(jopName.isEmpty)
         let startDate = !(selectedDateStringStart.isEmpty)
         let lastDate = !(selectedDateStringLast.isEmpty)
-        
-        return textFieldNameValid == true  && textFieldjopNameValid == true
+
+        return textFieldNameValid == true  && textFieldjopNameValid == true 
                 && startDate == true && lastDate == true
     }
     
@@ -365,6 +356,7 @@ extension InternActCollectionViewCell : CalendarViewDelegate {
                 lastInternButton.setTitleColor(.gray3, for: .normal)
             }
         }
+        validateNextButton()
     }
 }
 

@@ -82,6 +82,8 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         }
         view.addSubview(majorField)
         majorField.delegate = self
+        majorField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
         majorField.snp.makeConstraints{ make in
             make.top.equalTo(majorFieldLabel.snp.bottom).offset(12)
             make.centerX.equalToSuperview()
@@ -98,9 +100,11 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         updateButtonStatus()
     }
     
+    // MARK: - 이후 수정 필요
     private func updateButtonStatus() {
-        let isBothFieldsFilled = !(univField.text?.isEmpty ?? true) && !(majorField.text?.isEmpty ?? true)
-        nextButton.isEnabled = isBothFieldsFilled
+//        let isBothFieldsFilled = !(univField.text?.isEmpty ?? true) && !(majorField.text?.isEmpty ?? true)
+        let isMajorFieldFilled = !(majorField.text?.isEmpty ?? true)
+        nextButton.isEnabled = isMajorFieldFilled
         updateButtonColorBasedOnTextField()
     }
     
