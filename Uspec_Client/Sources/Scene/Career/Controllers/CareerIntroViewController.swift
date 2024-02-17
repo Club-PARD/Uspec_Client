@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class CareerIntrolViewController: CareerViewController {
+class CareerIntroViewController: CareerViewController {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -57,13 +57,11 @@ class CareerIntrolViewController: CareerViewController {
     @objc private func doneButtonTapped() {
         let infoVC = CompetitionUIViewController(currentStep: .step2)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
     @objc private func nextButtonTapped() {
         let infoVC = CompetitionUIViewController(currentStep: .step2)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
     private func setUpLayout(){
@@ -112,7 +110,7 @@ class CareerIntrolViewController: CareerViewController {
     }
 }
 
-extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CareerIntroViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfCells + 1
     }
@@ -147,7 +145,7 @@ extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionVi
     }
 }
 
-extension CareerIntrolViewController: UICollectionViewDelegateFlowLayout {
+extension CareerIntroViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.item == numberOfCells {
             return CGSize(width: 343, height: 61)
@@ -157,7 +155,7 @@ extension CareerIntrolViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CareerIntrolViewController: InputCareerCollectionViewCellDelegate {
+extension CareerIntroViewController: InputCareerCollectionViewCellDelegate {
     func inputCareerCellDidRequestDelete(_ cell: UICollectionViewCell) {
             guard let indexPath = collectionView.indexPath(for: cell) else { return }
         numberOfCells -= 1
@@ -179,9 +177,8 @@ extension CareerIntrolViewController: InputCareerCollectionViewCellDelegate {
     }
 }
 
-extension CareerIntrolViewController: InputCareerValidCheckDelegate {
+extension CareerIntroViewController: InputCareerValidCheckDelegate {
     func inputCareerCell(_ cell: UICollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool {
-        print("다음의 값은 \(isFilled)")
         if isFilled {
             nextButton.isEnabled = true
             nextButton.backgroundColor = .gray7

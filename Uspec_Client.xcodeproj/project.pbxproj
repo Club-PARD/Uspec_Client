@@ -38,7 +38,7 @@
 		21B21B732B722448008FFDCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21B21B712B722448008FFDCB /* LaunchScreen.storyboard */; };
 		21B21B8D2B75F828008FFDCB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B8C2B75F828008FFDCB /* LoginViewController.swift */; };
 		21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B912B75FA5B008FFDCB /* SplashViewController.swift */; };
-		21B21B952B75FA6F008FFDCB /* CareerIntrolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B942B75FA6F008FFDCB /* CareerIntrolViewController.swift */; };
+		21B21B952B75FA6F008FFDCB /* CareerIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B942B75FA6F008FFDCB /* CareerIntroViewController.swift */; };
 		21B21B982B75FA80008FFDCB /* ProfileIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B972B75FA80008FFDCB /* ProfileIntroViewController.swift */; };
 		21B21B9B2B75FA90008FFDCB /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B9A2B75FA90008FFDCB /* MyPageViewController.swift */; };
 		21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */; };
@@ -99,7 +99,7 @@
 		21B21B7C2B738A1A008FFDCB /* Uspec_Client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Uspec_Client.entitlements; sourceTree = "<group>"; };
 		21B21B8C2B75F828008FFDCB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		21B21B912B75FA5B008FFDCB /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		21B21B942B75FA6F008FFDCB /* CareerIntrolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerIntrolViewController.swift; sourceTree = "<group>"; };
+		21B21B942B75FA6F008FFDCB /* CareerIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareerIntroViewController.swift; sourceTree = "<group>"; };
 		21B21B972B75FA80008FFDCB /* ProfileIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileIntroViewController.swift; sourceTree = "<group>"; };
 		21B21B9A2B75FA90008FFDCB /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -156,8 +156,8 @@
 				0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */,
 				0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */,
 				0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */,
-				0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */,
 				0D516DD42B7FF027003F7923 /* CampusActivityCollectionViewCell.swift */,
+				0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				0D4106212B7E137F0039CDB6 /* CareerViewController.swift */,
-				21B21B942B75FA6F008FFDCB /* CareerIntrolViewController.swift */,
+				21B21B942B75FA6F008FFDCB /* CareerIntroViewController.swift */,
 				0D41061D2B7DF61B0039CDB6 /* CompetitionUIViewController.swift */,
 				0D4106272B7E6A2F0039CDB6 /* InternActivityViewController.swift */,
 				0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */,
@@ -509,10 +509,12 @@
 				21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */,
 				21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */,
 				0D516D8E2B7F7274003F7923 /* UIlabelPadding.swift in Sources */,
-				21B21B952B75FA6F008FFDCB /* CareerIntrolViewController.swift in Sources */,
+
+				21B21B952B75FA6F008FFDCB /* CareerIntroViewController.swift in Sources */,
 				2102541E2B7E06FF009370E5 /* CategoryViewController.swift in Sources */,
 				210254272B7E6500009370E5 /* ProfileDoneViewController.swift in Sources */,
-				21B21B952B75FA6F008FFDCB /* CareerIntrolViewController.swift in Sources */,
+				21B21B952B75FA6F008FFDCB /* CareerIntroViewController.swift in Sources */,
+
 				0D516DD12B7FC6E2003F7923 /* CalenderView.swift in Sources */,
 				0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* ButtonComp.swift in Sources */,

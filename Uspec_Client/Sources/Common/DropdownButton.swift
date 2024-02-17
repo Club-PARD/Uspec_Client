@@ -89,7 +89,6 @@ class DropdownButton: UIView {
                     button.setTitleColor(UIColor.gray7, for: .normal)
                     self.button.titleLabel?.font = UIFont.body3(size: 13)
                     self.button.setTitle(selectedOptions.joined(separator: ", "), for: .normal)
-                    print("Selected options: \(selectedOptions)")
                 }
             }
         } else {
@@ -105,9 +104,7 @@ class DropdownButton: UIView {
                     self.DropButtondelegate?.dropdownButton(self, didSelectOption: true)
                     button.setTitleColor(UIColor.gray7, for: .normal)
                     self.button.setTitle(selectedOptions, for: .normal)
-                    print("Selected options: \(selectedOptions)")
                 }
-                
             }
         }
        
@@ -120,7 +117,6 @@ class DropdownButton: UIView {
         } else {
             button.layer.borderColor = UIColor.secondaryYellow.cgColor
         }
-        print(isDropdownMenuVisible)
         dropDownMenu.isHidden = isDropdownMenuVisible
         setUplayoutPullButtonView()
     }

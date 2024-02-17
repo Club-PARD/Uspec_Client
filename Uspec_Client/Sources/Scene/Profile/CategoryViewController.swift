@@ -8,6 +8,7 @@
 import UIKit
 
 class CategoryViewController: ProfileViewController {
+    
     var path = ""
     let topWidth = 150
     let topCategoryTableView = UITableView()
@@ -128,7 +129,7 @@ class CategoryViewController: ProfileViewController {
             let isThree = UserDefaults.standard.bool(forKey: "isThree")
             let isGradeOpen = UserDefaults.standard.bool(forKey: "isGradeOpen")
             if let age = Int(ageString), let semester = Int(semesterString) {
-                makePostRequest(with: nickName, university: university, age: age, semester: semester, isGraduated: isGraduated, score: score, major: major, isThree: isThree, isGradeOpen: isGradeOpen, path: path)
+                APICallers.shared.makePostRequest(with: nickName, university: university, age: age, semester: semester, isGraduated: isGraduated, score: score, major: major, isThree: isThree, isGradeOpen: isGradeOpen, path: path)
             } else {
                 print("Error: Unable to convert age or semester to Int.")
             }
