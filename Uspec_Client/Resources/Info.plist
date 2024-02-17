@@ -15,9 +15,6 @@
 		<string>AppleSDGothicNeoL.ttf</string>
 		<string>AppleSDGothicNeoM.ttf</string>
 		<string>AppleSDGothicNeoR.ttf</string>
-		<string>AppleSDGothicNeoSB.ttf</string>
-		<string>AppleSDGothicNeoT.ttf</string>
-		<string>AppleSDGothicNeoUL.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

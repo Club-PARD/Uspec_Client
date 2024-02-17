@@ -201,6 +201,7 @@ class HomeViewController: UIViewController {
         
         let gotoActivityButton = UIButton().then{
             backImage1.addSubview($0)
+            backImage1.isUserInteractionEnabled = true
             $0.setTitle("활동 분석표 보러가기", for: .normal)
             $0.titleLabel?.font = .body1(size: 15)
             $0.setTitleColor(.white, for: .normal)
@@ -212,6 +213,7 @@ class HomeViewController: UIViewController {
                 make.right.equalTo(-16)
                 make.height.equalTo(54)
             }
+            $0.addTarget(self, action: #selector(activityButtonTapped), for: .touchUpInside)
         }
     }
     
@@ -273,5 +275,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
+    @objc func activityButtonTapped(){
+        let activityVC = ActivityAnalysisViewController()
+        self.navigationController?.pushViewController(activityVC, animated: true)
+    }
 }

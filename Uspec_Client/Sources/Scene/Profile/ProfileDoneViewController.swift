@@ -115,12 +115,10 @@ class ProfileDoneViewController: ProfileViewController{
     @objc func notYetButtonTapped() {
         let homeVC = HomeViewController()
         self.navigationController?.pushViewController(homeVC, animated: true)
-        print(self.navigationController as Any)
     }
     @objc func doneButtonTapped() {
         let careerVC = CareerIntroViewController(currentStep: .step1)
         self.navigationController?.pushViewController(careerVC, animated: true)
-        print(self.navigationController as Any)
     }
     
 }

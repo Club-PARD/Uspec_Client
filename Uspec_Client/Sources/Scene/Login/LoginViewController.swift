@@ -17,6 +17,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setComponents()
         configureUI()
+        getFontName()
+    }
+
+    func getFontName() {
+        for family in UIFont.familyNames {
+          print("family == \(family)")
+
+          for sub in UIFont.fontNames(forFamilyName: family) {
+            print("====> \(sub)")
+          }
+        }
     }
     
     private func setComponents() {
@@ -67,6 +78,8 @@ class LoginViewController: UIViewController {
         
         // MARK: - ram test
 //        let profileVC = HomeViewController()
+      
+//         let profileVC = ActivityAnalysisViewController()
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

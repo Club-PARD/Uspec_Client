@@ -59,6 +59,8 @@
 		21B21BD12B7BCDF4008FFDCB /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BD02B7BCDF4008FFDCB /* UniversityViewController.swift */; };
 		21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */; };
 		21C100312B7BE71B00BED0A8 /* StatusInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */; };
+		21D8CC032B7FC953006F8425 /* ActivityAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CC022B7FC953006F8425 /* ActivityAnalysisViewController.swift */; };
+		21D8CC052B7FD2A9006F8425 /* CardButtonComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8CC042B7FD2A9006F8425 /* CardButtonComp.swift */; };
 		5919BE55D4E4EFD2B827C1F6 /* Pods_Uspec_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,10 +79,12 @@
 		0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternActCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D41062B2B7E764B0039CDB6 /* CertificateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertificateViewController.swift; sourceTree = "<group>"; };
 		0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertifivateCollectionViewCell.swift; sourceTree = "<group>"; };
+
 		0D516D8D2B7F7274003F7923 /* UIlabelPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIlabelPadding.swift; sourceTree = "<group>"; };
 		0D516DD02B7FC6E2003F7923 /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		0D516DD22B7FEFE4003F7923 /* CampusActivitiyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusActivitiyViewController.swift; sourceTree = "<group>"; };
 		0D516DD42B7FF027003F7923 /* CampusActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusActivityCollectionViewCell.swift; sourceTree = "<group>"; };
+
 		2102541D2B7E06FF009370E5 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		210254202B7E0D85009370E5 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		210254222B7E1AC7009370E5 /* TopCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCategoryCell.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 		21B21BD02B7BCDF4008FFDCB /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldComp.swift; sourceTree = "<group>"; };
 		21C100302B7BE71B00BED0A8 /* StatusInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusInfoViewController.swift; sourceTree = "<group>"; };
+		21D8CC022B7FC953006F8425 /* ActivityAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityAnalysisViewController.swift; sourceTree = "<group>"; };
+		21D8CC042B7FD2A9006F8425 /* CardButtonComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonComp.swift; sourceTree = "<group>"; };
 		59256D33766EEB3A06ED83CB /* Pods-Uspec_Client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.debug.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.debug.xcconfig"; sourceTree = "<group>"; };
 		5E07639FC209E2A74D7B7085 /* Pods_Uspec_Client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uspec_Client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		860805B32C94A2E517AC2C3D /* Pods-Uspec_Client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uspec_Client.release.xcconfig"; path = "Target Support Files/Pods-Uspec_Client/Pods-Uspec_Client.release.xcconfig"; sourceTree = "<group>"; };
@@ -311,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				21B21B9E2B75FAAF008FFDCB /* HomeViewController.swift */,
+				21D8CC022B7FC953006F8425 /* ActivityAnalysisViewController.swift */,
 			);
 			path = MainHome;
 			sourceTree = "<group>";
@@ -322,8 +329,12 @@
 				21B21BD22B7BCFF5008FFDCB /* TextFieldComp.swift */,
 				0D4106102B7C84BA0039CDB6 /* DropdownButton.swift */,
 				0D4106182B7D95490039CDB6 /* DropDownCollectionViewCell.swift */,
+
+				21D8CC042B7FD2A9006F8425 /* CardButtonComp.swift */,
+
 				0D516D8D2B7F7274003F7923 /* UIlabelPadding.swift */,
 				0D516DD02B7FC6E2003F7923 /* CalenderView.swift */,
+
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -502,14 +513,17 @@
 				21B21B982B75FA80008FFDCB /* ProfileIntroViewController.swift in Sources */,
 				21B21BD32B7BCFF5008FFDCB /* TextFieldComp.swift in Sources */,
 				21B21B9F2B75FAAF008FFDCB /* HomeViewController.swift in Sources */,
+
 				0D516D8E2B7F7274003F7923 /* UIlabelPadding.swift in Sources */,
 				21B21B952B75FA6F008FFDCB /* CareerIntroViewController.swift in Sources */,
 				2102541E2B7E06FF009370E5 /* CategoryViewController.swift in Sources */,
 				210254272B7E6500009370E5 /* ProfileDoneViewController.swift in Sources */,
 				21B21B952B75FA6F008FFDCB /* CareerIntroViewController.swift in Sources */,
 				0D516DD12B7FC6E2003F7923 /* CalenderView.swift in Sources */,
+
 				0D4106122B7C84D60039CDB6 /* AddActivityCollectionViewCell.swift in Sources */,
 				21B21BA32B75FAE2008FFDCB /* ButtonComp.swift in Sources */,
+				21D8CC052B7FD2A9006F8425 /* CardButtonComp.swift in Sources */,
 				0D41061E2B7DF61B0039CDB6 /* CompetitionUIViewController.swift in Sources */,
 				0D4106222B7E137F0039CDB6 /* CareerViewController.swift in Sources */,
 				0D4106172B7D17FF0039CDB6 /* CareerData.swift in Sources */,
@@ -523,7 +537,9 @@
 				0D516DD52B7FF027003F7923 /* CampusActivityCollectionViewCell.swift in Sources */,
 				21B21B922B75FA5B008FFDCB /* SplashViewController.swift in Sources */,
 				0D4106202B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift in Sources */,
+
 				0D516DD32B7FEFE4003F7923 /* CampusActivitiyViewController.swift in Sources */,
+
 				21B21BA82B779FC4008FFDCB /* CategoryData.swift in Sources */,
 				0D4106282B7E6A2F0039CDB6 /* InternActivityViewController.swift in Sources */,
 				21B21BA82B779FC4008FFDCB /* CategoryData.swift in Sources */,
@@ -533,6 +549,7 @@
 				21B21BD12B7BCDF4008FFDCB /* UniversityViewController.swift in Sources */,
 				21B21B9B2B75FA90008FFDCB /* DashboardViewController.swift in Sources */,
 				210254252B7E23DA009370E5 /* DetailCategoryCell.swift in Sources */,
+				21D8CC032B7FC953006F8425 /* ActivityAnalysisViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
