@@ -50,6 +50,11 @@ class AddActivityCollectionViewCell: UICollectionViewCell {
         
         setViewShadow(backView: shadowView)
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // 키보드 내리기
+        return true
+    }
 }
 
 

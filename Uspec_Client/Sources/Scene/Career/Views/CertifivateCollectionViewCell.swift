@@ -45,7 +45,7 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
         delegate?.inputCareerCellDidRequestDelete(self)
     }
     
-    let CertificateTextField = profileTextField(
+    let CertificateTextField = ProfileTextField(
         placeholder: "자격증 이름",
         fontSize: 15,
         textColor: .textBlack,
@@ -202,6 +202,11 @@ extension CertifivateCollectionViewCell : CalendarViewDelegate {
             calderbutton.setTitleColor(.gray3, for: .normal)
         }
         validateNextButton()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // 키보드 내리기
+        return true
     }
 
 }

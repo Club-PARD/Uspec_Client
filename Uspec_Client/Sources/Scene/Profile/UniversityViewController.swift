@@ -9,7 +9,7 @@ import UIKit
 
 class UniversityViewController: ProfileViewController, UITextFieldDelegate {
     let nextButton = NextButton(titleText: "다음")
-    let univField = profileTextField(
+    let univField = ProfileTextField(
         placeholder: "대학교",
         fontSize: 15,
         textColor: .textBlack,
@@ -19,7 +19,7 @@ class UniversityViewController: ProfileViewController, UITextFieldDelegate {
         leftPadding: 16,
         rightPadding: 16
     )
-    let majorField = profileTextField(
+    let majorField = ProfileTextField(
         placeholder: "학부 또는 학과",
         fontSize: 15,
         textColor: .textBlack,

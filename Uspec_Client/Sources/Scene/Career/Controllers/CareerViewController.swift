@@ -92,4 +92,8 @@ class CareerViewController: UIViewController {
             make.left.equalTo(16)
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }

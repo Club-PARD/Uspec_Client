@@ -17,7 +17,7 @@ class StatusInfoViewController: ProfileViewController {
     let statusLabel = profileFieldLabel(text: "현재 대학교 등록 상태를 알려주세요.", fontSize: 15, textColor: .textBlack)
     let ageLabel = profileFieldLabel(text: "현재 나이와 학기 수를 입력해주세요.", fontSize: 15, textColor: .textBlack)
     let scoreLabel = profileFieldLabel(text: "현재까지 평균 학점을 입력해주세요.", fontSize: 15, textColor: .textBlack)
-    let ageField = profileTextField(
+    let ageField = ProfileTextField(
         placeholder: "나이(만)",
         fontSize: 15,
         textColor: .textBlack,
@@ -27,7 +27,7 @@ class StatusInfoViewController: ProfileViewController {
         leftPadding: 16,
         rightPadding: 16
     )
-    let semesterField = profileTextField(
+    let semesterField = ProfileTextField(
         placeholder: "학기 수",
         fontSize: 15,
         textColor: .textBlack,
@@ -37,7 +37,7 @@ class StatusInfoViewController: ProfileViewController {
         leftPadding: 16,
         rightPadding: 16
     )
-    let scoreField = profileTextField(
+    let scoreField = ProfileTextField(
         placeholder: "학점",
         fontSize: 15,
         textColor: .textBlack,
