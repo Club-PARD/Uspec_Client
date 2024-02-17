@@ -70,7 +70,7 @@ class CalendarButton: UIButton {
     }
 }
 
-cclass CertificationCalendarButton: UIButton {
+class CertificationCalendarButton: UIButton {
     init(titleText: String, image : String) {
         super.init(frame: .zero)
         self.setTitle(titleText, for: .normal)

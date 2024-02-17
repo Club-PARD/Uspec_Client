@@ -98,7 +98,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         rightPadding: -16
     )
     
-    let jobNametextField = CareerTextField(
+    let jobNametextField = profileTextField(
         placeholder: "직무 이름",
         fontSize: 15,
         textColor: .textBlack,

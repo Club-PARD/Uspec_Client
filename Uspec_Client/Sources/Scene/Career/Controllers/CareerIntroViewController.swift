@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class CareerIntrolViewController: CareerViewController {
+class CareerIntroViewController: CareerViewController {
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -110,7 +110,7 @@ class CareerIntrolViewController: CareerViewController {
     }
 }
 
-extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension CareerIntroViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfCells + 1
     }
@@ -145,7 +145,7 @@ extension CareerIntrolViewController: UICollectionViewDataSource, UICollectionVi
     }
 }
 
-extension CareerIntrolViewController: UICollectionViewDelegateFlowLayout {
+extension CareerIntroViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.item == numberOfCells {
             return CGSize(width: 343, height: 61)
@@ -155,7 +155,7 @@ extension CareerIntrolViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CareerIntrolViewController: InputCareerCollectionViewCellDelegate {
+extension CareerIntroViewController: InputCareerCollectionViewCellDelegate {
     func inputCareerCellDidRequestDelete(_ cell: UICollectionViewCell) {
             guard let indexPath = collectionView.indexPath(for: cell) else { return }
         numberOfCells -= 1
@@ -177,7 +177,7 @@ extension CareerIntrolViewController: InputCareerCollectionViewCellDelegate {
     }
 }
 
-extension CareerIntrolViewController: InputCareerValidCheckDelegate {
+extension CareerIntroViewController: InputCareerValidCheckDelegate {
     func inputCareerCell(_ cell: UICollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool {
         if isFilled {
             nextButton.isEnabled = true
