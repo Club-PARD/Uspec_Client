@@ -100,6 +100,7 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
         shadowView.addSubview(actingContentTextField)
         
         activeNametextField.delegate = self
+        actingContentTextField.delegate = self
         selectButton1.DropButtondelegate = self
         
         nameText.snp.makeConstraints { make in
@@ -173,7 +174,11 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
     }
         
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        if textField == activeNametextField {
+            activeNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        } else {
+            actingContentTextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        }
         validateNextButton()
     }
     
@@ -232,6 +237,5 @@ extension CampusActivityCollectionViewCell: DropdownMenuDelegate {
             activeNametextField.resignFirstResponder()
             return true
         }
-       
     }
 }
