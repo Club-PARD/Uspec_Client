@@ -18,7 +18,7 @@ class InternActivityViewController: CompetitionUIViewController {
 
     
     func setUpComponent() {
-        semiTitleLabel.text = "짱구님의 인턴 내역을 입력해주세요."
+        semiTitleLabel.text = "\(nickName)님의 인턴 내역을 입력해주세요."
         doneButton.setTitle("활동한 인턴 경험이 없어요.", for: .normal)
         collectionView.register(InternActCollectionViewCell.self, forCellWithReuseIdentifier: identifier)
         collectionView.register(AddActivityCollectionViewCell.self, forCellWithReuseIdentifier: addActivityCellIdentifier)

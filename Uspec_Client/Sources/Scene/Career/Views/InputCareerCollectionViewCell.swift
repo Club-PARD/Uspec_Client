@@ -27,21 +27,25 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     let nameText = UILabel().then { label in
         label.text = "대외활동의 이름을 구체적으로 입력해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     let activityPartText = UILabel().then { label in
         label.text = "대외활동의 활동 분야를 모두 정해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     let interestsText = UILabel().then { label in
         label.text = "대외활동의 관심분야를 모두 정해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     let activityDateText = UILabel().then { label in
         label.text = "대외활동의 활동기간을 정해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     private lazy var deleteButton = UIButton().then { button in
         button.setImage(UIImage(named: "delete_Icon"), for: .normal) 

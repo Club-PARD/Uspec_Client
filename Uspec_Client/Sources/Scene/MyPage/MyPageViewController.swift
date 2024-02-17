@@ -97,7 +97,6 @@ class MyPageViewController: UIViewController {
     
     @objc func backButtonTapped() {
         let homeVC = HomeViewController()
-//        navigationController?.pushViewController(homeVC, animated: true)
         navigationController?.popViewController(animated: true)
     }
 }

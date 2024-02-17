@@ -26,16 +26,19 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     private let companyText = UILabel().then { label in
         label.text = "근무하신 회사의 이름을 적어주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let workingDateText = UILabel().then { label in
         label.text = "인턴 근무 기간을 선택해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let activityDateText = UILabel().then { label in
         label.text = "회사에서 맡으신 직무를 작성해주세요.."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private lazy var deleteButton = UIButton().then { button in

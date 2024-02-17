@@ -21,7 +21,7 @@ class CompetitionUIViewController: CareerViewController {
     var numberOfCells = 1
     
     let semiTitleLabel = UILabel().then { label in
-        label.text = "짱구님의 공모전 내역을 입력해주세요."
+        label.text = "\(nickName)님의 공모전 내역을 입력해주세요."
         label.font = UIFont.header3(size: 18)
         label.textColor = .primaryYellow
     }
