@@ -59,7 +59,7 @@ class InputCareerCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         delegate?.inputCareerCellDidRequestDelete(self)
     }
     
-    let activeNametextField = profileTextField(
+    let activeNametextField = ProfileTextField(
         placeholder: "대외활동 이름",
         fontSize: 15,
         textColor: .textBlack,
@@ -262,6 +262,11 @@ extension InputCareerCollectionViewCell {
         shadowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // 키보드 내리기
+        return true
     }
 
 }

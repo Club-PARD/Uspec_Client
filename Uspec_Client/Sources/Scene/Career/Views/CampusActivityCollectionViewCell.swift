@@ -34,7 +34,7 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
         label.textColor = .gray7
     }
     
-    private let actingContentTextField = profileTextField (
+    private let actingContentTextField = ProfileTextField (
         placeholder: "활동 내용 설명",
         fontSize: 15,
         textColor: .textBlack,
@@ -54,7 +54,7 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
         delegate?.inputCareerCellDidRequestDelete(self)
     }
     
-    let activeNametextField = profileTextField(
+    let activeNametextField = ProfileTextField(
         placeholder: "교내활동 이름",
         fontSize: 15,
         textColor: .textBlack,
@@ -178,6 +178,7 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         validateNextButton()
         return true
     }
@@ -221,5 +222,16 @@ extension CampusActivityCollectionViewCell: DropdownMenuDelegate {
             datas.competitionPart = options
         }
         validateNextButton()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == actingContentTextField {
+            actingContentTextField.resignFirstResponder()
+            return true
+        } else {
+            activeNametextField.resignFirstResponder()
+            return true
+        }
+       
     }
 }

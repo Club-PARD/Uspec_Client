@@ -9,7 +9,7 @@ import UIKit
 
 class NickNameViewController: ProfileViewController, UISearchTextFieldDelegate {
     let nextButton = NextButton(titleText: "다음")
-    let nickNameField = profileTextField(
+    let nickNameField = ProfileTextField(
         placeholder: "닉네임 (8자 이내)",
         fontSize: 15,
         textColor: .textBlack,

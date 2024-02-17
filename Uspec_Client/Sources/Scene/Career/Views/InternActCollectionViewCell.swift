@@ -90,7 +90,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         delegate?.inputCareerCellDidRequestDelete(self)
     }
     
-    let companyNametextField = profileTextField(
+    let companyNametextField = ProfileTextField(
         placeholder: "회사 이름",
         fontSize: 15,
         textColor: .textBlack,
@@ -101,7 +101,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         rightPadding: -16
     )
     
-    let jobNametextField = profileTextField(
+    let jobNametextField = ProfileTextField(
         placeholder: "직무 이름",
         fontSize: 15,
         textColor: .textBlack,
@@ -360,6 +360,10 @@ extension InternActCollectionViewCell : CalendarViewDelegate {
             }
         }
         validateNextButton()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // 키보드 내리기
+        return true
     }
 }
 
