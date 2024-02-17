@@ -19,7 +19,6 @@ class MyPageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
-        
     }
     
     private func navigationUI() {
@@ -98,6 +97,7 @@ class MyPageViewController: UIViewController {
     
     @objc func backButtonTapped() {
         let homeVC = HomeViewController()
-        navigationController?.pushViewController(homeVC, animated: true)
+//        navigationController?.pushViewController(homeVC, animated: true)
+        navigationController?.popViewController(animated: true)
     }
 }
