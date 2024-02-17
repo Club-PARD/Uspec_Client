@@ -32,13 +32,11 @@ class CertificateViewController: InternActivityViewController {
     @objc override func doneButtonTapped() {
         let infoVC = CampusActivitiyViewController(currentStep: .step5)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
     @objc override func nextButtonTapped() {
         let infoVC = CampusActivitiyViewController(currentStep: .step5)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
 }
 

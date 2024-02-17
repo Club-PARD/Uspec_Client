@@ -27,13 +27,11 @@ class InternActivityViewController: CompetitionUIViewController {
     @objc override func doneButtonTapped() {
         let infoVC = CertificateViewController(currentStep: .step4)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
     @objc override func nextButtonTapped() {
         let infoVC = CertificateViewController(currentStep: .step4)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
    

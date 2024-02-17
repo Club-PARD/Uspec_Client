@@ -57,13 +57,11 @@ class CareerIntrolViewController: CareerViewController {
     @objc private func doneButtonTapped() {
         let infoVC = CompetitionUIViewController(currentStep: .step2)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
     @objc private func nextButtonTapped() {
         let infoVC = CompetitionUIViewController(currentStep: .step2)
         self.navigationController?.pushViewController(infoVC, animated: true)
-        print(self.navigationController as Any)
     }
     
     private func setUpLayout(){
@@ -181,7 +179,6 @@ extension CareerIntrolViewController: InputCareerCollectionViewCellDelegate {
 
 extension CareerIntrolViewController: InputCareerValidCheckDelegate {
     func inputCareerCell(_ cell: UICollectionViewCell, didChangeFieldsFilledStatus isFilled: Bool) -> Bool {
-        print("다음의 값은 \(isFilled)")
         if isFilled {
             nextButton.isEnabled = true
             nextButton.backgroundColor = .gray7

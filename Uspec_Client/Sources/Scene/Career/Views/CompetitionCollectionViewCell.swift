@@ -14,7 +14,8 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     weak var delegateValid : InputCareerValidCheckDelegate?
     var isBothFieldsFilled = false
     private let shadowView = UIView()
-    var datas : SeveralCompetitionPart?
+    var competitionPart : [String] = []
+    var awardScalePart = String()
     
     private let nameText = UILabel().then { label in
         label.text = "공모전의 이름을 구체적으로 입력해주세요."
@@ -59,7 +60,7 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
 
     private lazy var selectButton2: DropdownButton = {
         let button = DropdownButton()
-        button.setupDropdownMenu(options: SelectCategoryInCareer().actingDate , selectedvalue: false)
+        button.setupDropdownMenu(options: SelectCategoryInCareer().awardScale , selectedvalue: false)
        return button
     }()
     
@@ -98,6 +99,8 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
         activeNametextField.delegate = self
         selectButton1.DropButtondelegate = self
         selectButton2.DropButtondelegate = self
+        selectButton1.dropDownMenu.delegate = self
+        selectButton2.dropDownMenu.delegate = self
         
         nameText.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
@@ -192,28 +195,16 @@ extension CompetitionCollectionViewCell : DropdownButtonDelegate {
     }
     
     func UpDateDatavalidation() -> Bool {
-        var wholevalid : Bool = false
         let activityName = activeNametextField.text ?? ""
         let activityNameValid = !(activityName.isEmpty)
-        print(selectButton1.isSelectedOption)
-        print(selectButton2.isSelectedOption)
         let activityValid : Bool = selectButton1.isSelectedOption
         let interestingValid : Bool = selectButton2.isSelectedOption
-        if activityValid == true &&
-            interestingValid == true &&
-            activityNameValid == true {
-            wholevalid = true
-            return wholevalid
-        } else {
-            wholevalid = false
-            return wholevalid
-        }
         
+        return activityValid == true && interestingValid == true && activityNameValid == true
     }
     
     func validateNextButton() {
         isBothFieldsFilled = UpDateDatavalidation()
-        print("isBothFieldsFilled = \(isBothFieldsFilled)")
         delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
     }
 }
@@ -221,18 +212,21 @@ extension CompetitionCollectionViewCell : DropdownButtonDelegate {
 // MARK: - 드랍다운에서 선택한 데이터 전달!! 부분
 
 extension CompetitionCollectionViewCell: DropdownMenuDelegate {
-    
+    //드랍 다운 단일 팝업
     func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOption option: String) {
+        //selection2 드랍다운에 대한 에 대한 처리
         if dropdownMenu == selectButton2.dropDownMenu {
-            datas?.awardScalePart = option
+            awardScalePart = option
+            
         }
         validateNextButton()
     }
-    
+    //드랍 다운 다중 팝업
     func dropdownMenu(_ dropdownMenu: DropdownMenu, didSelectOptions options: [String]) {
         if dropdownMenu == selectButton1.dropDownMenu {
             // selectButton1에 대한 처리
-            datas?.competitionPart = options
+            competitionPart = options
+          
         }
         validateNextButton()
     }

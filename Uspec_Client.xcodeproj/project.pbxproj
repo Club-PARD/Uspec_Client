@@ -152,8 +152,8 @@
 				0D41061F2B7DF9170039CDB6 /* CompetitionCollectionViewCell.swift */,
 				0D4106292B7E6D3B0039CDB6 /* InternActCollectionViewCell.swift */,
 				0D41062D2B7E771B0039CDB6 /* CertifivateCollectionViewCell.swift */,
-				0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */,
 				0D516DD42B7FF027003F7923 /* CampusActivityCollectionViewCell.swift */,
+				0D41060D2B7C848A0039CDB6 /* AddActivityCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

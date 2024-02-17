@@ -16,14 +16,12 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     private var selectedDateStringStart = String()
     private var selectedDateStringLast = String()
     private let shadowView = UIView()
+    
     var isBothFieldsFilled = false
     var isScoreVisibleRadioButton = false
     
     var isselectedStartButton = false
     var isselectedlastButton = false
-    var categories1 = ["Category 1-1", "Category 1-2", "Category 1-3", "Category 1-4", "Category 1-8","Category 1-5"]
-    var categories2 = ["Category 2-1", "Category 2-2", "Category 2-3", "Category 2-4"]
-    var categories3 = ["Category 3-1", "Category 3-2", "Category 3-3", "Category 3-4"]
     
     private let companyText = UILabel().then { label in
         label.text = "근무하신 회사의 이름을 적어주세요."
@@ -45,7 +43,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
     }
     
-    let dividerInDateView = UIView().then { view in
+    private let dividerInDateView = UIView().then { view in
         view.layer.cornerRadius = 3
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.gray3.cgColor
@@ -53,19 +51,37 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         view.backgroundColor = .gray3
     }
     
-    let selectWorking = DLRadioButton().then { radio in
+    private lazy var selectWorking = DLRadioButton().then { radio in
         radio.setTitle("재직중", for: .normal)
         radio.titleLabel?.font = UIFont.body1(size: 15)
         radio.setTitleColor(.gray7, for: .normal)
         radio.setImage(UIImage(named: "selected"), for: .normal)
+        if let unSelectedImage = UIImage(named: "unSelected")?.resized(toWidth: 20) {
+            radio.icon = unSelectedImage
+        }
+        if let selectedImage = UIImage(named: "selected")?.resized(toWidth: 20) {
+            radio.iconSelected = selectedImage
+        }
+        radio.addTarget(self, action: #selector(isScoreVisibleTapped), for: .touchUpInside)
     }
+    
     //캘린더 두개(시작)
     var startCalendar = CalendarView()
     var lastcalendar = CalendarView()
 
-    let startInternButton = CalendarButton(titleText: "시작 일자", image: "defalutcalendar")
+    let startInternButton = CalendarButton(
+        titleText: "시작 일자",
+        image: "defalutcalendar"
+    ).then { button in
+        button.setTitleColor(.gray3, for: .normal)
+    }
     
-    let lastInternButton = CalendarButton(titleText: "종료 일자", image: "defalutcalendar")
+    let lastInternButton = CalendarButton(
+        titleText: "종료 일자",
+        image: "defalutcalendar"
+    ).then { button in
+        button.setTitleColor(.gray3, for: .normal)
+    }
     
     @objc func deleteButtonTapped() {
         delegate?.inputCareerCellDidRequestDelete(self)
@@ -82,7 +98,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         rightPadding: -16
     )
     
-    let jobPartTextFiedl = profileTextField(
+    let jobNametextField = CareerTextField(
         placeholder: "직무 이름",
         fontSize: 15,
         textColor: .textBlack,
@@ -113,15 +129,16 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         shadowView.addSubview(activityDateText)
         shadowView.addSubview(deleteButton)
         shadowView.addSubview(startInternButton)
-        shadowView.addSubview(jobPartTextFiedl)
+        shadowView.addSubview(jobNametextField)
         shadowView.addSubview(dividerInDateView)
         shadowView.addSubview(lastInternButton)
         shadowView.addSubview(selectWorking)
         self.setViewShadow(backView: shadowView)
         validateNextButton()
         companyNametextField.delegate = self
+        jobNametextField.delegate = self
         startCalendar.delegate = self
-        startCalendar.delegate = self
+        lastcalendar.delegate = self
         startInternButton.addTarget(self, action: #selector(showCaledarStart), for: .touchUpInside)
         lastInternButton.addTarget(self, action: #selector(showCaledarLast), for: .touchUpInside)
         companyText.snp.makeConstraints { make in
@@ -185,7 +202,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
             make.height.equalTo(21)
         }
         
-        jobPartTextFiedl.snp.makeConstraints { make in
+        jobNametextField.snp.makeConstraints { make in
             make.top.equalTo(activityDateText.snp.bottom).offset(12)
             make.width.equalTo(303)
             make.height.equalTo(43)
@@ -216,7 +233,6 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     }
     
     @objc func showCaledarStart() {
-        print("캘린더 뷰 보임")
         isselectedStartButton.toggle()
         
         startInternButton.layer.borderColor = isselectedStartButton ? UIColor.secondaryYellow.cgColor : UIColor.gray3.cgColor
@@ -244,16 +260,10 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
                     
                 }
             }
-            selectedDateStringInStartButton()
         }
-    }
-     
-    func selectedDateStringInStartButton() {
-        startInternButton.setTitle(selectedDateStringStart, for: .normal)
     }
 
     @objc func showCaledarLast() {
-        print("캘린더 뷰 보임")
         isselectedlastButton.toggle()
         
         lastInternButton.layer.borderColor = isselectedlastButton ? UIColor.secondaryYellow.cgColor : UIColor.gray3.cgColor
@@ -271,7 +281,6 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
             if let visibleWindow = UIWindow.visibleWindow() {
                 if !(visibleWindow.subviews.contains(lastcalendar)) {
                     visibleWindow.addSubview(lastcalendar)
-//                    startCalendar.setViewShadow(backView: shadowView)
                     lastcalendar.snp.makeConstraints({ make in
                         make.top.equalTo(startInternButton.snp.top).offset(50)
                         make.trailing.equalToSuperview().offset(-20)
@@ -280,12 +289,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
                     })
                 }
             }
-            selectedDateStringInLastButton()
         }
-    }
-    
-    func selectedDateStringInLastButton() {
-        lastInternButton.setTitle(selectedDateStringLast, for: .normal)
     }
     
     @objc func isScoreVisibleTapped(_ sender: DLRadioButton) {
@@ -293,23 +297,13 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
         sender.isSelected = isScoreVisibleRadioButton
     }
         
-        
-    private func SeleceddropdownMenu(for selectButton : UIButton) -> DropdownMenu {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.scrollDirection = .vertical
-        let dropdownMenu = DropdownMenu(frame: .zero)
-        dropdownMenu.backgroundColor = .secondaryYellow
-        dropdownMenu.options = categories1
-        dropdownMenu.didSelectOption = { selectedOptions in
-            let selectedTitles = selectedOptions.joined(separator : " ")
-            selectButton.setTitle(selectedTitles, for: .normal)
-        }
-
-        return dropdownMenu
-    }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        companyNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        if textField == companyNametextField {
+            companyNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        } else {
+            jobNametextField.layer.borderColor = UIColor.secondaryYellow.cgColor
+        }
         validateNextButton()
     }
     
@@ -320,14 +314,7 @@ class InternActCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
 }
 
 
-extension InternActCollectionViewCell: DropdownButtonDelegate, CalendarViewDelegate {
-    func didSelectDate(_ calendar: CalendarView, _ date: String) {
-        if startCalendar == calendar {
-            selectedDateStringStart = date
-        } else {
-            selectedDateStringLast = date
-        }
-    }
+extension InternActCollectionViewCell: DropdownButtonDelegate {
     
     func dropdownButton(_ button: DropdownButton, didSelectOption isSelected: Bool) {
         if isSelected {
@@ -340,23 +327,44 @@ extension InternActCollectionViewCell: DropdownButtonDelegate, CalendarViewDeleg
     }
     
     func UpDateDatavalidation() -> Bool {
-        var wholevalid : Bool = false
-        let activityName = companyNametextField.text ?? ""
-        let activityNameValid = !(activityName.isEmpty)
+        let companyName = companyNametextField.text ?? ""
+        let jopName = jobNametextField.text ?? ""
+        let textFieldNameValid = !(companyName.isEmpty)
+        let textFieldjopNameValid = !(jopName.isEmpty)
+        let startDate = !(selectedDateStringStart.isEmpty)
+        let lastDate = !(selectedDateStringLast.isEmpty)
         
-        if activityNameValid == true {
-            wholevalid = true
-            return wholevalid
-        } else {
-            wholevalid = false
-            return wholevalid
-        }
-        
+        return textFieldNameValid == true  && textFieldjopNameValid == true
+                && startDate == true && lastDate == true
     }
     
     func validateNextButton() {
         isBothFieldsFilled = UpDateDatavalidation()
-        print("isBothFieldsFilled = \(isBothFieldsFilled)")
         delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
     }
 }
+
+
+extension InternActCollectionViewCell : CalendarViewDelegate {
+    func didSelectDate(_ calendar: CalendarView,_ date: String) {
+        if calendar == startCalendar {
+            selectedDateStringStart = date
+            if !(selectedDateStringStart.isEmpty) {
+                startInternButton.setTitle(selectedDateStringStart, for: .normal)
+                startInternButton.setTitleColor(.black1, for: .normal)
+            } else {
+                startInternButton.setTitleColor(.gray3, for: .normal)
+            }
+            
+        } else if calendar == lastcalendar {
+            selectedDateStringLast = date
+            if !(selectedDateStringStart.isEmpty) {
+                lastInternButton.setTitle(selectedDateStringLast, for: .normal)
+                lastInternButton.setTitleColor(.black1, for: .normal)
+            } else {
+                lastInternButton.setTitleColor(.gray3, for: .normal)
+            }
+        }
+    }
+}
+

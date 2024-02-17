@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
@@ -62,7 +64,7 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
     
     private lazy var selectButton1: DropdownButton = {
         let button = DropdownButton()
-        button.setupDropdownMenu(options: SelectCategoryInCareer().competitionPart, selectedvalue: true)
+        button.setupDropdownMenu(options: SelectCategoryInCareer().campushActivities, selectedvalue: true)
         return button
     }()
 
@@ -217,7 +219,6 @@ extension CampusActivityCollectionViewCell : DropdownButtonDelegate {
     
     func validateNextButton() {
         isBothFieldsFilled = UpDateDatavalidation()
-        print("isBothFieldsFilled = \(isBothFieldsFilled)")
         delegateValid?.inputCareerCell(self, didChangeFieldsFilledStatus: isBothFieldsFilled)
     }
 }

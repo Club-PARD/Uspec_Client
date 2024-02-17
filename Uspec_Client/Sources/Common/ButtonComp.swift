@@ -55,7 +55,6 @@ class CalendarButton: UIButton {
         super.init(frame: .zero)
         self.setTitle(titleText, for: .normal)
         self.setImage(UIImage(named: image), for: .normal)
-        self.setTitleColor(UIColor.gray, for: .normal)
         self.titleLabel?.font = UIFont.body1(size: 15)
         self.layer.borderColor = UIColor.gray3.cgColor
         self.layer.cornerRadius = 20
@@ -76,7 +75,6 @@ cclass CertificationCalendarButton: UIButton {
         super.init(frame: .zero)
         self.setTitle(titleText, for: .normal)
         self.setImage(UIImage(named: image), for: .normal)
-        self.setTitleColor(UIColor.gray, for: .normal)
         self.titleLabel?.font = UIFont.body1(size: 15)
         self.layer.borderColor = UIColor.gray3.cgColor
         self.layer.cornerRadius = 20
@@ -91,6 +89,7 @@ cclass CertificationCalendarButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
 class SpecRankingCard: UIView {
     var userID = 0
     
