@@ -23,6 +23,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                     print(userIdentifier)
                     print(credentialState)
                     print("userEmail = \(String(describing: userEmail))")
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        let profileVC = ProfileIntroViewController(currentStep: .step0)// ProfileViewController 인스턴스 생성
+                        self.navigationController?.pushViewController(profileVC, animated: true)
+                    }
                     break
                 case .revoked:
                     print("revoked")
