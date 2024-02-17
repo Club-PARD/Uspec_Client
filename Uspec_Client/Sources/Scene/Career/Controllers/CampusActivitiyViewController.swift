@@ -11,7 +11,7 @@ class CampusActivitiyViewController: InternActivityViewController {
     let identifierInCampus = "campusActivityCollectionViewCell"
     override func viewDidLoad() {
         super.viewDidLoad()
-        semiTitleLabel.text = "짱구님의 교내활동 내역을 입력해주세요."
+        semiTitleLabel.text = "\(nickName)님의 교내활동 내역을 입력해주세요."
         doneButton.setTitle("참여한 교내활동이 없어요", for: .normal)
         collectionView.register(CampusActivityCollectionViewCell.self, forCellWithReuseIdentifier: identifierInCampus)
         collectionView.register(AddActivityCollectionViewCell.self, forCellWithReuseIdentifier: addActivityCellIdentifier)

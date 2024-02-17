@@ -20,16 +20,19 @@ class CompetitionCollectionViewCell: UICollectionViewCell , UITextFieldDelegate 
     private let nameText = UILabel().then { label in
         label.text = "공모전의 이름을 구체적으로 입력해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let competitionPartText = UILabel().then { label in
         label.text = "공모전의 공모 분야를 모두 정해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let interestsText = UILabel().then { label in
         label.text = "공모전의 시상규모를 선택해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private lazy var deleteButton = UIButton().then { button in

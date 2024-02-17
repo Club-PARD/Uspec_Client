@@ -19,16 +19,19 @@ class CampusActivityCollectionViewCell: UICollectionViewCell , UITextFieldDelega
     private let nameText = UILabel().then { label in
         label.text = "교내활동의 이름을 구체적으로 입력해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let campusActPartText = UILabel().then { label in
         label.text = "교내활동의 활동 분야를 설정해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let actingContentText = UILabel().then { label in
         label.text = "세부적인 활동 내용을 설명해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let actingContentTextField = profileTextField (

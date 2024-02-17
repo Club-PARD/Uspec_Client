@@ -17,7 +17,7 @@ class CertificateViewController: InternActivityViewController {
     }
     
     override func setUpComponent() {
-        semiTitleLabel.text = "짱구님의 자격증 취득 내역을 입력해주세요."
+        semiTitleLabel.text = "\(nickName)님의 자격증 취득 내역을 입력해주세요."
         doneButton.setTitle("취득한 자격증이 없어요.", for: .normal)
         collectionView.register(
             CertifivateCollectionViewCell.self,

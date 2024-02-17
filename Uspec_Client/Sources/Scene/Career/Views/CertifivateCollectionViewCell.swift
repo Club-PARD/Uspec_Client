@@ -10,6 +10,8 @@ import SnapKit
 import Then
 import FSCalendar
 
+let nickName = UserDefaults.standard.string(forKey: "nickName") ?? "null"
+
 class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     weak var delegate : InputCareerCollectionViewCellDelegate?
     weak var delegateValid : InputCareerValidCheckDelegate?
@@ -20,13 +22,15 @@ class CertifivateCollectionViewCell: UICollectionViewCell ,UITextFieldDelegate {
     private let calendarView = CalendarView()
     
     private let certifiCateNameText = UILabel().then { label in
-        label.text = "짱구님의 자격증 취득 내역을 입력해주세요."
+        label.text = "\(nickName)님의 자격증 취득 내역을 입력해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     private let gettingCertificateDateText = UILabel().then { label in
         label.text = "자격증 취득 일자를 선택해주세요."
         label.font = UIFont.body1(size: 15)
+        label.textColor = .gray7
     }
     
     let calderbutton = CertificationCalendarButton(
