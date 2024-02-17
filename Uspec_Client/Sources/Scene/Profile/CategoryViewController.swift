@@ -195,41 +195,29 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            if tableView == topCategoryTableView {
-                selectedTopCategoryIndex = indexPath.row
-                detailCategoryTableView.reloadData()
+        if tableView == topCategoryTableView {
+            selectedTopCategoryIndex = indexPath.row
+            detailCategoryTableView.reloadData()
+        } else if tableView == detailCategoryTableView {
+            if let lastIndexPath = lastIndexPath, let lastCell = tableView.cellForRow(at: lastIndexPath) {
+                lastCell.backgroundColor = .white
             }
             
-            if tableView == topCategoryTableView {
-                if let lastIndexPath = lastIndexPath, let lastCell = tableView.cellForRow(at: lastIndexPath) {
-                    lastCell.backgroundColor = .gray1
-                }
-                // 현재 선택된 셀의 배경색 변경
-                if let cell = tableView.cellForRow(at: indexPath) {
-                    cell.backgroundColor = .white
-                }
-                // 마지막 indexPath 업데이트
-                lastIndexPath = indexPath
-                print("first category: \(String(describing: lastIndexPath))")
-            } else if tableView == detailCategoryTableView {
-                if let lastIndexPath = lastIndexPath, let lastCell = tableView.cellForRow(at: lastIndexPath) {
-                    lastCell.backgroundColor = .white
-                }
+            lastIndexPath = indexPath
+            if let selectedIndex = selectedTopCategoryIndex, selectedIndex < DetailCategory.model.count {
+                let detailCategories = DetailCategory.model[selectedIndex]
                 
-                lastIndexPath = indexPath
-                // selectedTopCategoryIndex를 사용하여 현재 선택된 top category에 해당하는 detail category 데이터를 가져옵니다.
-                if let selectedIndex = selectedTopCategoryIndex, selectedIndex < DetailCategory.model.count {
-                    let detailCategories = DetailCategory.model[selectedIndex]
+                if lastIndexPath!.row < detailCategories.count {
+                   path = detailCategories[lastIndexPath!.row].detailCategory
+                    print("second category: \(String(describing: lastIndexPath)), text: \(path)")
                     
-                    // lastIndexPath.row를 사용하여 선택된 detail category의 데이터를 가져옵니다.
-                    if lastIndexPath!.row < detailCategories.count {
-                       path = detailCategories[lastIndexPath!.row].detailCategory
-                        print("second category: \(String(describing: lastIndexPath)), text: \(path)")
-                    
-                    }
+                    // 셀 선택 시 doneButton의 배경색 변경
+                    doneButton.backgroundColor = .gray7 // 예를 들어, 선택된 셀이 있을 때의 색상을 지정합니다.
+                    doneButton.isEnabled = true // 버튼을 활성화 상태로 변경합니다.
                 }
-                tableView.deselectRow(at: indexPath, animated: false)
             }
+            tableView.deselectRow(at: indexPath, animated: false)
         }
+    }
 
 }
