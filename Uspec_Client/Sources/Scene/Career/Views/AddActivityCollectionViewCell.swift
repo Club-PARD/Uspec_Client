@@ -40,6 +40,7 @@ class AddActivityCollectionViewCell: UICollectionViewCell {
         shadowView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        titleLabel.textColor = .gray4
         titleLabel.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
