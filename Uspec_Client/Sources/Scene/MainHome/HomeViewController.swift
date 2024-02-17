@@ -58,9 +58,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @objc func myPageButtonTapped(){
-        print("myPage")
-    }
     private func setBackground() {
         backImage1.image = UIImage(named: "homeBack1")
         view.addSubview(backImage1)
@@ -273,6 +270,11 @@ class HomeViewController: UIViewController {
                 make.height.equalTo(57)
             }
         }
+    }
+    
+    @objc func myPageButtonTapped(){
+        let myPageVC = MyPageViewController()
+        navigationController?.pushViewController(myPageVC, animated: true)
     }
     
     @objc func activityButtonTapped(){

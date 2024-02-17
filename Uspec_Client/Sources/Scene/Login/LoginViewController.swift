@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setComponents()
         configureUI()
-        getFontName()
+//        getFontName()
     }
 
     func getFontName() {
@@ -78,7 +78,6 @@ class LoginViewController: UIViewController {
         
         // MARK: - ram test
 //        let profileVC = HomeViewController()
-      
 //         let profileVC = ActivityAnalysisViewController()
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
