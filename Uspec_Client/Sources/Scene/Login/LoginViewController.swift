@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setComponents()
         configureUI()
-        getFontName()
+//        getFontName()
     }
 
     func getFontName() {
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
 //        let profileVC = CareerIntrolViewController(currentStep: .step1)
         
         // MARK: - ram test
-        let profileVC = ActivityAnalysisViewController()
+        let profileVC = MyPageViewController()
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
