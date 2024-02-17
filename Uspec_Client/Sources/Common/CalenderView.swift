@@ -23,13 +23,13 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
         calendar.tintColor = UIColor.secondaryYellow
         calendar.calendarWeekdayView.tintColor = UIColor.gray2
         calendar.appearance.weekdayTextColor = UIColor.gray2
-        calendar.appearance.selectionColor = UIColor.secondaryYellow
+        calendar.appearance.selectionColor = UIColor.primaryYellow
         calendar.appearance.todaySelectionColor = UIColor.gray3
         calendar.headerHeight = 20
         calendar.appearance.headerMinimumDissolvedAlpha = 0
         calendar.appearance.headerDateFormat = "YYYY년 MM월"
         calendar.appearance.headerTitleFont = UIFont.body2()
-        calendar.appearance.headerTitleColor = UIColor.secondaryYellow
+        calendar.appearance.headerTitleColor = UIColor.primaryYellow
         calendar.appearance.headerTitleAlignment = .center
         calendar.appearance.subtitleOffset = CGPoint(x: 0, y: 4)
         calendar.layer.cornerRadius = 10
@@ -94,7 +94,7 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
         
         // 양옆 년도, 월 지우기
         self.calendar.appearance.headerMinimumDissolvedAlpha = 0.0
-        self.calendar.appearance.titleDefaultColor = UIColor.secondaryYellow
+        self.calendar.appearance.titleDefaultColor = UIColor.primaryYellow
         // 달에 유효하지않은 날짜 지우기
         self.calendar.placeholderType = .none
         
@@ -125,7 +125,7 @@ class CalendarView: UIView, FSCalendarDelegate, FSCalendarDataSource, FSCalendar
     
     // title의 디폴트 색상
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-        return UIColor.secondaryYellow
+        return UIColor.primaryYellow
     }
     // subtitle의 디폴트 색상
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, subtitleDefaultColorFor date: Date) -> UIColor? {
